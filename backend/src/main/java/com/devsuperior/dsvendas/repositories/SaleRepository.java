@@ -18,8 +18,6 @@ public interface SaleRepository  extends JpaRepository <Sale, Long>{
 			+ "From Sale AS obj GROUP BY obj.seller" )
 	List<SaleSumDTO> amountGroupBySeller();
 		
-
-	
 	
 	// criar metodo customizado adicionado para recuperar os agrupamentos
 	// visitas e negocios fechados por vendedor
@@ -27,6 +25,7 @@ public interface SaleRepository  extends JpaRepository <Sale, Long>{
 			+ "From Sale AS obj GROUP BY obj.seller" )
 	List<SaleSuccessDTO> successGroupedBySeller();
 		
+	
 
 	
 	
