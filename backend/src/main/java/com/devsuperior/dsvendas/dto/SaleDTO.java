@@ -13,7 +13,7 @@ public class SaleDTO {
 	private Integer deals;
 	private Double amount;
 	private LocalDate date;
-	
+	private SellerDTO seller;
 	
 	//construtor vazio
 	public SaleDTO(){
@@ -21,15 +21,16 @@ public class SaleDTO {
 	}
 
 
-	public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date) {
-	    this.id = id;
+	public SaleDTO(Long id, Integer visited, Integer deals, Double amount, LocalDate date, SellerDTO seller) {
+		this.id = id;
 		this.visited = visited;
 		this.deals = deals;
 		this.amount = amount;
 		this.date = date;
+		this.seller = seller;
 	}
-	
-	
+
+
 	//construtor que vai receber uma entidade seller, para copiar os dados da entidade para o dto
 	public SaleDTO(Sale entity) {
 		id = entity.getId();
@@ -37,6 +38,7 @@ public class SaleDTO {
 		deals = entity.getDeals();
 		amount = entity.getAmount();
 		date = entity.getDate();
+		seller = new SellerDTO(entity.getSeller());
 }
 
 
@@ -87,8 +89,19 @@ public class SaleDTO {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
-	}	
-	
+	}
+
+
+	public SellerDTO getSeller() {
+		return seller;
+	}
+
+
+	public void setSeller(SellerDTO seller) {
+		this.seller = seller;
+	}
+
+
 	
 	
 	
