@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 @RestController
 @RequestMapping(value="/sellers")
 
+
 public class SellerController {
 	
 	@Autowired
