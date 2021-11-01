@@ -10,7 +10,7 @@ import com.devsuperior.dsvendas.service.SellerService;
 import org.springframework.http.ResponseEntity;
 
 @RestController
-@RequestMapping(value="/seller")
+@RequestMapping(value="/sellers")
 public class SellerController {
 	
 	@Autowired
