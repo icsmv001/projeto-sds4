@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { SaleSum } from "types/sale";
 import { BASE_URL } from "utils/requests";
@@ -11,19 +11,29 @@ type ChartData = {
 };
 
 const DonutChart = () => {
-  // instanciar um dado basico para o typo ChartData
-  let chartData: ChartData = { labels: [], series: [] };
-
-  axios.get("http://localhost:8080/sales/amount-by-seller").then((response) => {
-    const data = response.data as SaleSum[];
-    const myLabels = data.map((x) => x.sellerName);
-    const mySeries = data.map((x) => x.sum);
-
-    chartData = { labels: myLabels, series: mySeries };
-
-    //console.log(response.data);
-    console.log(chartData);
+  const [chartData, setChartData] = useState<ChartData>({
+    labels: [],
+    series: [],
   });
+
+  // instanciar um dado basico para o typo ChartData
+  //let chartData: ChartData = { labels: [], series: [] };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/sales/amount-by-seller")
+      .then((response) => {
+        //axios.get("${}http://localhost:8080/sales/amount-by-seller").then((response) => {
+        const data = response.data as SaleSum[];
+        const myLabels = data.map((x) => x.sellerName);
+        const mySeries = data.map((x) => x.sum);
+
+        setChartData({ labels: myLabels, series: mySeries });
+
+        //console.log(response.data);
+        console.log(setChartData);
+      });
+  }, []);
 
   // converte a lista de objetos de retorno da API, para 2 colocoes/listas para o grafico.
 
