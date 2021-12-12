@@ -20,8 +20,10 @@ const DonutChart = () => {
   //let chartData: ChartData = { labels: [], series: [] };
 
   useEffect(() => {
+    // axios.get("http://localhost:8080/sales/amount-by-seller")
     axios
-      .get("http://localhost:8080/sales/amount-by-seller")
+      .get(`${BASE_URL}/sales/amount-by-seller`)
+
       .then((response) => {
         //axios.get("${}http://localhost:8080/sales/amount-by-seller").then((response) => {
         const data = response.data as SaleSum[];
