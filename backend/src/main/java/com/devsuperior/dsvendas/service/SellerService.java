@@ -24,7 +24,14 @@ public class SellerService {
 		return result.stream().map(x -> new SellerDTO(x)).collect(Collectors.toList());
 		
 	}
-	
-	
 
+	 
+	public List<SellerDTO> findByNameContaining(String name){
+		
+		//para retornar uma lista de seller
+				List<Seller> result = repository.findByNameContaining(name);
+				return result.stream().map(x -> new SellerDTO(x)).collect(Collectors.toList());
+				
+	
+	}
 }

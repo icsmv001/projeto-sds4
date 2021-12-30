@@ -1,31 +1,117 @@
 package com.devsuperior.dsvendas.controllers;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.devsuperior.dsvendas.dto.SellerDTO;
-import com.devsuperior.dsvendas.service.SellerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.devsuperior.dsvendas.dto.SellerDTO;
+import com.devsuperior.dsvendas.entities.Seller;
+import com.devsuperior.dsvendas.repositories.SellerRepository;
+import com.devsuperior.dsvendas.service.SellerService;
 
 @RestController
-@RequestMapping(value="/sellers")
-
-
+@RequestMapping(value = "/sellers")
 public class SellerController {
-	
+
+	@Autowired
+	private SellerRepository sellerRepository;
+
 	@Autowired
 	private SellerService service;
-	
-	
-	// metodo para representar um endpoint e recuper os valores retornados no navegador
-	
+
+	// metodo para representar um endpoint e recuper os valores retornados no
+	// navegador
+
 	@GetMapping
-	public ResponseEntity<List<SellerDTO>> findAll () {
+	public ResponseEntity<List<SellerDTO>> findAll() {
 		List<SellerDTO> list = service.findAll();
 		return ResponseEntity.ok(list);
-		
+
+	}
+
+	// metodo para inserir novo registro de vendedor - sucesso - 15/12/2021
+	@PostMapping(value = "/vendedor")
+
+	public Seller adicionar(@RequestBody Seller seller) {
+		return sellerRepository.save(seller);
+
+	}
+
+	/// teste para retornar por id vendedor.
+
+	@GetMapping(value = "/vendedorId/{id}")
+	public ResponseEntity<String> busca(@PathVariable Long id) {
+		// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + id);
+
+		Optional<Seller> seller = sellerRepository.findById(id);
+		// System.out.println("TESTE ## PASSANDO POR AQUI 2 !!!!! ##### " +
+		// seller.get().getName());
+		if (seller.isPresent()) {
+			return ResponseEntity.ok(seller.get().getName());
+
+		}
+		return ResponseEntity.notFound().build();
+
+	}
+
+	/// -------
+	/// teste para retornar por id vendedor.
+
+	@GetMapping(value = "/vendedorNm/{name}")
+	public ResponseEntity<String> buscaNome(@PathVariable String name) {
+		// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
+
+		Optional<Seller> seller = sellerRepository.findByName(name);
+		// System.out.println("TESTE ## PASSANDO POR AQUI 2 !!!!! ##### " +
+		// seller.get().getName());
+		if (seller.isPresent()) {
+			return ResponseEntity.ok(seller.get().getName());
+
+		}
+		return ResponseEntity.notFound().build();
+
+	}
+
+	@GetMapping(value = "/vendedoresNm/{name}")
+
+	public ResponseEntity<List<SellerDTO>> buscarNomes(@PathVariable String name) {
+
+		// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
+		List<SellerDTO> list = service.findByNameContaining(name);
+		return ResponseEntity.ok(list);
+
+	}
+
+	// alteracao de nome por id
+	@PutMapping(value = "/AtualizaNome/{id}")
+	public ResponseEntity<String> Atualizar(@PathVariable Long id, @RequestBody Seller seller) {
+
+		// System.out.println("TESTE ## PASSANDO POR AQUI alteracao 1 !!!!! ##### " +
+		// id);
+
+		if (!sellerRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+
+		seller.setId(id);
+		seller = sellerRepository.save(seller);
+
+		// System.out.println("TESTE ## PASSANDO POR AQUI alteracao 2 !!!!! ##### " +
+		// id);
+
+		return ResponseEntity.ok(seller.getName());
+
 	}
 
 }
