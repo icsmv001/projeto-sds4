@@ -17,7 +17,6 @@ import com.devsuperior.dsvendas.dto.SaleSuccessDTO;
 import com.devsuperior.dsvendas.dto.SaleSumDTO;
 import com.devsuperior.dsvendas.entities.Sale;
 import com.devsuperior.dsvendas.repositories.SaleRepository;
-import com.devsuperior.dsvendas.repositories.SellerRepository;
 import com.devsuperior.dsvendas.service.SaleService;
 
 @RestController

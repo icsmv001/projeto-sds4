@@ -14,12 +14,12 @@ public interface SellerRepository  extends JpaRepository <Seller, Long>{
 	 /* Objeto responsavel por buscar e alterar os dados a entidade Seller */
 	
 	
-	//List<Seller> findByName = null;
+	List<Seller> findByName = null;
 
-	Optional<Seller> findByName(String name);
-
+	
 	List<Seller> findByNameContaining(String name);
 	
+	Optional<Seller> findByName(String name);
 
 
 }

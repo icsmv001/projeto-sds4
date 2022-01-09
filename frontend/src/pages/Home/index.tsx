@@ -24,9 +24,18 @@ const Home = () => {
           </Link>
         </div>
         <hr />
+        <Link className="btn btn-primary btn-lg" to="/listVendedor">
+          Acessar Rl Vendedor
+        </Link>
+        <hr />
+        <hr />
         <Link className="btn btn-primary btn-lg" to="/cadvendas">
           Acessar Cad. Vendas
         </Link>
+
+        {/* <Link className="btn btn-primary btn-lg" to="/cadVendedor">
+          Acessar List Vendedor
+        </Link> */}
       </div>
       <Footer />
     </>

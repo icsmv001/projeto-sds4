@@ -1,3 +1,5 @@
+import DataTable from "components/DataTable";
+import DataTableSellers from "components/DataTableSellers";
 import Footer from "components/Footer";
 import NavBar from "components/navbar";
 import { Link } from "react-router-dom";
@@ -20,6 +22,7 @@ const Cadvendas = () => {
                   name="nome"
                   placeholder="Digite Nome Vendedor"
                 ></input>
+                <DataTableSellers />
               </div>
 
               <div className="input-fied col s3">

@@ -32,9 +32,6 @@ public class SellerDTO   implements Serializable  {
 	}	
 		
 		
-		
-		
-		
 
 		public Long getId() {
 			return id;
