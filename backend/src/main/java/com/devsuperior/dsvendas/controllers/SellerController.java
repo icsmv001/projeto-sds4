@@ -43,7 +43,7 @@ public class SellerController {
 	}
  
 	
-   // consulta por nome simples
+   // consulta por nome simples e com like, usando a convensao containing do jpa repository
 	@GetMapping(value = "/vendedorNm/{name}")
 	public ResponseEntity<List<SellerDTO>> buscarNomes(@PathVariable String name) {
     	// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
@@ -64,7 +64,7 @@ public class SellerController {
 		}
 		
 	
-	
+	  
 	
 	
 	
