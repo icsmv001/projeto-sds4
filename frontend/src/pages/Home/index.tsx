@@ -30,13 +30,13 @@ const Home = () => {
         <hr />
 
         <Link className="btn btn-primary btn-lg" to="/listVendas">
-          Acessar Rel. Vendas
+          Acessar Rel. Vendas.
         </Link>
         <hr />
 
         <hr />
-        <Link className="btn btn-primary btn-lg" to="/cadvendas">
-          Acessar Cad. Vendas
+        <Link className="btn btn-primary btn-lg" to="/cadvendedor">
+          Cadastro - Vendedor
         </Link>
 
         {/* <Link className="btn btn-primary btn-lg" to="/cadVendedor">

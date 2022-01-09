@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 import NavBar from "components/navbar";
 import React from "react";
 
-const Pagina01 = () => {
+const Pagina02 = () => {
   return (
     <>
       <NavBar />
@@ -18,4 +18,4 @@ const Pagina01 = () => {
   );
 };
 
-export default Pagina01;
+export default Pagina02;
