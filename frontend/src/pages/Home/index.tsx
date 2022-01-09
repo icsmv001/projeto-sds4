@@ -32,16 +32,16 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/listVendas">
           Acessar Rel. Vendas.
         </Link>
-        <hr />
 
         <hr />
         <Link className="btn btn-primary btn-lg" to="/cadvendedor">
           Cadastro - Vendedor
         </Link>
 
-        {/* <Link className="btn btn-primary btn-lg" to="/cadVendedor">
-          Acessar List Vendedor
-        </Link> */}
+        <hr />
+        <Link className="btn btn-primary btn-lg" to="/cadvendas">
+          Cadastro de Vendas
+        </Link>
       </div>
       <Footer />
     </>
