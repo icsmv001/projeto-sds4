@@ -36,13 +36,38 @@ public class SellerController {
 	// navegador
 
 	@GetMapping
-	
 	public ResponseEntity<Page<SellerDTO>> findAll(Pageable pageable) {
 		Page<SellerDTO> list = service.findAll(pageable);
 		return ResponseEntity.ok(list);
 
 	}
  
+	
+   // consulta por nome simples
+	@GetMapping(value = "/vendedorNm/{name}")
+	public ResponseEntity<List<SellerDTO>> buscarNomes(@PathVariable String name) {
+    	 System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
+		List<SellerDTO> list = service.findByNameContaining(name);
+		return ResponseEntity.ok(list);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
