@@ -46,7 +46,7 @@ public class SellerController {
    // consulta por nome simples
 	@GetMapping(value = "/vendedorNm/{name}")
 	public ResponseEntity<List<SellerDTO>> buscarNomes(@PathVariable String name) {
-    	 System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
+    	// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
 		List<SellerDTO> list = service.findByNameContaining(name);
 		return ResponseEntity.ok(list);
 
@@ -57,7 +57,7 @@ public class SellerController {
 	   // consulta por id simples
 		@GetMapping(value = "/vendedorId/{id}")
 		public ResponseEntity<Optional<Object>> buscarId(@PathVariable Long id) {
-	    	 System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + id);
+	    	//System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + id);
 			Optional<Object> list = service.findById(id);
 			return ResponseEntity.ok(list);
 
