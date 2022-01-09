@@ -1,6 +1,8 @@
 import Dashboard from "pages/Dashboard";
 import Home from "pages/Home";
 import Pagina01 from "pages/pagina01";
+import Pagina02 from "pages/pagina02";
+
 // import CadVendedor from "components/CadVendedor";
 // import Cadvendas from "pages/Cadvendas";
 import React, { Route, Switch } from "react-router";
@@ -32,6 +34,10 @@ const Routes = () => {
 
         <Route path="/listVendedor">
           <Pagina01 />
+        </Route>
+
+        <Route path="/listVendas">
+          <Pagina02 />
         </Route>
       </Switch>
     </BrowserRouter>

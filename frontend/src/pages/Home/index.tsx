@@ -28,6 +28,12 @@ const Home = () => {
           Acessar Rl Vendedor
         </Link>
         <hr />
+
+        <Link className="btn btn-primary btn-lg" to="/listVendas">
+          Acessar Rel. Vendas
+        </Link>
+        <hr />
+
         <hr />
         <Link className="btn btn-primary btn-lg" to="/cadvendas">
           Acessar Cad. Vendas
