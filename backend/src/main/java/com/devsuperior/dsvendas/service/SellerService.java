@@ -1,5 +1,6 @@
 package com.devsuperior.dsvendas.service;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,5 +34,14 @@ public class SellerService {
 				List<Seller> result = sellerRepository.findByNameContaining(name);
 				return result.stream().map(x -> new SellerDTO(x)).collect(Collectors.toList());
 	}
+
+
+	public Optional<Object> findById(Long id) {
+		Optional<Seller> result = sellerRepository.findById(id);
+		return result.map(x -> new SellerDTO(x));
+	}
+
+
+
 	
 }

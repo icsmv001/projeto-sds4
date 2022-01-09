@@ -54,7 +54,15 @@ public class SellerController {
 	
 	
 	
-	
+	   // consulta por id simples
+		@GetMapping(value = "/vendedorId/{id}")
+		public ResponseEntity<Optional<Object>> buscarId(@PathVariable Long id) {
+	    	 System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + id);
+			Optional<Object> list = service.findById(id);
+			return ResponseEntity.ok(list);
+
+		}
+		
 	
 	
 	
