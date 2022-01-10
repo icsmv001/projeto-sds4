@@ -28,20 +28,25 @@ public class SellerService {
 		return result.map(x -> new SellerDTO(x));
 	}
 	
-	 
+	@Transactional(readOnly=true)
 	public List<SellerDTO> findByNameContaining(String name){
 		//para retornar uma lista de seller
 				List<Seller> result = sellerRepository.findByNameContaining(name);
 				return result.stream().map(x -> new SellerDTO(x)).collect(Collectors.toList());
 	}
 
-
+	@Transactional(readOnly=true)
 	public Optional<Object> findById(Long id) {
 		Optional<Seller> result = sellerRepository.findById(id);
 		return result.map(x -> new SellerDTO(x));
 	}
 
 
+	
+	
+	
+	
+	
 
 	
 }
