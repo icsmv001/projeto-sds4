@@ -1,20 +1,37 @@
+import { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import Footer from "components/Footer";
 import NavBar from "components/navbar";
 import React from "react";
-import { validateEmail } from "utils/validate";
+import { BASE_URL } from "utils/requests";
+// import { validateEmail } from "utils/validate";
 
 const Pagina03 = () => {
   const handleSubmit = (event: { preventDefault: () => void; target: any }) => {
     event.preventDefault();
     const NmVendedor1 = (event.target as any).NmVendedor1.value;
-    const Email = (event.target as any).Email.value;
-    const datacadastro = (event.target as any).datacadastro.value;
+    // const Email = (event.target as any).Email.value;
+    // const datacadastro = (event.target as any).datacadastro.value;
 
-    if (!validateEmail(Email)) {
-      return;
-    }
+    // if (!validateEmail(Email)) {
+    //   return;
+    // }
 
-    console.log(NmVendedor1, datacadastro, Email);
+    const config: AxiosRequestConfig = {
+      baseURL: BASE_URL,
+      method: "POST",
+      url: "/sellers/vendedor",
+      data: {
+        name: NmVendedor1,
+      },
+    };
+
+    axios(config).then((response) => {
+      console.log(response.data);
+    });
+    // console.log(NmVendedor1, datacadastro, Email);
+
+    // console.log(NmVendedor1);
   };
 
   return (
