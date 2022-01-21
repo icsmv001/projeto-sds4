@@ -1,14 +1,20 @@
 import Footer from "components/Footer";
 import NavBar from "components/navbar";
 import React from "react";
+import { validateEmail } from "utils/validate";
 
 const Pagina03 = () => {
   const handleSubmit = (event: { preventDefault: () => void; target: any }) => {
     event.preventDefault();
     const NmVendedor1 = (event.target as any).NmVendedor1.value;
+    const Email = (event.target as any).Email.value;
     const datacadastro = (event.target as any).datacadastro.value;
 
-    console.log(NmVendedor1, datacadastro);
+    if (!validateEmail(Email)) {
+      return;
+    }
+
+    console.log(NmVendedor1, datacadastro, Email);
   };
 
   return (
@@ -16,71 +22,56 @@ const Pagina03 = () => {
       <form className=" container formVendas" onSubmit={handleSubmit}>
         <NavBar />
 
-        {/* <div className="jumbotron">
+        <div className="jumbotron">
           <h1 className="display-4">Cadastro de Vendedor</h1>
+
           <p className="container">
             <div className="row">
               <div className="input-fied col s3">
-                <label className="col-xs-2 control-label">Vendedor: </label>
+                <label className="col-xs-2 control-label">
+                  Digite Nome Vendedor:
+                </label>
+
                 <input
-                  type="text"
+                  type="NmVendedor1"
                   className="form-control"
-                  name="nome"
+                  id="NmVendedor1"
                   placeholder="Digite Nome Vendedor"
                 ></input>
               </div>
 
               <div className="input-fied col s3">
-                <label className="col-xs-2 control-label">Data: </label>
+                <label className="col-xs-2 control-label">
+                  Digite Email Vendedor:
+                </label>
+
                 <input
-                  type="date"
+                  type="email"
                   className="form-control"
-                  name="data"
-                  placeholder="Digite data Evento"
+                  id="Email"
+                  placeholder="Digite Email Vendedor"
                 ></input>
               </div>
 
-              <label htmlFor="NmVendedor">Digite Nome Vendedor:</label>
-              <input
-                type="NmVendedor"
-                className="form-control"
-                id="NmVendedor1"
-                placeholder="Digite Nome Vendedor"
-              />
+              <div className="input-fied col s3">
+                <label className="col-xs-2 control-label">Data Cadastro:</label>
+
+                <input
+                  type="date"
+                  className="form-control"
+                  id="datacadastro"
+                  placeholder="Digite data Evento"
+                ></input>
+              </div>
             </div>
+            <p className="container1">
+              <div className="row"></div>
+            </p>
+
+            <button type="submit" className="btn btn-success">
+              Salvar
+            </button>
           </p>
-
-          <p className="container1">
-            <div className="row"></div>
-          </p>
-
-          <button type="submit" className="btn btn-success">
-            Salvar
-          </button>
-        </div> */}
-
-        <h1 className="display-4">Cadastro de Vendedor</h1>
-
-        <div className="teste">
-          <label htmlFor="NmVendedor">Digite Nome Vendedor:</label>
-          <input
-            type="NmVendedor1"
-            className="form-control"
-            id="NmVendedor1"
-            placeholder="Digite Nome Vendedor"
-          ></input>
-
-          <label className="col-xs-2 control-label">Data: </label>
-          <input
-            type="date"
-            className="form-control"
-            id="datacadastro"
-            placeholder="Digite data Evento"
-          ></input>
-
-          <button type="submit" className="btn btn-success">
-            Salvar
-          </button>
         </div>
       </form>
       <Footer />
