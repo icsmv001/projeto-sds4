@@ -34,11 +34,9 @@ const DataTableSellers = () => {
   };
 
   return (
-    <>     
+    <>
       <NavBar />
 
-
-    
       <PaginationSeller page={page} onPageChange={changePage} />
       <div className="table-responsive">
         <table className="table table-striped table-sm">
@@ -46,7 +44,6 @@ const DataTableSellers = () => {
             <tr>
               <th>id</th>
               <th>Vendedor</th>
-              
             </tr>
           </thead>
           <tbody>

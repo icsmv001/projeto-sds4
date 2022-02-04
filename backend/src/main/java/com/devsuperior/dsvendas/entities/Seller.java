@@ -1,6 +1,7 @@
 package com.devsuperior.dsvendas.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,7 +23,27 @@ public class Seller {
 
 	private Long id;
 	private String name;
+	private String email;
+	private Date   datacadastro;
 	
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDatacadastro() {
+		return datacadastro;
+	}
+
+	public void setDatacadastro(Date datacadastro) {
+		this.datacadastro = datacadastro;
+	}
+
 	@OneToMany(mappedBy = "seller")
 	private List<Sale> sales = new ArrayList<>();
 	
@@ -84,8 +105,7 @@ public class Seller {
 	}
 
 	
-	
-	
+		
 	
 
 }

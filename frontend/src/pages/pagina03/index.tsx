@@ -4,18 +4,19 @@ import Footer from "components/Footer";
 import NavBar from "components/navbar";
 import React from "react";
 import { BASE_URL } from "utils/requests";
+import { validateEmail } from "utils/validate";
 // import { validateEmail } from "utils/validate";
 
 const Pagina03 = () => {
   const handleSubmit = (event: { preventDefault: () => void; target: any }) => {
     event.preventDefault();
     const NmVendedor1 = (event.target as any).NmVendedor1.value;
-    // const Email = (event.target as any).Email.value;
-    // const datacadastro = (event.target as any).datacadastro.value;
+    const Email = (event.target as any).Email.value;
+    const datacadastro = (event.target as any).datacadastro.value;
 
-    // if (!validateEmail(Email)) {
-    //   return;
-    // }
+    if (!validateEmail(Email)) {
+      return;
+    }
 
     const config: AxiosRequestConfig = {
       baseURL: BASE_URL,
@@ -23,6 +24,8 @@ const Pagina03 = () => {
       url: "/sellers/vendedor",
       data: {
         name: NmVendedor1,
+        email: Email,
+        datacadastro: datacadastro,
       },
     };
 

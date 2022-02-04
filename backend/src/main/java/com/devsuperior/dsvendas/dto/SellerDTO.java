@@ -1,6 +1,7 @@
 package com.devsuperior.dsvendas.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.devsuperior.dsvendas.entities.Seller;
 
@@ -12,13 +13,31 @@ public class SellerDTO   implements Serializable  {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String name;
+	private String email;
+	private Date datacadastro ;
 	
 	//construtor vazio
 	public SellerDTO(){
 		
 	}
 	
-	//construtor de conversao do valor vindo do servico.entidade, para gravar no DTO.
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDatacadastro() {
+		return datacadastro;
+	}
+
+	public void setDatacadastro(Date datacadastro) {
+		this.datacadastro = datacadastro;
+	}
+
+		//construtor de conversao do valor vindo do servico.entidade, para gravar no DTO.
 		public SellerDTO(Long id, String name) {
 			this.id = id;
 		this.name = name;
