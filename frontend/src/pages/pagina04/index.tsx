@@ -62,28 +62,34 @@ const Pagina04 = () => {
           <p className="container">
             <div className="row">
               {/* inicio tratamento listar nome vendedores */}
-
               <div className="input-fied col s3">
-                <label className="col-xs-2 control-label">
-                  <select name="cmbVendedor" id="cmbVendedor">
-                    <option value="0">Selecione uma opção</option>
-                    {page.content?.map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {item.id} {item.name}
-                      </option>
-                    ))}
-                  </select>{" "}
+                <label className="ls-label col-md-2 ">
+                  {" "}
+                  Vendedor:
+                  <div className="ls-custom-select ">
+                    <select
+                      style={{ width: 280, height: 35, top: 10 }}
+                      name="cmbVendedor"
+                      id="cmbVendedor"
+                    >
+                      <option value="0">Selecione Nome Vendedor</option>
+                      {page.content?.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.id} {item.name}
+                        </option>
+                      ))}
+                    </select>{" "}
+                    {/* <input
+                              type="text"
+                                  className="form-control"
+                                  name="nome"
+                                  placeholder="Digite Nome Vendedor"
+                                  ></input> */}
+                  </div>
                 </label>
-
-                <input
-                  type="text"
-                  className="form-control"
-                  name="nome"
-                  placeholder="Digite Nome Vendedor"
-                ></input>
               </div>
 
-              {/* inicio tratamento listar nome vendedores */}
+              {/* termino tratamento listar nome vendedores */}
 
               <div className="input-fied col s3">
                 <label className="col-xs-2 control-label">
@@ -157,7 +163,7 @@ const Pagina04 = () => {
         </select>
       </div> */}
 
-      <div>
+      {/* <div>
         <h6> ******************* </h6>
         <div>
           <label>
@@ -172,7 +178,7 @@ const Pagina04 = () => {
             </select>
           </label>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </>
