@@ -34,9 +34,13 @@ const Pagina04 = () => {
   useEffect(() => {
     //axios.get("http://localhost:8080/sales?page=0&size=10&sort=date,desc")
 
-    axios.get(`${BASE_URL}/sellers?sort=id`).then((response) => {
-      setpage(response.data);
-    });
+    axios
+      .get(`${BASE_URL}/sellers?page=${activePage}&size=29&sort=id`)
+      .then((response) => {
+        setpage(response.data);
+
+        //       .get(`${BASE_URL}/sellers?page=${activePage}&size=20&sort=date,desc`)
+      });
   }, [activePage]);
 
   // // funcao que recebe os argumentos de paginacao
@@ -44,20 +48,20 @@ const Pagina04 = () => {
   //   setActivePage(index);
   // };
 
-  const [estados, setEstados] = useState([] as any);
+  const [cmbVendedor, setcmbVendedor] = useState([] as any);
 
   function handleCreate(e: { preventDefault: () => void }) {
     e.preventDefault();
-    alert(estados);
+    alert(cmbVendedor);
+
+    console.log("id e nome selecionado : " + cmbVendedor);
   }
 
-  useEffect(() => {
-    axios.get(`${BASE_URL}/sellers?sort=id`).then((response) => {
-      setEstados(response.data);
-    });
-  }, []);
-
-  console.log("teste.. " + setEstados.name);
+  // useEffect(() => {
+  //   axios.get(`${BASE_URL}/sellers?sort=id`).then((response) => {
+  //     setcmbVendedor(response.data);
+  //   });
+  // }, []);
 
   return (
     <>
@@ -71,22 +75,20 @@ const Pagina04 = () => {
               {/* inicio tratamento listar nome vendedores */}
               <div className="input-fied col s3">
                 <label className="ls-label col-md-2 ">
-                  {" "}
                   Vendedor:
                   <div className="ls-custom-select ">
                     <select
                       style={{ width: 280, height: 35, top: 10 }}
-                      name="estados"
-                      value={estados}
-                      onChange={(texto) => setEstados(texto.target.value)}
+                      onChange={(texto) => setcmbVendedor(texto.target.value)}
                     >
                       <option value="0">Selecione Nome Vendedor</option>
+
                       {page.content?.map((item) => (
-                        <option key={item.id} value={item.id}>
+                        <option key={item.id} value={item.id + "-" + item.name}>
                           {item.id} {item.name}
                         </option>
                       ))}
-                    </select>{" "}
+                    </select>
                   </div>
                 </label>
               </div>

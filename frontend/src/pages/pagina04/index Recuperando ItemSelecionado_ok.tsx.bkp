@@ -49,6 +49,8 @@ const Pagina04 = () => {
   function handleCreate(e: { preventDefault: () => void }) {
     e.preventDefault();
     alert(estados);
+
+    console.log("teste.. " + estados);
   }
 
   useEffect(() => {
@@ -56,8 +58,6 @@ const Pagina04 = () => {
       setEstados(response.data);
     });
   }, []);
-
-  console.log("teste.. " + setEstados.name);
 
   return (
     <>
