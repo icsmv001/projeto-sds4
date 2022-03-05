@@ -8,17 +8,7 @@ import { SellerPage } from "types/seller";
 import { BASE_URL } from "utils/requests";
 
 const Pagina04 = () => {
-  // inicio teste
-
-  // /// inicio estado anterior...
-  // const [estado] = useState(1);
-
-  // const editarEstado = (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   alert("Id do Estado: " + estado);
-  // };
-
-  const [activePage, setActivePage] = useState(0);
+  const [activePage] = useState(0);
 
   const [page, setpage] = useState<SellerPage>({
     first: true,
@@ -28,40 +18,43 @@ const Pagina04 = () => {
     totalPages: 0,
   });
 
-  const options = [page, setpage];
-
   // chamada da api
   useEffect(() => {
-    //axios.get("http://localhost:8080/sales?page=0&size=10&sort=date,desc")
-
     axios
-      .get(`${BASE_URL}/sellers?page=${activePage}&size=29&sort=id`)
+      .get(`${BASE_URL}/sellers?page=${activePage}&size=28&sort=id,desc`)
       .then((response) => {
         setpage(response.data);
-
-        //       .get(`${BASE_URL}/sellers?page=${activePage}&size=20&sort=date,desc`)
       });
   }, [activePage]);
 
   // // funcao que recebe os argumentos de paginacao
-  // const changePage = (index: number) => {
-  //   setActivePage(index);
-  // };
-
   const [cmbVendedor, setcmbVendedor] = useState([] as any);
+  const [visited, setvisited] = useState([] as any);
+  const [deals, setdeals] = useState([] as any);
+  const [amount, setamount] = useState([] as any);
+  const [data, setdata] = useState([] as any);
 
   function handleCreate(e: { preventDefault: () => void }) {
     e.preventDefault();
-    alert(cmbVendedor);
+    alert(" Vendedor..: " + cmbVendedor);
+    alert(" Qt.Visitas: " + visited);
+    alert(" Tt.Venda Concluida: " + deals);
+    alert(" Tt.Venda Realizadas: " + amount);
+    alert(" data Cadastro: " + data);
 
-    console.log("id e nome selecionado : " + cmbVendedor);
+    console.log(
+      " id e nome selecionado : " +
+        cmbVendedor +
+        " total visitas " +
+        visited +
+        " total vendas Concluidas " +
+        deals +
+        " Tt.Venda Realizadas: " +
+        amount +
+        " data Cadastro: " +
+        data
+    );
   }
-
-  // useEffect(() => {
-  //   axios.get(`${BASE_URL}/sellers?sort=id`).then((response) => {
-  //     setcmbVendedor(response.data);
-  //   });
-  // }, []);
 
   return (
     <>
@@ -92,9 +85,7 @@ const Pagina04 = () => {
                   </div>
                 </label>
               </div>
-
               {/* termino tratamento listar nome vendedores */}
-
               <div className="input-fied col s3">
                 <label className="col-xs-2 control-label">
                   Quantidade Visitas Realizadas:{" "}
@@ -103,7 +94,9 @@ const Pagina04 = () => {
                   type="text"
                   className="form-control"
                   name="visited"
+                  id="visited"
                   placeholder="Quantidade Visitas Realizadas"
+                  onChange={(texto) => setvisited(texto.target.value)}
                 ></input>
               </div>
 
@@ -115,7 +108,9 @@ const Pagina04 = () => {
                   type="text"
                   className="form-control"
                   name="deals"
+                  id="deals"
                   placeholder="Quantidade Vendas Concluidas"
+                  onChange={(texto) => setdeals(texto.target.value)}
                 ></input>
               </div>
             </div>
@@ -132,7 +127,9 @@ const Pagina04 = () => {
                   type="text"
                   className="form-control"
                   name="amount"
+                  id="amount"
                   placeholder="Valor Total Vendas Realizadas"
+                  onChange={(texto) => setamount(texto.target.value)}
                 ></input>
               </div>
 
@@ -142,7 +139,9 @@ const Pagina04 = () => {
                   type="date"
                   className="form-control"
                   name="data"
+                  id="data"
                   placeholder="Digite data Evento"
+                  onChange={(texto) => setdata(texto.target.value)}
                 ></input>
               </div>
             </div>
@@ -158,35 +157,6 @@ const Pagina04 = () => {
           </button>
         </div>
       </div>
-
-      {/* <div className="container formVendasteste" onSubmit={editarEstado}>
-        <h6> editar com campo select </h6>
-        <label> Estado</label>
-        <select name="estado" value={estado}>
-          <option value="">Selecione</option>
-          <option value="1"> SP</option>
-          <option value="2"> RJ</option>
-          <option value="3"> MG</option>
-          <option value="4"> PR</option>
-        </select>
-      </div> */}
-
-      {/* <div>
-        <h6> ******************* </h6>
-        <div>
-          <label>
-            VENDEDOR:
-            <select name="cmbVendedor" id="cmbVendedor">
-              <option value="0">Selecione uma opção</option>
-              {page.content?.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.id} {item.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-      </div> */}
 
       <Footer />
     </>
