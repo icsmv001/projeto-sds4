@@ -29,10 +29,10 @@ const Pagina04 = () => {
 
   // // funcao que recebe os argumentos de paginacao
   const [cmbVendedor, setcmbVendedor] = useState([] as any);
-  const [visited, setvisited] = useState([] as any);
-  const [deals, setdeals] = useState([] as any);
-  const [amount, setamount] = useState([] as any);
-  const [data, setdata] = useState([] as any);
+  const [visited, setVisited] = useState([] as any);
+  const [deals, setDeals] = useState([] as any);
+  const [amount, setAmount] = useState([] as any);
+  const [data, setData] = useState([] as any);
 
   function handleCreate(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -96,7 +96,7 @@ const Pagina04 = () => {
                   name="visited"
                   id="visited"
                   placeholder="Quantidade Visitas Realizadas"
-                  onChange={(texto) => setvisited(texto.target.value)}
+                  onChange={(texto) => setVisited(texto.target.value)}
                 ></input>
               </div>
 
@@ -110,7 +110,7 @@ const Pagina04 = () => {
                   name="deals"
                   id="deals"
                   placeholder="Quantidade Vendas Concluidas"
-                  onChange={(texto) => setdeals(texto.target.value)}
+                  onChange={(texto) => setDeals(texto.target.value)}
                 ></input>
               </div>
             </div>
@@ -129,7 +129,7 @@ const Pagina04 = () => {
                   name="amount"
                   id="amount"
                   placeholder="Valor Total Vendas Realizadas"
-                  onChange={(texto) => setamount(texto.target.value)}
+                  onChange={(texto) => setAmount(texto.target.value)}
                 ></input>
               </div>
 
@@ -141,7 +141,7 @@ const Pagina04 = () => {
                   name="data"
                   id="data"
                   placeholder="Digite data Evento"
-                  onChange={(texto) => setdata(texto.target.value)}
+                  onChange={(texto) => setData(texto.target.value)}
                 ></input>
               </div>
             </div>
