@@ -1,7 +1,7 @@
 import Footer from "components/Footer";
 import NavBar from "components/navbar";
 //
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import PaginationSeller from "components/PaginationSeller";
 import React, { useEffect, useState } from "react";
 import { SellerPage } from "types/seller";
@@ -29,6 +29,7 @@ const Pagina04 = () => {
 
   // // funcao que recebe os argumentos de paginacao
   const [cmbVendedor, setcmbVendedor] = useState([] as any);
+
   const [visited, setVisited] = useState([] as any);
   const [deals, setDeals] = useState([] as any);
   const [amount, setAmount] = useState([] as any);
@@ -36,24 +37,68 @@ const Pagina04 = () => {
 
   function handleCreate(e: { preventDefault: () => void }) {
     e.preventDefault();
-    alert(" Vendedor..: " + cmbVendedor);
-    alert(" Qt.Visitas: " + visited);
-    alert(" Tt.Venda Concluida: " + deals);
-    alert(" Tt.Venda Realizadas: " + amount);
-    alert(" data Cadastro: " + data);
+    // atualizacao 10/03/2022
+    // usando funcao split, para pegar parte do string separada por hifen
+    // primeiro pego index 0, para pegar o id do vendedor
+    // segundo  pego index 1, para pegar o nome do vendedor
+    const IdVendedor = cmbVendedor.split("-", 1)[0];
+    const NmVendedor = cmbVendedor.split("-", 2)[1];
 
-    console.log(
-      " id e nome selecionado : " +
-        cmbVendedor +
-        " total visitas " +
-        visited +
-        " total vendas Concluidas " +
-        deals +
-        " Tt.Venda Realizadas: " +
-        amount +
-        " data Cadastro: " +
-        data
-    );
+    // alert(" IdVendedor..: " + IdVendedor);
+    // alert(" NmVendedor..: " + NmVendedor);
+    // alert(" Qt.Visitas: " + visited);
+    // alert(" Tt.Venda Concluida: " + deals);
+    // alert(" Tt.Venda Realizadas: " + amount);
+    // alert(" data Cadastro: " + data);
+
+    // console.log(
+    //   " id do vendedor selecionado : " +
+    //     IdVendedor +
+    //     " ,Nome do vendedor selecionado : " +
+    //     NmVendedor +
+    //     " ,total visitas " +
+    //     visited +
+    //     " ,total vendas Concluidas " +
+    //     deals +
+    //     " ,Tt.Venda Realizadas: " +
+    //     amount +
+    //     " ,data Cadastro: " +
+    //     data
+    // );
+
+    //  // json a ser montado para put na base
+    //    {
+    //         "visited": visited,
+    //         "deals": deals,
+    //         "amount": amount,
+    //         "date": data,
+    //         "seller": {
+    //             "id": IdVendedor,
+    //             "name": "NmVendedor"
+    //         }
+    //     }
+
+    // atualizacao 10/03/2022 - adicionado chamada rest-metodo post
+    // atualizado cadastro de vendas por vendedor.
+    const config: AxiosRequestConfig = {
+      baseURL: BASE_URL,
+      method: "POST",
+      url: "/sales/vendaNova/",
+      data: {
+        visited: visited,
+        deals: deals,
+        amount: amount,
+        date: data,
+        seller: {
+          id: IdVendedor,
+          name: NmVendedor,
+        },
+      },
+    };
+
+    axios(config).then((response) => {
+      console.log(response.data);
+    });
   }
 
   return (
