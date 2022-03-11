@@ -80,6 +80,7 @@ const Pagina04 = () => {
 
     // atualizacao 10/03/2022 - adicionado chamada rest-metodo post
     // atualizado cadastro de vendas por vendedor.
+    // envia dados do modelo json, para gravar no banco de dados .
     const config: AxiosRequestConfig = {
       baseURL: BASE_URL,
       method: "POST",
