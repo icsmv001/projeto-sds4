@@ -42,6 +42,15 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/cadvendas">
           Cadastro de Vendas
         </Link>
+
+        <hr />
+        <Link className="btn btn-primary btn-lg" to="/cadvendas2">
+          Cadastro de Vendas2.0
+        </Link>
+
+        <Link className="btn btn-primary btn-lg" to="/pagina05">
+          Cadastro de Vendas2.1
+        </Link>
       </div>
       <Footer />
     </>

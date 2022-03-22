@@ -46,6 +46,11 @@ public class SellerController {
 	}
  
 	
+	
+	
+	
+	
+	
    // consulta por nome simples e com like, usando a convensao containing do jpa repository
 	@GetMapping(value = "/vendedorNm/{name}")
 	public ResponseEntity<List<SellerDTO>> buscarNomes(@PathVariable String name) {
@@ -54,6 +59,33 @@ public class SellerController {
 		return ResponseEntity.ok(list);
 	}
 	   
+	
+	
+	// findByAll
+	
+	 // consulta por nome simples e com like, usando a convensao containing do jpa repository
+		@GetMapping(value = "/vendedores")
+		public ResponseEntity<List<SellerDTO>> buscarVendedores() {
+	    	// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " + name);
+			List<SellerDTO> list = service.findByAll();
+			return ResponseEntity.ok(list);
+		}
+		   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	   // consulta por id simples
 		@GetMapping(value = "/vendedorId/{id}")
 		public ResponseEntity<Optional<Object>> buscarId(@PathVariable Long id) {
@@ -88,6 +120,12 @@ public class SellerController {
 			// System.out.println("TESTE ## PASSANDO POR AQUI alteracao 2 !!!!! ##### " +/ id);
 			return ResponseEntity.ok(seller.getName());
 		}
+		
+		
+		
+		
+		
+		
 		
 		
 

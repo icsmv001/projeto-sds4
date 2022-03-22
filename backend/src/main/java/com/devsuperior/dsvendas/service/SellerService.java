@@ -41,11 +41,15 @@ public class SellerService {
 		return result.map(x -> new SellerDTO(x));
 	}
 
+	public List<SellerDTO> findByAll() {
+		//para retornar uma lista de seller
+		List<Seller> result = sellerRepository.findAll();
+		return result.stream().map(x -> new SellerDTO(x)).collect(Collectors.toList());
+	}
 
 	
 	
-	
-	
+ 
 	
 
 	

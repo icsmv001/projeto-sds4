@@ -4,6 +4,8 @@ import Pagina01 from "pages/pagina01";
 import Pagina02 from "pages/pagina02";
 import Pagina03 from "pages/pagina03";
 import Pagina04 from "pages/pagina04";
+import Pagina05 from "pages/pagina05";
+import Cadvendas2 from "pages/Cadvendas2";
 
 // import CadVendedor from "components/CadVendedor";
 // import Cadvendas from "pages/Cadvendas";
@@ -20,7 +22,6 @@ const Routes = () => {
         <Route path="/dashboard">
           <Dashboard />
         </Route>
-
         <Route path="/listVendedor">
           <Pagina01 />
         </Route>
@@ -30,9 +31,15 @@ const Routes = () => {
         <Route path="/cadvendedor">
           <Pagina03 />
         </Route>
-
         <Route path="/cadvendas">
           <Pagina04 />
+        </Route>
+        <Route path="/cadvendas2">
+          <Cadvendas2 />
+        </Route>
+
+        <Route path="/pagina05">
+          <Pagina05 />
         </Route>
       </Switch>
     </BrowserRouter>
