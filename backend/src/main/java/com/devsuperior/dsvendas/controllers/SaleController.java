@@ -39,6 +39,21 @@ public class SaleController {
 
 	}
 
+	
+	// findByAll  em Salecontrole
+	
+		 // consulta lista de vendas sem paginacao
+			@GetMapping(value = "/vendas")
+			public ResponseEntity<List<SaleDTO>> buscarVendas() {
+		    	// System.out.println("TESTE ## PASSANDO POR AQUI 1 !!!!! ##### " );
+				List<SaleDTO> list = service.findByAll();
+				return ResponseEntity.ok(list);
+			}
+			   
+	
+	
+	
+	
 	// endpoint para recuperar valor agrupado por vendedor
 	@GetMapping(value = "/amount-by-seller")
 	public ResponseEntity<List<SaleSumDTO>> amountGroupBySeller() {

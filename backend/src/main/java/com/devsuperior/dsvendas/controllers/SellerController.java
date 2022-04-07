@@ -44,6 +44,7 @@ public class SellerController {
 		return ResponseEntity.ok(list);
 
 	}
+	
  
 	
 	

@@ -51,6 +51,14 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/pagina05">
           Cadastro de Vendas2.1
         </Link>
+
+        <Link className="btn btn-primary btn-lg" to="/pagina06">
+          Lista De Vendas2.0
+        </Link>
+
+        <Link className="btn btn-primary btn-lg" to="/pagina07">
+          Lista Filmes
+        </Link>
       </div>
       <Footer />
     </>

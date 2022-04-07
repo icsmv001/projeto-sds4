@@ -1,5 +1,6 @@
 package com.devsuperior.dsvendas.service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,6 +56,13 @@ public class SaleService {
 		
 	}
 	
-	
+	// retorna lista de vendas
+	// SaleService
+		public List<SaleDTO> findByAll() {
+			//para retornar uma lista de Sale
+			List<Sale> result = repository.findAll();
+			return result.stream().map(x -> new SaleDTO(x)).collect(Collectors.toList());
+		}
+
 
 }
