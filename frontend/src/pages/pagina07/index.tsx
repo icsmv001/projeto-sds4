@@ -24,24 +24,18 @@ class ListaFilmes extends Component {
       <>
         <NavBar />
         <NavBar2 />
-        
-        
-
-
-
-
-
 
         <div className="container">
-          <h3 className="text-primary py-3">
+          <h6 className="text-primary py-3">
             Lista de filmes - ICSMV001 - v.01
-          </h3>
+          </h6>
           <hr />
+
           <Listing />
 
           {console.log("teste" + filmes)}
 
-          <Form />
+          {/* <Form /> */}
         </div>
 
         <Footer />

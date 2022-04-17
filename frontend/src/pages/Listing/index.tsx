@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import Pagination2 from "components/Pagination2";
 
 function Listing() {
-  return <h2> Pagina de listagem </h2>;
+  return <Pagination2 />;
 }
 
 export default Listing;
