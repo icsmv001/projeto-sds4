@@ -3,6 +3,8 @@ import ListarFilmes from "components/ListarFilmes";
 import Footer from "components/Footer";
 import NavBar from "components/Navbar";
 import NavBar2 from "components/Navbar2";
+import Listing from "pages/Listing";
+import Form from "pages/Form";
 
 class ListaFilmes extends Component {
   state = {
@@ -22,11 +24,26 @@ class ListaFilmes extends Component {
       <>
         <NavBar />
         <NavBar2 />
+        
+        
+
+
+
+
+
 
         <div className="container">
-          <h2 className="text-primary py-3">Listar filmes - ICSMV001 - v.01</h2>
+          <h3 className="text-primary py-3">
+            Lista de filmes - ICSMV001 - v.01
+          </h3>
+          <hr />
+          <Listing />
+
           {console.log("teste" + filmes)}
+
+          <Form />
         </div>
+
         <Footer />
       </>
     );

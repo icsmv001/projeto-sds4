@@ -72,7 +72,7 @@ const Home = () => {
         </Link> */}
 
         <Link className="btn btn-primary btn-lg " to="/pagina07">
-          Assesar Listar Filmes
+          Acessar Listar Filmes
         </Link>
       </div>
 
