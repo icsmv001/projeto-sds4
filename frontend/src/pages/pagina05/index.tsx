@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import NavBar from "components/navbar";
+import NavBar from "components/Navbar";
 import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import { Seller } from "types/seller";

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { SellerPage } from "types/seller";
 import { formatLocalDate } from "utils/format";
 import { BASE_URL } from "utils/requests";
-import NavBar from "components/navbar";
+import NavBar from "components/Navbar";
 
 const DataTableSellers = () => {
   const [activePage, setActivePage] = useState(0);

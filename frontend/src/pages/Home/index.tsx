@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import NavBar from "components/navbar";
+import NavBar from "components/Navbar";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -18,11 +18,34 @@ const Home = () => {
             Esta aplicação consiste em exibir um dashboard a partir de dados
             fornecidos por um back end construído com Spring Boot.
           </p>
+
           <div className="row"></div>
           <Link className="btn btn-primary btn-lg" to="/dashboard">
             Acessar o Dashboard
           </Link>
+
+          {/* <Link className="btn btn-primary btn-lg " to="/pagina07">
+            Listagem de Filmes.
+          </Link> */}
         </div>
+        <hr />
+        <Link className="btn btn-primary btn-lg" to="/cadvendedor">
+          Cadastro - Vendedor
+        </Link>
+
+        {/* <Link className="btn btn-primary btn-lg" to="/pagina05">
+          exemplo List Box
+        </Link> */}
+
+        <hr />
+        <Link className="btn btn-primary btn-lg" to="/cadvendas">
+          Cadastro de Vendas
+        </Link>
+
+        {/* <Link className="btn btn-primary btn-lg" to="/cadvendas2">
+          Exemplo Labels e List
+        </Link> */}
+
         <hr />
         <Link className="btn btn-primary btn-lg" to="/listVendedor">
           Acessar Rl Vendedor
@@ -30,36 +53,29 @@ const Home = () => {
         <hr />
 
         <Link className="btn btn-primary btn-lg" to="/listVendas">
-          Acessar Rel. Vendas.
+          Acessar Rel. Vendas1
         </Link>
-
         <hr />
-        <Link className="btn btn-primary btn-lg" to="/cadvendedor">
-          Cadastro - Vendedor
-        </Link>
-
-        <hr />
-        <Link className="btn btn-primary btn-lg" to="/cadvendas">
-          Cadastro de Vendas
-        </Link>
-
-        <hr />
-        <Link className="btn btn-primary btn-lg" to="/cadvendas2">
-          Cadastro de Vendas2.0
-        </Link>
-
-        <Link className="btn btn-primary btn-lg" to="/pagina05">
-          Cadastro de Vendas2.1
-        </Link>
 
         <Link className="btn btn-primary btn-lg" to="/pagina06">
-          Lista De Vendas2.0
+          Acessar Rel. Vendas2
         </Link>
 
-        <Link className="btn btn-primary btn-lg" to="/pagina07">
-          Lista Filmes
+        <hr />
+        {/* 
+        <Link className="btn btn-primary btn-lg" to="/cadvendas2">
+          Exemplo Labels e List
+        </Link> */}
+
+        {/* <Link className="btn btn-primary btn-lg" to="/pagina05">
+          exemplo List Box
+        </Link> */}
+
+        <Link className="btn btn-primary btn-lg " to="/pagina07">
+          Assesar Listar Filmes
         </Link>
       </div>
+
       <Footer />
     </>
   );

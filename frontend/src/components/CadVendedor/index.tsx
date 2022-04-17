@@ -4,7 +4,7 @@ import { BASE_URL } from "utils/requests";
 
 import PaginationSeller from "components/PaginationSeller";
 import { SellerPage } from "types/seller";
-import NavBar from "components/navbar";
+import NavBar from "components/Navbar";
 
 const ListaVendedor = () => {
   const [activePage, setActivePage] = useState(0);

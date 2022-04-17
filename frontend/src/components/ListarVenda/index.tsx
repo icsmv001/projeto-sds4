@@ -55,7 +55,7 @@ const ListarVenda = () => {
           </thead>
           <tbody>
             {vendas.map((item: any) => (
-              <tr key={(item.id = 10)}>
+              <tr key={item.id}>
                 <td>{formatLocalDate(item.date, "dd/MM/yyyy")}</td>
                 <td>{item.seller.name}</td>
                 <td>{item.visited}</td>

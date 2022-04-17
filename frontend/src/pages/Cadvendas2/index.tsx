@@ -1,7 +1,7 @@
 import DataTable from "components/DataTable";
 import DataTableSellers from "components/DataTableSellers";
 import Footer from "components/Footer";
-import NavBar from "components/navbar";
+import NavBar from "components/Navbar";
 import { Link } from "react-router-dom";
 
 const Cadvendas2 = () => {

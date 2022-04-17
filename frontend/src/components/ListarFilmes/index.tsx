@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ListarFilmes = axios.create({
-  baseURL: "https://www.telecine.com.br/search?term=matris",
+  baseURL: "https://www.movieid.com/catalog/search?capitamarvel/",
 });
 
 export default ListarFilmes;

@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import axios from "axios";
 import Footer from "components/Footer";
-import NavBar from "components/navbar";
+import NavBar from "components/Navbar";
 import React from "react";
 import { BASE_URL } from "utils/requests";
 import { validateEmail } from "utils/validate";
