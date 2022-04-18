@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 import NavBar from "components/Navbar";
 import NavBar2 from "components/Navbar2";
 import Listing from "pages/Listing";
-import Form from "pages/Form";
+
 
 class ListaFilmes extends Component {
   state = {

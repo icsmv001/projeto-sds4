@@ -54,11 +54,11 @@ const Routes = () => {
           <Pagina07 />
         </Route>
 
-        {/* <Route path="/form">
+        <Route path="/form">
           <Form />
         </Route>
 
-        <Route path="/listing">
+        {/* <Route path="/listing">
           <Listing />
         </Route> */}
       </Switch>
