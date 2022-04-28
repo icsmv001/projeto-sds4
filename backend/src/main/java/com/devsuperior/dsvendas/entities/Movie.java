@@ -1,15 +1,14 @@
 package com.devsuperior.dsvendas.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
-
-
-
 
 
 @Entity
@@ -24,6 +23,16 @@ public class Movie {
 	private Double score;
 	private Integer count;
 	private String image;
+	
+	
+	// criar uma referencia tipo lista para pegar a lista de scores de um mesmo filme
+	// tipo um filme pode ter varios scores.
+	@OneToMany(mappedBy = "id.movie")
+	private Set<Score> scores = new HashSet<>();
+	
+	
+	
+	
 	
 	// criando um costrutura vazio da entidade movie, para que possa ser instanciado sem ter de passar valor para ele
 	public Movie() {
@@ -76,6 +85,12 @@ public class Movie {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	
+	// metodo para acessar a colecao de score de um dado filme.
+	public Set<Score> getScores() {
+		return scores;
 	}
 	
 	
