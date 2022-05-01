@@ -25,6 +25,7 @@ public class Movie {
 	private String image;
 	
 	
+	
 	// criar uma referencia tipo lista para pegar a lista de scores de um mesmo filme
 	// tipo um filme pode ter varios scores.
 	@OneToMany(mappedBy = "id.movie")
