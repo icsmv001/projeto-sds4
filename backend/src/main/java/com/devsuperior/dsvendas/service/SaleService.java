@@ -21,7 +21,7 @@ public class SaleService {
 	
 	
 	// declarar a dependencia com repositorio sellerRepository
-	@Autowired
+	@Autowired(required=true)
 	private SaleRepository repository;
 	
 	@Autowired

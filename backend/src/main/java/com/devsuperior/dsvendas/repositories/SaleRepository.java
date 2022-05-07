@@ -11,6 +11,7 @@ import com.devsuperior.dsvendas.dto.SaleSumDTO;
 import com.devsuperior.dsvendas.entities.Sale;
 
 @Repository
+
 public interface SaleRepository  extends JpaRepository <Sale, Long>{
 	 /* Objeto responsavel por buscar e alterar os dados a entidade Seller */
 	

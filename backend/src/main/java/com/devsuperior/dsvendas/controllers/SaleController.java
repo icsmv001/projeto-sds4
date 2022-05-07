@@ -23,7 +23,7 @@ import com.devsuperior.dsvendas.service.SaleService;
 @RequestMapping(value = "/sales")
 public class SaleController {
 
-	@Autowired
+	@Autowired (required=true)
 	private SaleRepository saleRepository;
 
 	@Autowired
