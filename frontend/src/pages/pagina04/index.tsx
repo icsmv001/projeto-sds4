@@ -1,8 +1,7 @@
 import Footer from "components/Footer";
 import NavBar from "components/Navbar";
-//
 import axios, { AxiosRequestConfig } from "axios";
-import PaginationSeller from "components/PaginationSeller";
+//import PaginationSeller from "components/PaginationSeller";
 import React, { useEffect, useState } from "react";
 import { SellerPage } from "types/seller";
 import { BASE_URL } from "utils/requests";

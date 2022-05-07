@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.devsuperior.dsvendas.dto.SaleSuccessDTO;
 import com.devsuperior.dsvendas.dto.SaleSumDTO;
 import com.devsuperior.dsvendas.entities.Sale;
-import com.devsuperior.dsvendas.entities.Seller;
 
 @Repository
 public interface SaleRepository  extends JpaRepository <Sale, Long>{

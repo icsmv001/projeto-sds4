@@ -1,6 +1,6 @@
 import { ReactComponent as Githubicon } from "assets/img/github.svg";
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "./styles.css";
 function Navbar2() {
   return (

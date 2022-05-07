@@ -16,6 +16,7 @@ import com.devsuperior.dsvendas.service.MovieService;
 public class MovieController {
 	
 	@Autowired
+	
 	private MovieService service;
 	// cirar um metodo de requisicao para retornar pagina de filmes
 	

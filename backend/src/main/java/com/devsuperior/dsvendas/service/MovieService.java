@@ -10,12 +10,14 @@ import com.devsuperior.dsvendas.dto.MovieDTO;
 import com.devsuperior.dsvendas.entities.Movie;
 import com.devsuperior.dsvendas.repositories.MovieRepository;
 
+       
 @Service
 public class MovieService {
 	
 	
 	//metodo repository, que fara o acesso ao dados do banco, para repassar a camada de servico
 	@Autowired
+	
 	private MovieRepository repository;
 	
 	

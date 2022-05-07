@@ -1,6 +1,6 @@
 import MovieScore from "components/MovieScore";
 import { Link } from "react-router-dom";
-import Form from "pages/Form";
+//import Form from "pages/Form";
 
 const movie = {
   id: 1,
