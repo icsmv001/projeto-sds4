@@ -2,7 +2,6 @@ import Footer from "components/Footer";
 import NavBar from "components/Navbar";
 import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
-import { Seller } from "types/seller";
 import { BASE_URL } from "utils/requests";
 
 const Pagina05 = () => {
