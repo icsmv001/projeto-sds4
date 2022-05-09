@@ -1,6 +1,6 @@
 import Footer from "components/Footer";
 import NavBar from "components/Navbar";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "utils/requests";
 
