@@ -27,7 +27,7 @@ const Pagina04 = () => {
   }, [activePage]);
 
   // // funcao que recebe os argumentos de paginacao
-  //  comentario em 08/05/2022
+  //  comentario em 08/05/2022 --- nova atualizacao
   const [cmbVendedor, setcmbVendedor] = useState([] as any);
 
   const [visited, setVisited] = useState([] as any);
