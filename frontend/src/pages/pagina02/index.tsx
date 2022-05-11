@@ -1,7 +1,9 @@
 import DataTableSale from "components/DataTableSale";
 
 import Footer from "components/Footer";
+//import NavBar from "components/Navbar";
 import NavBar from "components/Navbar";
+
 import React from "react";
 
 const Pagina02 = () => {
