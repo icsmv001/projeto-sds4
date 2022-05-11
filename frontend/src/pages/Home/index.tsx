@@ -1,3 +1,4 @@
+// PROJETO DEVSUPERIOR - DSVENDAS E DSFILMES VERSAO FINAL ACESSO PRD EM CLOUD BB E FRONT ENDE.OK
 import Footer from "components/Footer";
 import NavBar1 from "components/Navbar1";
 import { Link } from "react-router-dom";
