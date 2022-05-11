@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { SellerPage } from "types/seller";
 import { formatLocalDate } from "utils/format";
 import { BASE_URL } from "utils/requests";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 
 const DataTableSellers = () => {
   const [activePage, setActivePage] = useState(0);
@@ -35,7 +35,7 @@ const DataTableSellers = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar1 />
 
       <PaginationSeller page={page} onPageChange={changePage} />
       <div className="table-responsive">

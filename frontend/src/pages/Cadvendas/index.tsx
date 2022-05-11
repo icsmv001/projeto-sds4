@@ -1,13 +1,13 @@
 //import DataTable from "components/DataTable";
 import DataTableSellers from "components/DataTableSellers";
 import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 //import { Link } from "react-router-dom";
 
 const Cadvendas = () => {
   return (
     <>
-      <NavBar />
+      <NavBar1 />
 
       <div className="container formVendas">
         <div className="jumbotron">

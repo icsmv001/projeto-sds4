@@ -3,12 +3,12 @@ import BarChart from "components/BarChart";
 import DataTable from "components/DataTable";
 import DonutChart from "components/DonutChart";
 import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 
 const Dashboard = () => {
   return (
     <>
-      <NavBar />
+      <NavBar1 />
       <div className="container">
         <h1 className="text-primary py-3">DashBord de Vendas ICSMV001</h1>
 

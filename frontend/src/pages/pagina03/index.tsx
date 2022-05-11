@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import axios from "axios";
 import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 import React from "react";
 import { BASE_URL } from "utils/requests";
 import { validateEmail } from "utils/validate";
@@ -40,7 +40,7 @@ const Pagina03 = () => {
   return (
     <>
       <form className=" container formVendas" onSubmit={handleSubmit}>
-        <NavBar />
+        <NavBar1 />
 
         <div className="jumbotron">
           <h1 className="display-4">Cadastro de Vendedor</h1>

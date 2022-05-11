@@ -1,13 +1,10 @@
 import Footer from "components/Footer";
-//import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 import { Link } from "react-router-dom";
-
-import NavBar from "components/Navbar";
-
 const Home = () => {
   return (
     <>
-      <NavBar />
+      <NavBar1 />
 
       <div className="container">
         <div className="jumbotron">

@@ -4,7 +4,7 @@ import { BASE_URL } from "utils/requests";
 
 import PaginationSeller from "components/PaginationSeller";
 import { SellerPage } from "types/seller";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 
 const ListaVendedor = () => {
   const [activePage, setActivePage] = useState(0);
@@ -38,7 +38,7 @@ const ListaVendedor = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar1 />
       <div className="container formVendas">
         <div className="jumbotron">
           <h1 className="display-4">Relatorio Cadastro de Vendedores</h1>

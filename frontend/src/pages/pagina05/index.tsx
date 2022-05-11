@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "utils/requests";
@@ -36,7 +36,7 @@ const Pagina05 = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar1 />
 
       <div className="container formVendas">
         <div className="jumbotron">

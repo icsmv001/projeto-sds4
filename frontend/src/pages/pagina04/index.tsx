@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 import axios, { AxiosRequestConfig } from "axios";
 //import PaginationSeller from "components/PaginationSeller";
 import React, { useEffect, useState } from "react";
@@ -104,7 +104,7 @@ const Pagina04 = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar1 />
 
       <div className="container formVendas">
         <div className="jumbotron">

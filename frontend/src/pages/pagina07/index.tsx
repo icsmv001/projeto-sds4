@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import ListarFilmes from "components/ListarFilmes";
 import Footer from "components/Footer";
-import NavBar from "components/Navbar";
+import NavBar1 from "components/Navbar1";
 import NavBar2 from "components/Navbar2";
 import Listing from "pages/Listing";
-
 
 class ListaFilmes extends Component {
   state = {
@@ -22,7 +21,7 @@ class ListaFilmes extends Component {
 
     return (
       <>
-        <NavBar />
+        <NavBar1 />
         <NavBar2 />
 
         <div className="container">
