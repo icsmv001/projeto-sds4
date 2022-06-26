@@ -1,3 +1,4 @@
+// versao 2022/06/26 - funcionando
 import Dashboard from "pages/Dashboard";
 import Home from "pages/Home";
 import Pagina01 from "pages/pagina01";
