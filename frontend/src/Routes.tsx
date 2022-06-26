@@ -1,4 +1,6 @@
 // versao 2022/06/26 - funcionando
+// PROJETO DEVSUPERIOR - DSVENDAS E DSFILMES VERSAO FINAL ACESSO PRD EM CLOUD BB E FRONT ENDE.OK
+// versao 20220626- funcionando, falta ajustar formulario de score de pontos de filmes -v001
 import Dashboard from "pages/Dashboard";
 import Home from "pages/Home";
 import Pagina01 from "pages/pagina01";

@@ -5,6 +5,8 @@ import "assets/css/styles.css";
 import App from "./App";
 
 // versao 20220626- funcionando, falta ajustar formulario de score de pontos de filmes -v001
+// PROJETO DEVSUPERIOR - DSVENDAS E DSFILMES VERSAO FINAL ACESSO PRD EM CLOUD BB E FRONT ENDE.OK
+// versao 20220626- funcionando, falta ajustar formulario de score de pontos de filmes -v001
 ReactDOM.render(
   <React.StrictMode>
     <App />
