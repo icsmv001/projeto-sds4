@@ -5,6 +5,8 @@ import NavBar1 from "components/Navbar1";
 import NavBar2 from "components/Navbar2";
 import Listing from "pages/Listing";
 
+// versao 20220626- funcionando, falta ajustar formulario de score de pontos de filmes -v001
+
 class ListaFilmes extends Component {
   state = {
     filmes: [],
