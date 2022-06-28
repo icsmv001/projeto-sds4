@@ -37,9 +37,15 @@ function Listing() {
   // });
   // // FIM  -forma errada - para testar requisicao  -- ` <-- CRASE SIMPLES
 
+  // funcao para renderizar mundanca de pagina tipo lambida
+
+  const handlePageChange = (newPageNumber: number) => {
+    setPageNumber(newPageNumber);
+  };
+
   return (
     <>
-      <Pagination2 />
+      <Pagination2 page={page} onChange={handlePageChange} />
 
       <div className="container">
         <div className="row">
