@@ -20,6 +20,12 @@ function Listing() {
     empty: true,
   });
 
+  // // INICIO -forma errada - para testar requisicao  -- ` <-- CRASE SIMPLES
+  // axios.get(`${BASE_URL}/movies?size=12&page=0`).then((response) => {
+  //   console.log(response.data);
+  // });
+  // // FIM  -forma errada - para testar requisicao  -- ` <-- CRASE SIMPLES
+
   useEffect(() => {
     axios
       .get(`${BASE_URL}/movies?size=12&page=${pageNumber}&sort=id`)
@@ -30,12 +36,6 @@ function Listing() {
         // setPageNumber(data.number);
       });
   }, [pageNumber]);
-
-  // // INICIO -forma errada - para testar requisicao  -- ` <-- CRASE SIMPLES
-  // axios.get(`${BASE_URL}/movies?size=12&page=0`).then((response) => {
-  //   console.log(response.data);
-  // });
-  // // FIM  -forma errada - para testar requisicao  -- ` <-- CRASE SIMPLES
 
   // funcao para renderizar mundanca de pagina tipo lambida, a funcao handlepagechange,
   // sera chamada dentro da funcao onchange na chamada da pagination2, passando por parametro o numero da pagina

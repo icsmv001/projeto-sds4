@@ -1,5 +1,7 @@
 import { SalePage } from "types/sale";
 
+// 20220627 - criado typo Props de propriedades para receber paginacao e tipo  salepage.
+
 type Props = {
   page: SalePage;
   onPageChange: Function;

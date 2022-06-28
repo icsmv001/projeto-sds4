@@ -2,6 +2,10 @@ import { ReactComponent as Arrow } from "assets/img/arrow.svg";
 import { MoviePage } from "types/movie";
 import "./styles.css";
 
+//20220627, criando typo props para receber o tipo moviePage e uma funcao onChange, para o evento click
+// para quando clicar capturar a solicitacao de mudanca de pagina, passar como parametro
+// e mover a paginacao por uma nova requisicao, com numero da pagina solicitada.
+
 type Props = {
   page: MoviePage;
   onChange: Function;
