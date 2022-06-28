@@ -37,7 +37,9 @@ function Listing() {
   // });
   // // FIM  -forma errada - para testar requisicao  -- ` <-- CRASE SIMPLES
 
-  // funcao para renderizar mundanca de pagina tipo lambida
+  // funcao para renderizar mundanca de pagina tipo lambida, a funcao handlepagechange,
+  // sera chamada dentro da funcao onchange na chamada da pagination2, passando por parametro o numero da pagina
+  // a ser solicitada para consumir no servico.
 
   const handlePageChange = (newPageNumber: number) => {
     setPageNumber(newPageNumber);
