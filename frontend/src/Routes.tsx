@@ -62,7 +62,6 @@ const Routes = () => {
         <Route path="/pagina07">
           <Pagina07 />
         </Route>
-
         <Route path="/FormCard/:idParam" component={Component}>
           <FormCard />
         </Route>

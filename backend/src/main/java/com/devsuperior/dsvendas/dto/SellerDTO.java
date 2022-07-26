@@ -21,26 +21,14 @@ public class SellerDTO   implements Serializable  {
 		
 	}
 	
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Date getDatacadastro() {
-		return datacadastro;
-	}
-
-	public void setDatacadastro(Date datacadastro) {
-		this.datacadastro = datacadastro;
-	}
 
 		//construtor de conversao do valor vindo do servico.entidade, para gravar no DTO.
-		public SellerDTO(Long id, String name) {
+		public SellerDTO(Long id, String name, String email, Date datacadastro ) {
 			this.id = id;
-		this.name = name;
+		    this.name = name;
+	        this.email = email;
+	        this.datacadastro= datacadastro;
 	}
 		
 		
@@ -48,6 +36,12 @@ public class SellerDTO   implements Serializable  {
 		public SellerDTO(Seller entity) {
 			id = entity.getId();
 		    name = entity.getName();
+		    email = entity.getEmail();
+		    datacadastro= entity.getDatacadastro();
+		    
+		    
+		    
+		    
 	}	
 		
 		
@@ -68,8 +62,24 @@ public class SellerDTO   implements Serializable  {
 			this.name = name;
 		}
 
-	 
 	
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public Date getDatacadastro() {
+			return datacadastro;
+		}
+
+		public void setDatacadastro(Date datacadastro) {
+			this.datacadastro = datacadastro;
+		}
+		
+		
 	
 	
 	

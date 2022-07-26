@@ -20,6 +20,7 @@ function FormCard() {
 
   /// fim teste mocado
 
+  /// teste pegando parametro passado na pagina via rota 
   let { idParam } = useParams<{ idParam: string }>();
 
   return (
