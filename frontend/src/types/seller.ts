@@ -1,6 +1,8 @@
 export type Seller = {
   id: number;
   name: string;
+  email: string;
+  datacadastro: string;
 };
 
 export type SellerPage = {

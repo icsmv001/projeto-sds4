@@ -11,13 +11,19 @@ import Pagina05 from "pages/pagina05";
 import Pagina06 from "pages/pagina06";
 import Pagina07 from "pages/pagina07";
 import Cadvendas2 from "pages/Cadvendas2";
-import Form from "pages/Form";
+import FormCard from "pages/FormCard";
+
+// import Form from "pages/FormCard";
 //import Listing from "pages/Listing";
 
 // import CadVendedor from "components/CadVendedor";
 // import Cadvendas from "pages/Cadvendas";
-import React, { Route, Switch } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+
+//import React, { Route, Switch } from "react-router";
+//import { BrowserRouter } from "react-router-dom";
+import { Component } from "react";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const Routes = () => {
   return (
@@ -57,13 +63,9 @@ const Routes = () => {
           <Pagina07 />
         </Route>
 
-        <Route path="/form">
-          <Form />
+        <Route path="/FormCard/:idParam" component={Component}>
+          <FormCard />
         </Route>
-
-        {/* <Route path="/listing">
-          <Listing />
-        </Route> */}
       </Switch>
     </BrowserRouter>
   );

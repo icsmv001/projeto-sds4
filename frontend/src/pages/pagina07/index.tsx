@@ -19,8 +19,6 @@ class ListaFilmes extends Component {
   }
 
   render() {
-    const { filmes } = this.state;
-
     return (
       <>
         <NavBar1 />
@@ -33,10 +31,6 @@ class ListaFilmes extends Component {
           <hr />
 
           <Listing />
-
-          {console.log("teste" + filmes)}
-
-          {/* <Form /> */}
         </div>
 
         <Footer />

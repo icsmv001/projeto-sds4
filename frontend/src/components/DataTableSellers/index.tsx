@@ -42,6 +42,7 @@ const DataTableSellers = () => {
             <tr>
               <th>Id</th>
               <th>Vendedor</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,7 @@ const DataTableSellers = () => {
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
+                <td>{item.email}</td>
               </tr>
             ))}
           </tbody>
