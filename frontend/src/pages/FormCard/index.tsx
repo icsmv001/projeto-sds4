@@ -1,27 +1,39 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "utils/requests";
+import axios from "axios";
+import { Movie } from "types/movie";
 
 //   <Route path="/FormCard/:idParam" component={FormCard}>
 
 function FormCard() {
   /// objeto movie mocado, tras um mesmo resultado sempre, para teste
-  const movie = {
-    id: 13,
-    image:
-      "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
-    title: "The Witcher",
-    count: 2,
-    score: 4.5,
-  };
+  // const movie = {
+  //   id: 13,
+  //   image:
+  //     "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
+  //   title: "The Witcher",
+  //   count: 2,
+  //   score: 4.5,
+  // };
 
   // como capturar o parametro passado na chamado do formulario.????
 
   /// fim teste mocado
 
-  /// teste pegando parametro passado na pagina via rota 
+  /// teste pegando parametro passado na pagina via rota
   let { idParam } = useParams<{ idParam: string }>();
+
+  const [movie, setMovie] = useState<Movie>();
+
+  // chamada da api
+  useEffect(() => {
+    axios.get(`${BASE_URL}/movies/${idParam}`).then((Response) => {
+      setMovie(Response.data);
+    });
+  });
 
   return (
     <div className="dsmovie-form-container">
@@ -29,15 +41,15 @@ function FormCard() {
 
       <img
         className="dsmovie-movie-card-image"
-        src={movie.image}
-        alt={movie.title}
+        src={movie?.image}
+        alt={movie?.title}
       />
-      {console.log("FormCard-->Avaliacao do filmeOK: " + movie.id)}
+      {console.log("FormCard-->Avaliacao do filmeOK: " + movie?.id)}
 
       {console.log("FormCard-->Avaliacao do filmexx: " + idParam)}
 
       <div className="dsmovie-card-bottom-container">
-        <h3>{movie.title}</h3>
+        <h3>{movie?.title}</h3>
 
         <form className="dsmovie-form">
           <div className="form-group dsmovie-form-group">
