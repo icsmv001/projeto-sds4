@@ -7,8 +7,11 @@ import axios from "axios";
 import { Movie } from "types/movie";
 
 //   <Route path="/FormCard/:idParam" component={FormCard}>
+// ponto xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 function FormCard() {
+  // componente FormCard, responsavel por renderizar o formulario do validacao de nota para o filme.
+
   /// objeto movie mocado, tras um mesmo resultado sempre, para teste
   // const movie = {
   //   id: 13,
@@ -24,20 +27,21 @@ function FormCard() {
   /// fim teste mocado
 
   /// teste pegando parametro passado na pagina via rota
-  let { idParam } = useParams<{ idParam: string }>();
+  //let { idParam } = useParams<{ idParam: string }>();
 
+  const params = useParams<{ idParam: string }>();
   const [movie, setMovie] = useState<Movie>();
 
   // chamada da api
   useEffect(() => {
-    axios.get(`${BASE_URL}/movies/${idParam}`).then((Response) => {
+    axios.get(`${BASE_URL}/movies/${params.idParam}`).then((Response) => {
       setMovie(Response.data);
     });
   });
 
   return (
     <div className="dsmovie-form-container">
-      <h6>ID: {idParam}</h6>
+      <h6>ID: {params.idParam}</h6>
 
       <img
         className="dsmovie-movie-card-image"
@@ -46,7 +50,7 @@ function FormCard() {
       />
       {console.log("FormCard-->Avaliacao do filmeOK: " + movie?.id)}
 
-      {console.log("FormCard-->Avaliacao do filmexx: " + idParam)}
+      {console.log("FormCard-->Avaliacao do filmexx: " + params.idParam)}
 
       <div className="dsmovie-card-bottom-container">
         <h3>{movie?.title}</h3>
