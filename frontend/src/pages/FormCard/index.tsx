@@ -3,8 +3,10 @@ import "./styles.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "utils/requests";
-import axios from "axios";
 import { Movie } from "types/movie";
+import { validateEmail } from "utils/validate";
+import { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 //   <Route path="/FormCard/:idParam" component={FormCard}>
 // ponto xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -37,7 +39,40 @@ function FormCard() {
     axios.get(`${BASE_URL}/movies/${params.idParam}`).then((Response) => {
       setMovie(Response.data);
     });
-  });
+    // colocar o mesmo parametro nas dependencias do useEffect do FormCard,
+    // deve ser o mesmo parametro, usado na passagem e chamada do axios.get,
+    // se nao colocar a requisicao ocorre N vezes, e ao colocar somente
+    // sera refeita se o parametro mudar..
+  }, [params.idParam]);
+
+  const handleSubmit = (event: { preventDefault: () => void; target: any }) => {
+    event.preventDefault();
+
+    const email = (event.target as any).email.value;
+    const score = (event.target as any).score.value;
+
+    if (!validateEmail(email)) {
+      return;
+    }
+
+    //confuracoa de requisicao do axios, para fazer um put de insersao de dados de score
+    const config: AxiosRequestConfig = {
+      baseURL: BASE_URL,
+      method: "PUT",
+      url: "/scores",
+      data: {
+        movieID: params.idParam,
+        email: email,
+        score: score,
+      },
+    };
+    console.log("teste retorno movieId :" + params.idParam);
+    console.log("teste retorno variaveis : " + email, score);
+
+    axios(config).then((response) => {
+      console.log(response.data);
+    });
+  };
 
   return (
     <div className="dsmovie-form-container">
@@ -55,7 +90,7 @@ function FormCard() {
       <div className="dsmovie-card-bottom-container">
         <h3>{movie?.title}</h3>
 
-        <form className="dsmovie-form">
+        <form className="dsmovie-form" onSubmit={handleSubmit}>
           <div className="form-group dsmovie-form-group">
             <label htmlFor="email">Informe seu email</label>
             <input type="email" className="form-control" id="email" />
