@@ -1,3 +1,4 @@
+// codigo de programa para mostrar estrelinhas, crescendo de acordo com valores totais de score
 import MovieStar from "components/MovieStar";
 import "./styles.css";
 

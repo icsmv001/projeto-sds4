@@ -55,7 +55,7 @@ function FormCard() {
       return;
     }
 
-    //confuracoa de requisicao do axios, para fazer um put de insersao de dados de score
+    //confuracao de requisicao do axios, para fazer um put de insersao de dados de score
     const config: AxiosRequestConfig = {
       baseURL: BASE_URL,
       method: "PUT",
