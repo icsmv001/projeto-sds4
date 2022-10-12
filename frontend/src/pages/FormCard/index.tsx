@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { BASE_URL } from "utils/requests";
 import { Movie } from "types/movie";
 import { validateEmail } from "utils/validate";
@@ -31,6 +31,8 @@ function FormCard() {
   /// teste pegando parametro passado na pagina via rota
   //let { idParam } = useParams<{ idParam: string }>();
 
+  // parametros para navegar para a pagina anterior ou para a raiz.
+  let history = useHistory();
   const params = useParams<{ idParam: string }>();
   const [movie, setMovie] = useState<Movie>();
 
@@ -56,6 +58,7 @@ function FormCard() {
     }
 
     //confuracao de requisicao do axios, para fazer um put de insersao de dados de score
+
     const config: AxiosRequestConfig = {
       baseURL: BASE_URL,
       method: "PUT",
@@ -68,9 +71,15 @@ function FormCard() {
     };
     console.log("teste retorno movieId :" + params.idParam);
     console.log("teste retorno variaveis : " + email, score);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+    // comando para apos realizar o submit e salvar o registro via put, voltar a pagina anterior.
+    // utilizando versao react-outr-donw 5.3.0, e objeto history,
+    // exemplo em : https://stackoverflow.com/questions/59464337/how-to-send-params-in-usehistory-of-react-router-dom
 
     axios(config).then((response) => {
       console.log(response.data);
+      history.push("/pagina07");
     });
   };
 
@@ -112,6 +121,7 @@ function FormCard() {
             </button>
           </div>
         </form>
+
         <Link to="/pagina07">
           <button className="btn btn-primary dsmovie-btn mt-3">Cancelar</button>
         </Link>

@@ -5,6 +5,7 @@ import "./styles.css";
 //20220627, criando typo props para receber o tipo moviePage e uma funcao onChange, para o evento click
 // para quando clicar capturar a solicitacao de mudanca de pagina, passar como parametro
 // e mover a paginacao por uma nova requisicao, com numero da pagina solicitada.
+// paginatin2, criado para fazer paginacao dos filmes retornados em lista de filmes
 
 type Props = {
   page: MoviePage;
