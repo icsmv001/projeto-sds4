@@ -5,6 +5,19 @@ import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import { SellerPage } from "types/seller";
 import { BASE_URL } from "utils/requests";
+import BannerSucess from "components/BannerSucess/BannerSucess";
+import Swal from "sweetalert2";
+
+function AlertaSucess() {
+  Swal.fire({
+    // position: "top-end",
+    width: 350,
+    icon: "success",
+    title: "Cadastro Realizado Com Sucesso: ",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+}
 
 const Pagina04 = () => {
   const [activePage] = useState(0);
@@ -98,7 +111,21 @@ const Pagina04 = () => {
     };
 
     axios(config).then((response) => {
+      Array.from(document.querySelectorAll("input")).forEach(
+        (input) => (input.value = "")
+      );
+
+      <option value="0">Selecione Nome Vendedor</option>;
+      //-------------------------------------------------------
+      const chkSucesso = response.status ? "Sucesso" : "Erro";
+      //--------------------------------------------------------
       console.log(response.data);
+
+      if (chkSucesso === "Sucesso") {
+        AlertaSucess();
+      } else {
+        alert("Erro," && "Houve um erro inesperado: " + chkSucesso);
+      }
     });
   }
 
@@ -117,11 +144,11 @@ const Pagina04 = () => {
                   Vendedor:
                   <div className="ls-custom-select ">
                     <select
+                      autoFocus
                       style={{ width: 280, height: 35, top: 10 }}
                       onChange={(texto) => setcmbVendedor(texto.target.value)}
                     >
                       <option value="0">Selecione Nome Vendedor</option>
-
                       {page.content?.map((item) => (
                         <option key={item.id} value={item.id + "-" + item.name}>
                           {item.id} {item.name}
@@ -134,7 +161,7 @@ const Pagina04 = () => {
               {/* termino tratamento listar nome vendedores */}
               <div className="input-fied col s3">
                 <label className="col-xs-2 control-label">
-                  Quantidade Visitas Realizadas:{" "}
+                  Qt. Visitas Realizadas:{" "}
                 </label>
                 <input
                   type="text"
@@ -148,7 +175,7 @@ const Pagina04 = () => {
 
               <div className="input-fied col s3">
                 <label className="col-xs-2 control-label">
-                  Quantidade Vendas Concluidas:{" "}
+                  Qt. Vendas Concluidas:{" "}
                 </label>
                 <input
                   type="text"
@@ -162,7 +189,6 @@ const Pagina04 = () => {
             </div>
           </p>
           <hr />
-
           <p className="container1">
             <div className="row">
               <div className="input-fied col s3">
@@ -193,14 +219,15 @@ const Pagina04 = () => {
             </div>
           </p>
           <hr />
-
-          <button
-            onClick={handleCreate}
-            className="btn btn-success"
-            type="submit"
-          >
-            Salvar
-          </button>
+          <div className="form-group text-center">
+            <button
+              onClick={handleCreate}
+              className="btn btn-success"
+              type="submit"
+            >
+              Salvar
+            </button>
+          </div>
         </div>
       </div>
 
