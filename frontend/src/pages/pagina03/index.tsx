@@ -79,14 +79,11 @@ const Pagina03 = () => {
                   <label className="col-xs-2 control-label">
                     Digite Nome Vendedor:
                   </label>
-
-                  <input
-                    type="NmVendedor1"
+                  <textarea
+                    id="NmVendedor11"
                     className="form-control"
-                    id="NmVendedor1"
-                    autoFocus
-                    placeholder="Digite Nome Vendedor"
-                  ></input>
+                    placeholder="Digite Nome Vendedor:"
+                  ></textarea>
                 </div>
 
                 <div className="input-fied col s3">
@@ -101,7 +98,6 @@ const Pagina03 = () => {
                     placeholder="Digite Email Vendedor"
                   ></input>
                 </div>
-
                 <div className="input-fied col s3">
                   <label className="col-xs-2 control-label">
                     Data Cadastro:
@@ -130,7 +126,7 @@ const Pagina03 = () => {
         </form>
       </div>
 
-      <div className="form-group text-center">cadastro </div>
+      <div className="form-group text-center">cadastro</div>
 
       <Footer />
     </>
