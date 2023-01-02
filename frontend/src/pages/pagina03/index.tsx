@@ -12,7 +12,7 @@ function AlertaSucess() {
     // position: "top-end",
     width: 350,
     icon: "success",
-    title: "Cadastro Realizado Com Sucesso: ",
+    title: "Cadastro Realizado Com Sucesso.: ",
     showConfirmButton: false,
     timer: 1500,
   });
