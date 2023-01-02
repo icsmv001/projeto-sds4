@@ -1,0 +1,25 @@
+package com.devsuperior.dsvendas.repositories;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import javax.annotation.ManagedBean;
+
+import com.devsuperior.dsvendas.utils.controllers.UploadReadArquivoController2;
+
+@ManagedBean
+public class LendoTxt {
+			private UploadReadArquivoController2 file;
+		
+		public void upload(FileUploadEvent event) throws IOException{
+			this.file = event.getFile();
+			
+			 String conteudoDoArquivo = new Scanner(file.getInputstream().toString();
+			
+			System.out.println(conteudoDoArquivo);
+			
+		}
+		
+	}
+
+

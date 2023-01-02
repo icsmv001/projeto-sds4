@@ -1,0 +1,21 @@
+1667778523314	Move compilation unit
+1667779173507	Rename package 'com.devsuperior.dsvendas.storaje'
+1667780143279	Rename compilation unit 'ArqFotosResource.java'
+1667780806057	Rename package 'com.devsuperior.dsvendas.resource'
+1667784982400	Delete element
+1667784992792	Delete element
+1667785132412	Rename compilation unit 'FotosResource.java'
+1667785151434	Rename package 'com.devsuperior.dsvendas.disco'
+1667785485038	Delete element
+1667785493053	Delete element
+1667785897288	Delete element
+1667869408104	Rename type 'UtilsController'
+1667871109205	Rename type 'discoRepository'
+1667871253829	Encapsulate field 'discoRepository'
+1667949170526	Move compilation unit
+1667949199363	Rename package 'com.devsuperior.dsvendas.utils'
+1667949367752	Copy compilation unit
+1667949583684	Copy compilation unit
+1667949966347	Encapsulate field 'readFileRepository'
+1668132665127	Copy compilation unit
+1668132730261	Copy compilation unit
