@@ -18,7 +18,7 @@ public class MovieController {
 	@Autowired
 	
 	private MovieService service;
-	// cirar um metodo de requisicao para retornar pagina de filmes
+	// crirar um metodo de requisicao para retornar pagina de filmes
 	
 	@GetMapping
 	public Page<MovieDTO> findAll(Pageable pageable) {

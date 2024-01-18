@@ -40,6 +40,7 @@ public class SaleDTO {
 		seller = new SellerDTO(entity.getSeller());
 }
 
+ 
 
 	public Long getId() {
 		return id;

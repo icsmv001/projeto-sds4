@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.devsuperior.dsvendas.repositories.ReadFileRepository2;
 import com.devsuperior.dsvendas.repositories.ReadFileRepository3;
  
 
