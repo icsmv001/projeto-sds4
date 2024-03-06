@@ -39,7 +39,8 @@ public class LogProcessamentosRepository {
 			+ "   l.DESCRICAO,l.TIPOCARTEIRA,l.LOCAL_ARQUIVO,l.TOTALREGISTROS,l.REGCORRETOS,l.REGINCORRETOS,l.REGENVVENCIDO,l.PERCENTUAL_CORRETO," 
 			+ "   l.PERCENTUAL_INCORRETO,l.PERCENTUAL_VENCIDOS" 
 			+ "  from LOG_PROCESSAMENTOS l where 0=0 "
-			+ "  and  l.DATA >= ? AND l.DATA <= ? ";
+			+ "  and  l.DATA >= ? AND l.DATA <= ? "
+            + "  order by l.data desc";
         
         // return jdbcTemplate.query(sql, new Object[]{dataInicio, dataFim}, new BeanPropertyRowMapper<>(LogProcessamentosDTO.class));
         List<LogProcessamentosDTO> logs = jdbcTemplate.query(sql, new Object[]{dataInicio, dataFim}, new BeanPropertyRowMapper<>(LogProcessamentosDTO.class));

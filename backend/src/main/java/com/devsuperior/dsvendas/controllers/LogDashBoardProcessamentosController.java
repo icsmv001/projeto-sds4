@@ -11,42 +11,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devsuperior.dsvendas.dto.LogProcessamentosDTO;
-import com.devsuperior.dsvendas.repositories.LogProcessamentosRepository;
+import com.devsuperior.dsvendas.dto.LogDashBoardProcessamentosDTO;
+import com.devsuperior.dsvendas.repositories.LogDashBoardProcessamentosRepository;
 
 @RestController
-@RequestMapping("/LOGPROCESSAMENTOS1")
-public class LogProcessamentosController {
-    private final LogProcessamentosRepository LogProcessamentosRepository;
+@RequestMapping("/LogDashBoardProcessamentos2")
+public class LogDashBoardProcessamentosController {
+    private final LogDashBoardProcessamentosRepository LogDashBoardProcessamentosRepository;
 
     @Autowired
-    public LogProcessamentosController(LogProcessamentosRepository LogProcessamentosRepository) {
-        this.LogProcessamentosRepository = LogProcessamentosRepository;
+    public LogDashBoardProcessamentosController(LogDashBoardProcessamentosRepository LogDashBoardProcessamentosRepository) {
+        this.LogDashBoardProcessamentosRepository = LogDashBoardProcessamentosRepository;
     }
 
     @GetMapping
-    public List<LogProcessamentosDTO> listarLogProcessamentoss() {
-        return LogProcessamentosRepository.buscarLogProcessamentoss();
+    public List<LogDashBoardProcessamentosDTO> listarLogDashBoardProcessamentoss() {
+        return LogDashBoardProcessamentosRepository.buscarLogDashBoardProcessamentoss();
     }
     
     
-    @GetMapping(value = "/PERIODO1")
-    public List<LogProcessamentosDTO> buscarLogProcessamentosPorData(
+    @GetMapping(value = "/PERIODO2")
+    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosPorData(
             @RequestParam("dataInicio") String dataInicioStr,
             @RequestParam("dataFim") String dataFimStr) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dataInicio = dateFormat.parse(dataInicioStr);
         Date dataFim = dateFormat.parse(dataFimStr);
-        return LogProcessamentosRepository.buscarLogProcessamentosData(dataInicio, dataFim);
+        return LogDashBoardProcessamentosRepository.buscarLogDashBoardProcessamentosData(dataInicio, dataFim);
     }
     
-    @GetMapping(value = "/ID_ESTRUTURA1")
-    public List<LogProcessamentosDTO> buscarLogProcessamentosPorIdEstrura(
+    @GetMapping(value = "/ID_ESTRUTURA2")
+    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosPorIdEstrura(
             @RequestParam("id_estrutura") String id_estrutura) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
        // Date dataInicio = dateFormat.parse(dataInicioStr);
        // Date dataFim = dateFormat.parse(dataFimStr);
-        return LogProcessamentosRepository.buscarLogProcessamentosIdEstrutura(id_estrutura);
+        return LogDashBoardProcessamentosRepository.buscarLogDashBoardProcessamentosIdEstrutura(id_estrutura);
     }
     
 
