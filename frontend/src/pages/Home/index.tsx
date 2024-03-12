@@ -76,6 +76,11 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg " to="/pagina07">
           Acessar Listar Filmes
         </Link>
+
+        <hr />
+        <Link className="btn btn-primary btn-lg" to="/pagina08">
+          Acessar Rel. Processo
+        </Link>
       </div>
 
       <Footer />

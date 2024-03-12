@@ -6,15 +6,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LogDashBoardProcessamentosDTO   {
-	
+	 
+	  private  Integer INDECE;
+	  private  Integer ID_SEQLOG; 
 	  private  String  MONITORACAO;
-	  private  String  ID_ESTRUTURA; 
+	  private  String ID_ESTRUTURA; 
 	  private  String  SIGLA;                
 	  private  String  TIPO_CARGA;           
 	  @JsonFormat(pattern = "dd/MM/yyyy") // Especifica o formato da data
 	  private  Date    DATA_CALENDARIO; 
 	  private  String  HORA;  
-	  private  Integer ID_SEQLOG;   
 	  private  String  STATUS_LOG;               
 	  private  String  TOTALREGISTROS;       
 	  private  String  REGCORRETOS;          
@@ -34,6 +35,7 @@ public class LogDashBoardProcessamentosDTO   {
 	  private  String  SEGMENTO;         
 	  private  String  LOCAL_ARQUIVO; 
 	  private  String  ANO_MES;
+	
 		  
  
 	  /**
@@ -49,12 +51,19 @@ public class LogDashBoardProcessamentosDTO   {
 	  	MONITORACAO = mONITORACAO;
 	  }
 
-	
-	public Integer getID_SEQLOG() {
+	 
+	  public Integer getID_SEQLOG() {
+			return ID_SEQLOG;
+		}
+		public void setID_SEQLOG(Integer iD_SEQLOG) {
+			ID_SEQLOG = iD_SEQLOG;
+		}
+	  
+	public Integer getINDECE() {
 		return ID_SEQLOG;
 	}
-	public void setID_SEQLOG(Integer iD_SEQLOG) {
-		ID_SEQLOG = iD_SEQLOG;
+	public void setINDECE(Integer iNDECE) {
+		ID_SEQLOG = iNDECE;
 	}
 	
 	@JsonFormat(pattern = "dd/MM/yyyy") // Especifica o formato da data
@@ -76,12 +85,36 @@ public class LogDashBoardProcessamentosDTO   {
 	public void setSTATUS_LOG(String sTATUS_LOG) {
 		STATUS_LOG = sTATUS_LOG;
 	}
+	
+	
 	public String getID_ESTRUTURA() {
 		return ID_ESTRUTURA;
 	}
 	public void setID_ESTRUTURA(String iD_ESTRUTURA) {
 		ID_ESTRUTURA = iD_ESTRUTURA;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public String getTIPO_CARGA() {
 		return TIPO_CARGA;
 	}
@@ -171,8 +204,9 @@ public class LogDashBoardProcessamentosDTO   {
 
 @JsonCreator
 public LogDashBoardProcessamentosDTO( 
+		
 		 @JsonProperty ("MONITORACAO         ")   String   MONITORACAO         ,  
-		 @JsonProperty ("ID_ESTRUTURA        ")   String   ID_ESTRUTURA        ,     
+		 @JsonProperty ("ID_ESTRUTURA        ")   String  ID_ESTRUTURA        ,     
 		 @JsonProperty ("SIGLA               ")   String   SIGLA               ,
 		 @JsonProperty ("TIPO_CARGA          ")   String   TIPO_CARGA          ,
 		 @JsonProperty ("DATA_CALENDARIO     ")   Date     DATA_CALENDARIO     ,     
@@ -194,9 +228,10 @@ public LogDashBoardProcessamentosDTO(
 		 @JsonProperty ("NM_CLIENTE          ")   String   NM_CLIENTE          ,
 		 @JsonProperty ("ID_CONTRATO         ")   String   ID_CONTRATO         ,
 		 @JsonProperty ("NM_CONTRATO         ")   String   NM_CONTRATO         ,
-		 @JsonProperty ("TIPO_CARTERIA       ")   String   TIPO_CARTERIA       ,
+		 @JsonProperty ("SEGMENTO            ")   String   SEGMENTO            ,
 		 @JsonProperty ("LOCAL_ARQUIVO       ")   String   LOCAL_ARQUIVO       ,
-		 @JsonProperty ("ANO_MES             ")   String   ANO_MES              ) {
+		 @JsonProperty ("ANO_MES             ")   String   ANO_MES             ,
+		 @JsonProperty ("INDECE              ")   Integer  INDECE 			) {
 	        
 	this.MONITORACAO          = MONITORACAO         ;
 	this.ID_ESTRUTURA         = ID_ESTRUTURA        ;
@@ -224,6 +259,7 @@ public LogDashBoardProcessamentosDTO(
 	this.SEGMENTO             = SEGMENTO            ;
 	this.LOCAL_ARQUIVO        = LOCAL_ARQUIVO       ;
 	this.ANO_MES              = ANO_MES             ;
+	this.INDECE               = INDECE              ;
 	    }
 
 

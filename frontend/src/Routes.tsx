@@ -10,6 +10,7 @@ import Pagina04 from "pages/pagina04";
 import Pagina05 from "pages/pagina05";
 import Pagina06 from "pages/pagina06";
 import Pagina07 from "pages/pagina07";
+import Pagina08 from "pages/pagina08";
 import Cadvendas2 from "pages/Cadvendas2";
 import FormCard from "pages/FormCard";
 
@@ -64,6 +65,10 @@ const Routes = () => {
         </Route>
         <Route path="/FormCard/:idParam" component={Component}>
           <FormCard />
+        </Route>
+
+        <Route path="/pagina08">
+          <Pagina08 />
         </Route>
       </Switch>
     </BrowserRouter>

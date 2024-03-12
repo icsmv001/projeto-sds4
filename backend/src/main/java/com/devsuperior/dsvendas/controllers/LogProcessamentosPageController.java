@@ -15,18 +15,19 @@ import com.devsuperior.dsvendas.repositories.LogProcessamentosPageRepository;
 @RestController
 @RequestMapping("/LogProcessamentosPage")
 public class LogProcessamentosPageController {
-    private final LogProcessamentosPageRepository pedidoPageRepository;
+    private final LogProcessamentosPageRepository LogProcessamentosPageRepository;
 
     @Autowired
-    public LogProcessamentosPageController(LogProcessamentosPageRepository pedidoPageRepository) {
-        this.pedidoPageRepository = pedidoPageRepository;
+    public LogProcessamentosPageController(LogProcessamentosPageRepository LogProcessamentosPageRepository) {
+        this.LogProcessamentosPageRepository = LogProcessamentosPageRepository;
     }
 
     
+    
     @GetMapping
-    public Page<LogProcessamentosDTO> listarLogProcessamentoss(@RequestParam(name = "page", defaultValue = "0") int page,
-                                         @RequestParam(name = "size", defaultValue = "5") int size) {
+    public Page<LogProcessamentosDTO> listarLogProcessamentos(@RequestParam(name = "page", defaultValue = "0") int page,
+                                         @RequestParam(name = "size", defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return pedidoPageRepository.buscarLogProcessamentossPage(pageable);
+        return LogProcessamentosPageRepository.buscarLogProcessamentosPage(pageable);
     }
 }

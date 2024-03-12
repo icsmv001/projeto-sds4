@@ -19,7 +19,7 @@ public class LogProcessamentosPageRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Page<LogProcessamentosDTO> buscarLogProcessamentossPage(org.springframework.data.domain.Pageable pageable) {
+    public Page<LogProcessamentosDTO> buscarLogProcessamentosPage(org.springframework.data.domain.Pageable pageable) {
     	   String sql = " select "  
     				+ "   ID_SEQLOG,DATA,HORA,STATUS,ID_ESTRUTURA,TIPO_CARGA,SIGLA,ID_CLIENTECORPORATIVO,ID_CONTRATO," 
     				+ "   DESCRICAO,TIPOCARTEIRA,LOCAL_ARQUIVO,TOTALREGISTROS,REGCORRETOS,REGINCORRETOS,REGENVVENCIDO,PERCENTUAL_CORRETO," 
