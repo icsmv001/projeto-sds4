@@ -1,0 +1,13 @@
+#spring.profiles.active=${APP_PROFILE:test}
+spring.profiles.active=prdOra
+spring.jpa.open-in-view=false
+
+
+contato.disco.raiz=c://tmp//download
+contato.disco.diretorio-fotos=files
+
+spring.servlet.multipart.max-file-size=30MB
+spring.servlet.multipart.max-request-size=30MB
+
+
+

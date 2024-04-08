@@ -1,0 +1,19 @@
+1708567107107	Rename resource 'application-dev.properties'
+1708567114334	Rename resource 'application-dev2.properties'
+1708569153782	Copy compilation unit
+1708570106674	Encapsulate field 'MONITORACAO'
+1708570680572	Encapsulate field 'REGENVINCLUSAO'
+1708570685795	Encapsulate field 'REGENVALTERACAO'
+1708570696353	Encapsulate field 'REGENVCANCELAMENTO'
+1708570740218	Encapsulate field 'NM_ESTRUTURA'
+1708570769403	Encapsulate field 'NM_CLIENTE'
+1708570960481	Encapsulate field 'ANO_MES'
+1708571454177	Copy compilation unit
+1708572329605	Copy compilation unit
+1708738961576	Copy compilation unit
+1708739397342	Copy compilation unit
+1708742031302	Encapsulate field 'LogDashBoardProcessamentosRepository'
+1708743180170	Delete element
+1708743186948	Delete element
+1708743225438	Delete element
+1708743230562	Delete element

@@ -1,0 +1,52 @@
+package com.devsuperior.dsvendas.repositories;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import com.devsuperior.dsvendas.entities.Generes;
+ 
+
+
+@Repository
+public interface GeneresRepository  extends JpaRepository<Generes, Long>{
+	 /* Objeto responsavel por buscar e alterar os dados a entidade Generes */
+	
+	
+	List<Generes> findByName = null;
+	List<Generes> findByNameContaining1(String name);
+	List<Generes> findByName1(String name);
+	Optional<Generes> findById(Long id);
+	// ----------------------------------------------------------
+	
+	
+	// realizar consulta usando query native.
+	//@Query(nativeQuery = true, value = "SELECT a.name as name "
+		//	+ "FROM artists a "
+			// + "WHERE 0=0 AND a.name LIKE (?)")
+	//List<Generes> findByName(String name);
+	
+	//-------------------------------------------------------------------------
+	
+	@Query(value = "SELECT a.name as name FROM generes a WHERE 0=0 AND a.name LIKE %?1%", nativeQuery = true)
+	List<Generes> findByName(String name);
+	static List<Generes> findByNameContaining(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Optional<Generes> findByName (String name);
+	
+	// List<Generes> findByAll=null;
+	
+}

@@ -1,0 +1,48 @@
+1691291800600	Infer generic type arguments
+1691295854053	Delete element
+1691464294445	Delete element
+1691515856228	Rename type 'Vendas'
+1691516674949	Delete element
+1691533579815	Rename package 'com.devsuperior.dsvendas.interfaces'
+1691534380092	Encapsulate field 'vendaRepository'
+1691534911284	Delete element
+1691535072705	Delete element
+1691535503469	Rename type 'Vendas'
+1691538416400	Copy compilation unit
+1691538787289	Delete element
+1691538799897	Copy compilation unit
+1691539914085	Delete element
+1691539997475	Rename type 'VendasInterface'
+1691540448829	Delete element
+1691540459872	Copy compilation unit
+1691540899840	Delete element
+1691540912834	Copy compilation unit
+1691541043161	Rename type 'VendaInterface'
+1691541119863	Delete element
+1691541124808	Delete element
+1691541130387	Delete element
+1691541140322	Delete element
+1691541522243	Copy compilation unit
+1691541647103	Rename type 'VendasController'
+1691543262428	Copy compilation unit
+1691543391686	Copy compilation unit
+1691543396499	Delete element
+1691543406247	Copy compilation unit
+1691543780058	Copy compilation unit
+1691543960296	Copy compilation unit
+1691605863598	Delete element
+1691623731956	Delete element
+1691624198814	Delete element
+1691630415590	Delete element
+1691681858800	Delete element
+1691682380166	Copy compilation unit
+1691694126506	Delete element
+1691778265786	Rename type 'Generes'
+1691872065497	Copy compilation unit
+1691873135318	Rename type 'Generes'
+1691873214264	Rename type 'Generesbjp'
+1691873491017	Delete element
+1691875032567	Delete element
+1691881346828	Rename compilation unit 'ClienteVendas.java'
+1691882322343	Rename type 'Cliente'
+1691882374866	Copy compilation unit

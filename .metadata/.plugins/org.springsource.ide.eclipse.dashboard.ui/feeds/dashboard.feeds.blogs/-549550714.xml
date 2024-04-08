@@ -1,852 +1,681 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Spring</title>
-  <link rel="alternate" href="https://spring.io/blog" />
-  <link rel="self" href="https://spring.io/blog.atom" />
-  <id>http://spring.io/blog.atom</id>
-  <icon>https://spring.io/favicon.ico</icon>
-  <updated>2022-11-11T00:00:00Z</updated>
-  <entry>
-    <title>Spring Boot 3.0.0-RC2 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/10/spring-boot-3-0-0-rc2-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Phil Webb</name>
-    </author>
-    <id>tag:spring.io,2022-11-11:4991</id>
-    <updated>2022-11-11T00:00:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I&amp;rsquo;m happy to announce that Spring Boot &lt;code&gt;3.0.0-RC2&lt;/code&gt; has been released and is now available from &lt;a href="https://repo.spring.io/milestone"&gt;https://repo.spring.io/milestone&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This release includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v3.0.0-RC2"&gt;116 enhancements, documentation improvements, dependency upgrades, and bug fixes&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is the second release candidate and so doesn&amp;rsquo;t include much in the way of new features. It does, however, bring a migration to Jakarta EE 10 APIs and a few changes to &lt;code&gt;/actuator&lt;/code&gt; endpoints. Our final release is scheduled for November 24, 2022 so this is your last chance to provide feedback or raise issues for any problems that you encounter.&lt;/p&gt;
-&lt;p&gt;As always, the &lt;a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0.0-RC2-Release-Notes"&gt;release notes&lt;/a&gt; provide more details and upgrade instructions.&lt;/p&gt;
-&lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests. We&amp;rsquo;re nearly there!!&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="https://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="https://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-boot/docs/3.0.0-RC2/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Updates on Spring Cloud Stream 4.0.0 Schema Registry Support</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/10/updates-on-spring-cloud-stream-4-0-0-schema-registry-support" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Soby Chacko</name>
-    </author>
-    <id>tag:spring.io,2022-11-08:4986</id>
-    <updated>2022-11-10T08:00:00Z</updated>
-    <content type="html">&lt;p&gt;This blog gives an update on the Schema Registry support that is part of Spring Cloud Stream version 4.0.x. &lt;/p&gt;
-&lt;p&gt;Many enterprises use a schema registry for schema evolution use cases, such as the &lt;a href="https://docs.confluent.io/platform/current/schema-registry/index.html"&gt;Confluent Schema Registry&lt;/a&gt;. Starting with version &lt;code&gt;1.1.x&lt;/code&gt; of Spring Cloud Stream until &lt;code&gt;3.0.0&lt;/code&gt;, we provided a schema registry server and AVRO-based schema registry client converters that can reconcile the schema from the schema registry server. Spring Cloud Stream version 3.0.0 moved the Schema Registry components into a top-level &lt;a href="https://spring.io/projects/spring-cloud-schema-registry"&gt;spring-cloud project&lt;/a&gt;, and Spring Cloud Stream included those in its &lt;a href="https://github.com/spring-cloud/spring-cloud-stream-starters/blob/vHorsham.RELEASE/spring-cloud-stream-dependencies/pom.xml#L41"&gt;BOM&lt;/a&gt; for the end user applications to consume them. However, this didn&amp;rsquo;t scale well, and with the 3.2 version, we decided to stop having them as part of the &lt;a href="https://github.com/spring-cloud/spring-cloud-stream-starters/blob/v3.2.0/spring-cloud-stream-dependencies/pom.xml"&gt;Spring Cloud Stream BOM&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;The schema registry use cases are compelling in streaming applications, and the community has been keen on having a solution from the core Spring Cloud Stream. We are glad to inform you that the schema registry components are back in the &lt;a href="https://github.com/spring-cloud/spring-cloud-stream/tree/main/schema-registry"&gt;4.0.0 version of Spring Cloud Stream&lt;/a&gt;. This path is a full-circle journey for these schema registry components. Below, we will re-introduce these components and briefly overview their features.&lt;/p&gt;&lt;h2&gt;&lt;a href="#spring-cloud-stream-schema-registry-server" class="anchor" name="spring-cloud-stream-schema-registry-server"&gt;&lt;/a&gt;Spring Cloud Stream Schema Registry Server&lt;/h2&gt;
-&lt;p&gt;Spring Cloud Stream &lt;code&gt;4.0.x&lt;/code&gt; versions ship a standalone Schema Registry server tailored exclusively for the use cases that Spring Cloud Stream addresses. These use cases encompass schema evolution across multiple schema versions. The main gist of these use cases is that a producer application publishes using a previous schema version. Still, the consumer works against all the schema versions in a backward-compatible manner. These workflows include schema validation and using the validated schema as a contract and the basis for data serialization by the message converters. We do not recommend using this Schema Registry server outside Spring Cloud Stream. By default, this Schema Registry Server uses an in-memory H2 database as the backend store. However, you can use either Postgres or MySQL as the backend databases. Spring Cloud Stream provides this Schema Registry server as a full-blown Spring Boot application. Therefore you can download this from maven central directly (when Spring Cloud Stream &lt;code&gt;4.0.0&lt;/code&gt; will be generally available). If you want to try this on snapshots or milestones, you can download this from the relevant Artifactory repository. Following are the maven coordinates for &lt;code&gt;4.0.0-SNAPSHOT&lt;/code&gt; version. You can also use &lt;code&gt;4.0.0-M5&lt;/code&gt; or &lt;code&gt;4.0.0-RC1&lt;/code&gt; if you prefer not to use a snapshot to test. &lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
-	&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-	&amp;lt;artifactId&amp;gt;spring-cloud-stream-schema-registry-server&amp;lt;/artifactId&amp;gt;&#xD;
-	&amp;lt;version&amp;gt;4.0.0-SNAPSHOT&amp;lt;/version&amp;gt;&#xD;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Suppose you want to use something other than the standalone Schema Registry server but a custom one. In that case, you can include the server module as a dependency in your application and create a custom Spring Boot application by enabling &lt;code&gt;@EnableSchemaRegistryServer.&lt;/code&gt; If you have an unsupported backend store, you should use this strategy.&lt;/p&gt;&lt;h2&gt;&lt;a href="#spring-cloud-stream-schema-registry-client" class="anchor" name="spring-cloud-stream-schema-registry-client"&gt;&lt;/a&gt;Spring Cloud Stream Schema Registry Client&lt;/h2&gt;
-&lt;p&gt;Spring Cloud Stream &lt;code&gt;4.0.0&lt;/code&gt; also provides a Schema Registry client module that provides AVRO-based message converters. These converters are Schema Registry aware and communicate with a Schema Registry server to reconcile the schema while converting the payload for serialization purposes. Applications need to use an annotation &lt;code&gt;@EnableSchemaRegistryClient&lt;/code&gt; to make them aware of the schema registry server through the &lt;code&gt;SchemaRegistryClient&lt;/code&gt; bean. Spring Boot auto-configures the AVRO-based message converters that are schema-registry aware. &lt;/p&gt;
-&lt;p&gt;Following are the maven coordinates of the schema registry client module for version &lt;code&gt;4.0.0-SNAPSHOT&lt;/code&gt;. You may use &lt;code&gt;4.0.0-M5&lt;/code&gt; or &lt;code&gt;4.0.0-RC1&lt;/code&gt; as well.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
-	&amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-	&amp;lt;artifactId&amp;gt;spring-cloud-stream-schema-registry-client&amp;lt;/artifactId&amp;gt;&#xD;
-	&amp;lt;version&amp;gt;4.0.0-SNAPSHOT&amp;lt;/version&amp;gt;&#xD;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a href="#using-the-confluent-schema-registry-server-with-spring-cloud-stream-schema-registry-client" class="anchor" name="using-the-confluent-schema-registry-server-with-spring-cloud-stream-schema-registry-client"&gt;&lt;/a&gt;Using the Confluent Schema Registry Server with Spring Cloud Stream Schema Registry Client&lt;/h2&gt;
-&lt;p&gt;Confluent Schema Registry is a popular commercial solution for schema evolution for Kafka-based applications. Spring Cloud Stream AVRO message converters mentioned above can work with the Confluent Schema Registry. For this to work, the application needs to override the &lt;code&gt;SchemaReigsryClient&lt;/code&gt; bean and provide an implementation for &lt;code&gt;ConfluentScheamRegistryClient.&lt;/code&gt; &lt;/p&gt;&lt;h2&gt;&lt;a href="#resources" class="anchor" name="resources"&gt;&lt;/a&gt;Resources&lt;/h2&gt;
-&lt;p&gt;We provide a set of sample applications demonstrating all the concepts described in this blog &lt;a href="https://github.com/spring-cloud/spring-cloud-stream/tree/main/samples/spring-cloud-stream-schema-registry-integration"&gt;here&lt;/a&gt;. Please see the &lt;a href="https://github.com/spring-cloud/spring-cloud-stream/blob/main/samples/spring-cloud-stream-schema-registry-integration/README.adoc"&gt;README&lt;/a&gt; for more details. &lt;/p&gt;
-&lt;p&gt;&lt;a href="https://docs.spring.io/spring-cloud-stream/docs/4.0.0-SNAPSHOT/reference/html/spring-cloud-stream-schema-registry.html#spring-cloud-stream-schema-registry-referenc"&gt;Here&lt;/a&gt; is the Schema Registry reference documentation.&lt;/p&gt;&lt;h2&gt;&lt;a href="#conclusion" class="anchor" name="conclusion"&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Spring Cloud Stream &lt;code&gt;4.0.0&lt;/code&gt; brings back the Schema Registry components from previous versions of Spring Cloud Stream. This blog examined the motivations and overview of the re-introduced support. The support available in Spring Cloud Stream may only cover some of the schema evolution use cases. However, the provided schema registry components can support many schema evolution use cases that come under the purview of Spring Cloud Stream applications with a transport-neutral value add. &lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>A Bootiful Podcast: RabbitMQ engineer Arnaud Cogoluègnes on the new and novel in RabbitMQ</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/09/a-bootiful-podcast-rabbitmq-engineer-arnaud-cogolu-gnes-on-the-new-and-novel-in-rabbitmq" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2022-11-09:4989</id>
-    <updated>2022-11-09T18:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! In this episode, &lt;a href="https://twitter.com/starbuxman"&gt;Josh Long (@starbuxman)&lt;/a&gt; talks to RabbitMQ engineer &lt;a href="https://mobile.twitter.com/acogoluegnes"&gt;Arnaud Cogoluègnes (@acogoluegnes)&lt;/a&gt; on the new and novel in RabbitMQ&lt;/p&gt;
-&lt;iframe title="RabbitMQ engineer Arnaud Cogoluègnes on the new and novel in RabbitMQ" allowtransparency="true" height="150" width="100%" style="border: none; min-width: min(100%, 430px);" scrolling="no" data-name="pb-iframe-player" src="https://www.podbean.com/player-v2/?i=shi9b-130def7-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7"&gt;&lt;/iframe&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 6.0.0-RC2 is available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/09/spring-security-6-0-0-rc2-is-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Marcus Hert Da Coregio</name>
-    </author>
-    <id>tag:spring.io,2022-11-09:4988</id>
-    <updated>2022-11-09T18:00:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Security &lt;code&gt;6.0.0-RC2&lt;/code&gt; is available now.&lt;/p&gt;
-&lt;p&gt;Spring Security &lt;code&gt;6.0.0-RC2&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/6.0.0-RC2"&gt;fixes and improvements to the documentation&lt;/a&gt;. Stay tuned for the announcement of Spring Boot &lt;code&gt;3.0.0-RC2&lt;/code&gt; later this week!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://projects.spring.io/spring-security/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-security"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-security/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-security/reference/6.0.0-RC2/index.html"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Batch 5.0 RC2 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/09/spring-batch-5-0-rc2-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Mahmoud Ben Hassine</name>
-    </author>
-    <id>tag:spring.io,2022-11-10:4990</id>
-    <updated>2022-11-09T14:13:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that the second and final release candidate of Spring Batch 5 is now available from our &lt;a href="https://repo.spring.io/milestone"&gt;milestone repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In this release, we worked on the following items:&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 06 Apr 2024 00:26:05 GMT</lastBuildDate><item><title><![CDATA[A Bootiful Podcast: Netflix’s Paul Bakker and Kavitha Srinivasan on scaling Spring Boot and Spring GraphQL]]></title><link>https://spring.io/blog/2024/04/04/a-bootiful-podcast-netflixs-paul-bakker-and-kavitha-srinivasan-on-scaling</link><guid isPermaLink="true">https://spring.io/blog/2024/04/04/a-bootiful-podcast-netflixs-paul-bakker-and-kavitha-srinivasan-on-scaling</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 04 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, I&apos;m thrilled to be joined by Netflix&apos;s Paul Bakker and Kavitha Srinivasan, who explain how they&apos;re integrating and evolving Spring for GraphQL in their own GraphQL stack and how they&apos;re managing, growing, and evolving thousands of services written in Spring Boot&lt;/p&gt;
+&lt;iframe title=&quot;Netflix’s Paul Bakker and Kavitha Srinivasan on scaling Spring Boot and Spring GraphQL&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=htrru-15d1e6e-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Functions Catalog 5.0.0?M2 & Spring Cloud Stream Applications 2024.0.0-M1 Available]]></title><link>https://spring.io/blog/2024/04/03/spring-functions-catalog-5-0-0-m2-and-spring-cloud-stream-applications-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/04/03/spring-functions-catalog-5-0-0-m2-and-spring-cloud-stream-applications-2024</guid><dc:creator><![CDATA[Corneil du Plessis]]></dc:creator><pubDate>Wed, 03 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I’m happy to announce that Spring Functions Catalog &lt;code&gt;5.0.0-M2&lt;/code&gt; and Spring Cloud Stream Applications &lt;code&gt;2024.0.0-M1&lt;/code&gt; has been released and is now available from &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;Spring Milestone Repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This release updates all of the applications to use Spring Functions Catalog.
+Release notes are available:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Full MariaDB support&lt;/li&gt;
-  &lt;li&gt;Native support improvements&lt;/li&gt;
-  &lt;li&gt;Observability improvements&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/spring-cloud/spring-functions-catalog/releases/tag/v5.0.0-M2&quot;&gt;Spring Functions Catalog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/spring-cloud/stream-applications/releases/tag/v2024.0.0-M1&quot;&gt;Stream Applications&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This blog post walks through these changes in details. For the complete list of changes, please check the &lt;a href="https://github.com/spring-projects/spring-batch/releases/tag/5.0.0-RC2"&gt;release notes&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#full-mariadb-support" class="anchor" name="full-mariadb-support"&gt;&lt;/a&gt;Full MariaDB support&lt;/h2&gt;
-&lt;p&gt;Up until v4.3, Spring Batch provided support for MariaDB by considering it as MySQL. In this release, MariaDB is now treated as a separate database product with its own DDL script and &lt;code&gt;DataFieldMaxValueIncrementer&lt;/code&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#native-support-improvements" class="anchor" name="native-support-improvements"&gt;&lt;/a&gt;Native support improvements&lt;/h2&gt;
-&lt;p&gt;The effort towards providing support to compile Spring Batch applications as native executables using the GraalVM native-image compiler has started in v4.2 and was shipped as experimental in v4.3.&lt;/p&gt;
-&lt;p&gt;We have also worked on improving that support in previous milestones of Spring Batch 5. In this release candidate, we have significantly improved the native support by providing the necessary Ahead-Of-Time processing and reflection hints to natively compile Spring Batch applications with GraalVM.&lt;/p&gt;&lt;h2&gt;&lt;a href="#observability-improvements" class="anchor" name="observability-improvements"&gt;&lt;/a&gt;Observability improvements&lt;/h2&gt;
-&lt;p&gt;In addition to introducing tracing support in previous milestones, we have taken the opportunity of this release candidate to revisit the built-in metrics provided by Spring Batch and enrich them with new metrics.&lt;/p&gt;
-&lt;p&gt;In this release candidate, we have added two metrics:&lt;/p&gt;
+&lt;p&gt;We welcome feedback and contributions, so please reach out to us on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-cloud-dataflow&quot;&gt;Stackoverflow&lt;/a&gt; or &lt;a href=&quot;https://github.com/spring-cloud/spring-functions-catalog/issues&quot;&gt;Spring Functions Catalog - GitHub&lt;/a&gt; or &lt;a href=&quot;https://github.com/spring-cloud/stream-applications/issues&quot;&gt;Stream Applications - GitHub&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Tips: Hello, Java 22!]]></title><link>https://spring.io/blog/2024/04/03/spring-tips-hello-java-22</link><guid isPermaLink="true">https://spring.io/blog/2024/04/03/spring-tips-hello-java-22</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Wed, 03 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fana! In this installment, I look at the amazing, just-released, Java 22!&lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/X_kKfNko3hA?si=honzrsbpgpw0E8Gj&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - April 2nd, 2024]]></title><link>https://spring.io/blog/2024/04/03/this-week-in-spring-april-2nd-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/04/03/this-week-in-spring-april-2nd-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Wed, 03 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Welcome, welcome, &lt;em&gt;welcome&lt;/em&gt;, to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! You know, we&apos;ve come a long way since you and I last spoke. It&apos;s &lt;em&gt;April&lt;/em&gt; already! A new month! How bizarre. And, with the dawning of a new month, we&apos;re also more than 25% through this year! I sure hope you&apos;re paying attention. That little tidbit&apos;s blowing my mind!&lt;/p&gt;
+&lt;p&gt;Yesterday, by the way, was the first of April, and the tenth birthday of the first generally available 1.0 version of Spring Boot, released on the 1st of April, 2024. &lt;strong&gt;Happy birthday, Spring Boot!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Tomorrow, by the way, I&apos;ll have a brand new not-to-be-missed video on &lt;a href=&quot;https://spring.io/blog/2024/03/19/hello-java-22&quot;&gt;Java 22&lt;/a&gt; over on our humble YouTube channel, &lt;a href=&quot;https://youtube.com/@springsourcedev&quot;&gt;do &lt;em&gt;not&lt;/em&gt; miss that&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Alrighty, my friends, we&apos;ve got a ton to get through (and I&apos;ve already put a few things on your plate for tomorrow...), so let&apos;s dive into it!&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;job.launch.count&lt;/code&gt;: This is &lt;code&gt;Counter&lt;/code&gt; that reports how many jobs have been launched through the &lt;code&gt;JobLauncher&lt;/code&gt;. This can be convenient for environments where batch jobs are scheduled and executed in a continuously running JVM.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;step.active&lt;/code&gt;: This metric of type &lt;code&gt;LongTaskTimer&lt;/code&gt; reports the currently active (ie running) step in a specific job. This metric is useful in situations where a job has several steps and one wants to know in which step the processing is currently happening.&lt;/li&gt;
-&lt;/ul&gt;&lt;h2&gt;&lt;a href="#what-rsquo-s-next" class="anchor" name="what-rsquo-s-next"&gt;&lt;/a&gt;What&amp;rsquo;s next?&lt;/h2&gt;
-&lt;p&gt;I would like to thank all contributors who had a role in this release! You can try Spring Batch &lt;code&gt;5.0.0-RC2&lt;/code&gt; with Spring Boot &lt;code&gt;3.0.0-RC2&lt;/code&gt;. We are planning to release Spring Batch &lt;code&gt;5.0&lt;/code&gt; GA later this November 2022, so we would be grateful to our community to give this last release candidate a try and submit feedback on &lt;a href="https://github.com/spring-projects/spring-batch/issues"&gt;Github&lt;/a&gt;, &lt;a href="https://twitter.com/springbatch"&gt;Twitter&lt;/a&gt; and &lt;a href="https://stackoverflow.com/questions/tagged/spring-batch"&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt;
-&lt;hr/&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-batch"&gt;Spring Batch Home&lt;/a&gt;|&lt;a href="https://github.com/spring-projects/spring-batch"&gt;Source on Github&lt;/a&gt;|&lt;a href="https://docs.spring.io/spring-batch/docs/5.0.0-RC2/reference/html/index-single.html"&gt;Reference documentation&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Framework 6.0.0-RC4 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/09/spring-framework-6-0-0-rc4-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Stéphane Nicoll</name>
-    </author>
-    <id>tag:spring.io,2022-11-09:4987</id>
-    <updated>2022-11-09T13:10:45Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;6.0.0-RC4&lt;/code&gt; is available now.&lt;/p&gt;
-&lt;p&gt;Spring Framework &lt;code&gt;6.0.0-RC4&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v6.0.0-RC4"&gt;12 fixes and improvements&lt;/a&gt;. Stay tuned for the announcement of Spring Boot &lt;code&gt;3.0.0-RC2&lt;/code&gt; later this week!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/6.0.0-RC4/reference/html/"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud 2021.0.5 (codename Jubilee) Has Been Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/08/spring-cloud-2021-0-5-codename-jubilee-has-been-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Oleg Zhurakousky</name>
-    </author>
-    <id>tag:spring.io,2022-11-08:4985</id>
-    <updated>2022-11-08T22:45:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the community, I am pleased to announce that the General Availability (RELEASE) of the &lt;a href="https://cloud.spring.io"&gt;Spring Cloud 2021.0.5&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href="https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.5/"&gt;Maven Central&lt;/a&gt;. You can check out the 2021.0.5 &lt;a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2021.0.5-Release-Notes"&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#notable-changes-in-the-2021-0-5-release-train" class="anchor" name="notable-changes-in-the-2021-0-5-release-train"&gt;&lt;/a&gt;Notable Changes in the 2021.0.5 Release Train&lt;/h2&gt;
-&lt;p&gt;See the &lt;a href="https://github.com/orgs/spring-cloud/projects/82"&gt;project page&lt;/a&gt; for all the issues and pull requests included in this release.&lt;/p&gt;&lt;h3&gt;&lt;a href="#spring-cloud-function" class="anchor" name="spring-cloud-function"&gt;&lt;/a&gt;Spring Cloud Function&lt;/h3&gt;
+&lt;li&gt;SpringOne is back! Save the date! We&apos;ll be there, in Las Vegas, from August 26th to 29th, 2024. &lt;a href=&quot;https://springone.io&quot;&gt;We&apos;d love to see you there! And, we&apos;d love it if you submitted a talk!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;I dig this &lt;em&gt;Javarevisited&lt;/em&gt; blog (paywalled, alas..) which looks &lt;a href=&quot;https://medium.com/javarevisited/tracing-in-spring-boot3-097205dc08f4&quot;&gt;at distributed tracing in a Spring Boot application&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Check out the discussion over on Software Engineering Daily with the Spring team&apos;s &lt;a href=&quot;https://twitter.com/VMwareTanzu/status/1773787468141150491?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;Ryan Morgan and Dr. Mark Pollack where they talk about Spring AI&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Speaking of Spring AI, want to learn more about it? Check out our new Spring Academy course on &lt;a href=&quot;https://spring.academy/guides/spring-ai&quot;&gt;&lt;em&gt;Spring AI&lt;/em&gt;&lt;/a&gt; by Spring legends Craig Walls (author of &lt;em&gt;Spring in Action&lt;/em&gt;, no less!) and Rob McNees!&lt;/li&gt;
+&lt;li&gt;I love Anthony Ikeda&apos;s awesome look &lt;a href=&quot;https://dev.to/anthonyikeda/getting-started-with-spring-ai-4j09&quot;&gt;at getting started with Spring AI&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Former InfoQ editor-in-chief and all-around amazing author Charles Humble has a fantastic write-up over on &lt;em&gt;The New Stack&lt;/em&gt;: &lt;a href=&quot;https://thenewstack.io/how-spring-and-java-shaped-internal-developer-platforms/&quot;&gt;&quot;How Spring and Java Shaped Internal Developer Platforms&quot;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Also speaking of Spring AI, did you know that &lt;a href=&quot;https://twitter.com/eddumelendez/status/1772672905870020913?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;Spring AI will soon sport some service connections in Spring Boot, allowing seamless integration with Testcontainers&lt;/a&gt;?&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/28/spring-cloud-2023-0-1-aka-leyton-has-been-released&quot;&gt;Spring Cloud 2023.0.1 (aka Leyton) Has Been Released&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/28/spring-for-graphql-1-2-6-released&quot;&gt;Spring for GraphQL 1.2.6 Released&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;In last week&apos;s installment of &lt;em&gt;Spring Tips&lt;/em&gt;, I looked at the &lt;a href=&quot;https://www.youtube.com/watch?v=e9POHS0BjEg&amp;#x26;t=23s&quot;&gt;amazing Jobrunr distributed job scheduler&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;In last week&apos;s installment of &lt;em&gt;A Bootiful Podcast&lt;/em&gt;, I talked to Joseph Ottinger and Andrew Lombardi about &lt;a href=&quot;https://spring.io/blog/2024/03/28/a-bootiful-podcast-joseph-ottinger-and-andrew-lombardi-on-beginning-spring-6&quot;&gt;their new, and awesome, book &lt;em&gt;Beginning Spring 6&lt;/em&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Spring Cloud 2023.0.1 (aka Leyton) Has Been Released]]></title><link>https://spring.io/blog/2024/03/28/spring-cloud-2023-0-1-aka-leyton-has-been-released</link><guid isPermaLink="true">https://spring.io/blog/2024/03/28/spring-cloud-2023-0-1-aka-leyton-has-been-released</guid><dc:creator><![CDATA[Ryan Baxter]]></dc:creator><pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the community, I am pleased to announce that the General Availability (RELEASE) of the &lt;a href=&quot;https://cloud.spring.io&quot;&gt;Spring Cloud 2023.0.1&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href=&quot;https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2023.0.1/&quot;&gt;Maven Central&lt;/a&gt;. You can check out the 2023.0.1 &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2023.0.1-Release-Notes&quot;&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;notable-changes-in-the-202301-release-train&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#notable-changes-in-the-202301-release-train&quot; aria-label=&quot;notable changes in the 202301 release train permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Notable Changes in the 2023.0.1 Release Train&lt;/h2&gt;
+&lt;p&gt;Based on Spring Boot 3.2.4.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&quot;https://github.com/orgs/spring-cloud/projects/136&quot;&gt;the GitHub project&lt;/a&gt; for all changes made in this release.&lt;/p&gt;
+&lt;h3 id=&quot;spring-cloud-kubernetes&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-kubernetes&quot; aria-label=&quot;spring cloud kubernetes permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Kubernetes&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Add support for Azure Timer Trigger in spring-cloud-function-azure&lt;/li&gt;
-  &lt;li&gt;Enhancement to AWS Function Invoker in spring-cloud-function-aws to programmatically inject function definition&lt;/li&gt;
-  &lt;li&gt;
-  &lt;p&gt;Add support for Azure Timer Trigger in spring-cloud-function-azure&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-config" class="anchor" name="spring-cloud-config"&gt;&lt;/a&gt;Spring Cloud Config&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Align Jdbc Repository&amp;rsquo;s behavior with Git Repository (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/pull/2171"&gt;#2171&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-commons" class="anchor" name="spring-cloud-commons"&gt;&lt;/a&gt;Spring Cloud Commons&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Allow setting attributes in LoadBalancer &lt;code&gt;RequestData&lt;/code&gt; (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/pull/1142"&gt;#1142&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-openfeign" class="anchor" name="spring-cloud-openfeign"&gt;&lt;/a&gt;Spring Cloud OpenFeign&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Security OAuth2 support has been added (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues/644"&gt;#644&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add support for selective namespaces in Fabric8 LoadBalancer implementation (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/pull/1604&quot;&gt;#1604&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The following modules were updated as part of 2021.0.4:&lt;/p&gt;
+&lt;h3 id=&quot;spring-cloud-function&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-function&quot; aria-label=&quot;spring cloud function permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Function&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added native support for deploying and processing WEB Workloads as AWS Lambda with sample provided &lt;a href=&quot;https://github.com/aws/serverless-java-container/tree/main/samples/springboot3/pet-store-native&quot;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fixed filter registration in WEB support for AWS Lambda&lt;/li&gt;
+&lt;li&gt;Fixed SNapStart processing in WEB support for AWS Lambda&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-openfeign&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-openfeign&quot; aria-label=&quot;spring cloud openfeign permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Openfeign&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Support customization of JDK 11+ HttpClient (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-openfeign/issues/999&quot;&gt;#999&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-stream&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-stream&quot; aria-label=&quot;spring cloud stream permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Stream&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/releases/tag/v4.1.1&quot;&gt;Added&lt;/a&gt; a few enhancements, addressed various bug fixes and documentation cleanup.&lt;/li&gt;
+&lt;li&gt;See more details at &lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/milestone/93?closed=1&quot;&gt;https://github.com/spring-cloud/spring-cloud-stream/milestone/93?closed=1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;spring-cloud-gateway&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-cloud-gateway&quot; aria-label=&quot;spring cloud gateway permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Cloud Gateway&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Gateway Server MVC support for AOT (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/issues/3171&quot;&gt;#3171&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Allow forcing order of filters through Java DSL configuration(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/pull/3134&quot;&gt;#3134&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add option to disable RouteRefreshListener (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/issues/2958&quot;&gt;#2958&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add properties to disable filters if needed (&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/issues/3310&quot;&gt;#3310&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The following modules were updated as part of 2023.0.1:&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Module &lt;/th&gt;
-      &lt;th&gt;Version &lt;/th&gt;
-      &lt;th&gt;Issues&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Netflix &lt;/td&gt;
-      &lt;td&gt;3.1.4 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Config &lt;/td&gt;
-      &lt;td&gt;3.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Build &lt;/td&gt;
-      &lt;td&gt;3.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Sleuth &lt;/td&gt;
-      &lt;td&gt;3.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Gateway &lt;/td&gt;
-      &lt;td&gt;3.1.4 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Starter Build &lt;/td&gt;
-      &lt;td&gt;2021.0.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Consul &lt;/td&gt;
-      &lt;td&gt;3.1.2 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Contract &lt;/td&gt;
-      &lt;td&gt;3.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Kubernetes &lt;/td&gt;
-      &lt;td&gt;2.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Zookeeper &lt;/td&gt;
-      &lt;td&gt;3.1.3 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Task &lt;/td&gt;
-      &lt;td&gt;2.4.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Openfeign &lt;/td&gt;
-      &lt;td&gt;3.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Circuitbreaker &lt;/td&gt;
-      &lt;td&gt;2.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Stream &lt;/td&gt;
-      &lt;td&gt;3.2.6 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Commons &lt;/td&gt;
-      &lt;td&gt;3.1.5 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Function &lt;/td&gt;
-      &lt;td&gt;3.2.8 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Module&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;th&gt;Issues&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Vault&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-vault/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Bus&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-bus/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Zookeeper&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-zookeeper/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Kubernetes&lt;/td&gt;
+&lt;td&gt;3.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-kubernetes/releases/tag/v3.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Task&lt;/td&gt;
+&lt;td&gt;3.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-task/releases/tag/v3.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Function&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-function/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Commons&lt;/td&gt;
+&lt;td&gt;4.1.2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-commons/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Openfeign&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-openfeign/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Circuitbreaker&lt;/td&gt;
+&lt;td&gt;3.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-circuitbreaker/releases/tag/v3.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Starter Build&lt;/td&gt;
+&lt;td&gt;2023.0.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-starter-build/releases/tag/v2023.0.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Stream&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-stream/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Gateway&lt;/td&gt;
+&lt;td&gt;4.1.2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-gateway/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Consul&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-consul/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Contract&lt;/td&gt;
+&lt;td&gt;4.1.2&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-contract/releases/tag/v4.1.2&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Config&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-config/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Build&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-build/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Spring Cloud Netflix&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;td&gt;(&lt;a href=&quot;https://github.com/spring-cloud/spring-cloud-netflix/releases/tag/v4.1.1&quot;&gt;issues&lt;/a&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;As always, we welcome feedback on &lt;a href="https://github.com/spring-cloud/"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;Gitter&lt;/a&gt;, on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, and on &lt;a href="https://twitter.com/SpringCloud"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As always, we welcome feedback on &lt;a href=&quot;https://github.com/spring-cloud/&quot;&gt;GitHub&lt;/a&gt;, on &lt;a href=&quot;https://gitter.im/spring-cloud/spring-cloud&quot;&gt;Gitter&lt;/a&gt;, on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-cloud&quot;&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href=&quot;https://twitter.com/SpringCloud&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&lt;br/&gt;&amp;lt;dependencyManagement&amp;gt;&#xD;
-    &amp;lt;dependencies&amp;gt;&#xD;
-        &amp;lt;dependency&amp;gt;&#xD;
-            &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-            &amp;lt;artifactId&amp;gt;spring-cloud-dependencies&amp;lt;/artifactId&amp;gt;&#xD;
-            &amp;lt;version&amp;gt;2021.0.5&amp;lt;/version&amp;gt;&#xD;
-            &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;&#xD;
-            &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;&#xD;
-        &amp;lt;/dependency&amp;gt;&#xD;
-    &amp;lt;/dependencies&amp;gt;&#xD;
-&amp;lt;/dependencyManagement&amp;gt;&#xD;
-&amp;lt;dependencies&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-config&amp;lt;/artifactId&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-    ...&#xD;
-&amp;lt;/dependencies&amp;gt;
+&lt;pre&gt;&lt;code&gt;
+&amp;#x3C;dependencyManagement&gt;
+    &amp;#x3C;dependencies&gt;
+        &amp;#x3C;dependency&gt;
+            &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+            &amp;#x3C;artifactId&gt;spring-cloud-dependencies&amp;#x3C;/artifactId&gt;
+            &amp;#x3C;version&gt;2023.0.1&amp;#x3C;/version&gt;
+            &amp;#x3C;type&gt;pom&amp;#x3C;/type&gt;
+            &amp;#x3C;scope&gt;import&amp;#x3C;/scope&gt;
+        &amp;#x3C;/dependency&gt;
+    &amp;#x3C;/dependencies&gt;
+&amp;#x3C;/dependencyManagement&gt;
+&amp;#x3C;dependencies&gt;
+    &amp;#x3C;dependency&gt;
+        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+        &amp;#x3C;artifactId&gt;spring-cloud-starter-config&amp;#x3C;/artifactId&gt;
+    &amp;#x3C;/dependency&gt;
+    &amp;#x3C;dependency&gt;
+        &amp;#x3C;groupId&gt;org.springframework.cloud&amp;#x3C;/groupId&gt;
+        &amp;#x3C;artifactId&gt;spring-cloud-starter-netflix-eureka-client&amp;#x3C;/artifactId&gt;
+    &amp;#x3C;/dependency&gt;
+    ...
+&amp;#x3C;/dependencies&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;or with Gradle:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;buildscript {&#xD;
-dependencies {&#xD;
-classpath &amp;quot;io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE&amp;quot;&#xD;
-}&#xD;
-}&#xD;
-&#xD;
-&#xD;
-&#xD;
-apply plugin: &amp;quot;io.spring.dependency-management&amp;quot;&#xD;
-&#xD;
-dependencyManagement {&#xD;
-imports {&#xD;
-mavenBom &amp;#39;org.springframework.cloud:spring-cloud-dependencies:2021.0.5&amp;#39;&#xD;
-}&#xD;
-}&#xD;
-&#xD;
-dependencies {&#xD;
-compile &amp;#39;org.springframework.cloud:spring-cloud-starter-config&amp;#39;&#xD;
-compile &amp;#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&amp;#39;&#xD;
-...&#xD;
+&lt;pre&gt;&lt;code&gt;buildscript {
+dependencies {
+classpath &quot;io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE&quot;
+}
+}
+
+apply plugin: &quot;io.spring.dependency-management&quot;
+
+dependencyManagement {
+imports {
+mavenBom &apos;org.springframework.cloud:spring-cloud-dependencies:2023.0.1&apos;
+}
+}
+
+dependencies {
+compile &apos;org.springframework.cloud:spring-cloud-starter-config&apos;
+compile &apos;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&apos;
+...
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title><![CDATA[Spring for GraphQL 1.2.6 released]]></title><link>https://spring.io/blog/2024/03/28/spring-for-graphql-1-2-6-released</link><guid isPermaLink="true">https://spring.io/blog/2024/03/28/spring-for-graphql-1-2-6-released</guid><dc:creator><![CDATA[Brian Clozel]]></dc:creator><pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I am pleased to announce that Spring for GraphQL 1.2.6 is now available on Maven Central.&lt;/p&gt;
+&lt;p&gt;This release closes &lt;a href=&quot;https://github.com/spring-projects/spring-graphql/releases/tag/v1.2.6&quot;&gt;8 issues&lt;/a&gt;. It is a bit off our usual cycle but we wanted to fix particular issues a give an early chance to external integrations to release against this version.&lt;/p&gt;
+&lt;p&gt;The 1.2.6 version will ship with Spring Boot 3.1.11 and 3.2.5, &lt;a href=&quot;https://calendar.spring.io/&quot;&gt;to be released next month&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;If you have general questions, please ask on &lt;a href=&quot;https://stackoverflow.com&quot;&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href=&quot;https://stackoverflow.com/tags/spring-graphql&quot;&gt;&lt;code&gt;spring-graphql&lt;/code&gt; tag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-graphql/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-graphql&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-graphql/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-graphql/reference&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-graphql&quot;&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Joseph Ottinger and Andrew Lombardi on "Beginning Spring 6"]]></title><link>https://spring.io/blog/2024/03/28/a-bootiful-podcast-joseph-ottinger-and-andrew-lombardi-on-beginning-spring-6</link><guid isPermaLink="true">https://spring.io/blog/2024/03/28/a-bootiful-podcast-joseph-ottinger-and-andrew-lombardi-on-beginning-spring-6</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this episode I&apos;m joined by Java luminaries and Apress&apos; &lt;em&gt;Beginning Spring 6&lt;/em&gt; authors Joseph Ottinger and Andrew Lombardi&lt;/p&gt;
+&lt;iframe title=&quot;Joseph B. Ottinger and Andrew Lombardi on _Beginning Spring 6_&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=v6f68-15c577f-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - March 26th, 2024]]></title><link>https://spring.io/blog/2024/03/26/this-week-in-spring-march-26th-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/03/26/this-week-in-spring-march-26th-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sam Brannen shares some good news: &lt;a href=&quot;https://twitter.com/sam_brannen/status/1771547633019940866?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;a null-safe Index operator for the Spring Expression Language (SpEL) is coming to Spring Framework 6.2!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;This is interesting, and a nice application of AI (do I even need to spell out &quot;artificial intelligence&quot; anymore?): &lt;a href=&quot;https://flounder.dev/posts/localize-apps-with-ai/&quot;&gt;localize applications with Spring AI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;this is a neat guide by community member Wim Deblauwe over on InfoQ: A &lt;a href=&quot;https://www.infoq.com/minibooks/spring-boot-api-backend-version2/&quot;&gt;&lt;em&gt;Practical Guide to Building an API Back End with Spring Boot - version 2&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;James Ward, founder of the WebJars project and a legend in his own right, invites folks to contribute feedback on the new &lt;a href=&quot;https://twitter.com/_JamesWard/status/1769769144772079827?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;&lt;code&gt;webjars-locator-lite&lt;/code&gt; module&lt;/a&gt;, created by the good, the great, the amazing and inimitable Dr. David Syer&lt;/li&gt;
+&lt;li&gt;the Java Techie Youtube channel has a nice &lt;a href=&quot;https://www.youtube.com/watch?v=oHPNpgy21Rk&quot;&gt;video looking at Spring Boot for Apache Pulsar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;I love this talk from &lt;a href=&quot;https://www.youtube.com/watch?v=exqfB1WaqIw&quot;&gt;Voxxed Days Zurich from community member Maciej Walkowiak on Performant Spring Data JPA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Speaking of Dr. Syer, he&apos;s got a great post, &lt;a href=&quot;https://spring.io/blog/2024/03/22/reflectionless-templates-with-spring&quot;&gt;&lt;em&gt;Reflectionless templates with Spring&lt;/em&gt;&lt;/a&gt;, up on the Spring blog&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/22/spring-modulith-1-2-m3-released&quot;&gt;Spring Modulith 1.2 M3 has been released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/22/spring-boot-3-3-0-m3-available-now&quot;&gt;Spring Boot 3.3.0-M3 is available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;On the last episode of A Bootiful Podcast, I &lt;a href=&quot;https://spring.io/blog/2024/03/21/a-bootiful-podcast-stuart-marks-aka-dr-deprecator-on-java-its-amazing&quot;&gt;talked to Stuart Marks, Java&apos;s famous &quot;Dr. Deprecator&quot;&lt;/a&gt; - do &lt;em&gt;not&lt;/em&gt; miss this installment!&lt;/li&gt;
+&lt;li&gt;Spring Shell 3.1.10 and 3.2.3 are now available](&lt;a href=&quot;https://spring.io/blog/2024/03/21/spring-shell-3-1-10-and-3-2-3-are-now-available&quot;&gt;https://spring.io/blog/2024/03/21/spring-shell-3-1-10-and-3-2-3-are-now-available&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/21/spring-boot-3-2-4-available-now&quot;&gt;Spring Boot 3.2.4 is now available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/21/spring-boot-3-1-10-available-now&quot;&gt;Spring Boot 3.1.10 is available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/20/spring-integration-6-3-0-m2-6-2-3-and-6-1-7-available-now&quot;&gt;Spring Integration 6.3.0-m2, 6.2.3, and 6.1.7, are available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/20/spring-session-3-2-2-and-3-1-5-are-available-now&quot;&gt;Spring Session 3.2.2 and 3.1.5 are available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/03/20/spring-session-3-3-0-m3-available-now&quot;&gt;Spring Session 3.3.0-M3 is available now&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;in last week&apos;s installment of &lt;em&gt;Spring Tips&lt;/em&gt;, &lt;a href=&quot;https://spring.io/blog/2024/03/20/spring-tips-the-exposed-orm-for-kotlin&quot;&gt;I looked at the Kotlin Exposed ORM library and its integration with Spring Boot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Reflectionless Templates With Spring]]></title><link>https://spring.io/blog/2024/03/22/reflectionless-templates-with-spring</link><guid isPermaLink="true">https://spring.io/blog/2024/03/22/reflectionless-templates-with-spring</guid><dc:creator><![CDATA[Dave Syer]]></dc:creator><pubDate>Fri, 22 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A few Java libraries have shown up recently that use text templates, but compile to Java classes at build time. They can thus claim to some extent to be &quot;reflection free&quot;. Together with potential benefits of runtime performance, they promise to be easy to use and integrate with GraalVM native image compilation, so they are quite interesting for people just getting started with that stack in Spring Boot 3.x. We take a look at a selection of libraries (&lt;a href=&quot;https://github.com/jstachio/jstachio&quot;&gt;JStachio&lt;/a&gt;, &lt;a href=&quot;https://github.com/fizzed/rocker&quot;&gt;Rocker&lt;/a&gt;, &lt;a href=&quot;https://github.com/casid/jte&quot;&gt;JTE&lt;/a&gt; and &lt;a href=&quot;https://github.com/manifold-systems/manifold/tree/master/manifold-deps-parent/manifold-templates&quot;&gt;ManTL&lt;/a&gt;) and how to get them running.&lt;/p&gt;
+&lt;p&gt;The source code for the samples is in &lt;a href=&quot;https://github.com/dsyer/java-template-demo&quot;&gt;GitHub&lt;/a&gt; and each template engine has its own branch. The sample is intentionally very simple and doesn&apos;t use all the features of the template engines. The focus is on how to integrate them with Spring Boot and GraalVM.&lt;/p&gt;
+&lt;h2 id=&quot;jstachio&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#jstachio&quot; aria-label=&quot;jstachio permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;JStachio&lt;/h2&gt;
+&lt;p&gt;Since it is my favourite, I will start with JStachio. It is very easy to use and has a very small footprint and is also very fast at runtime. The templates are plain text files written in &lt;a href=&quot;https://mustache.github.io/&quot;&gt;Mustache&lt;/a&gt; which are then compiled to Java classes at build time and rendered at runtime.&lt;/p&gt;
+&lt;p&gt;In the sample there is a template for the home page (&lt;code&gt;index.mustache&lt;/code&gt;) that just prints a greeting and a visitor count:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;{{&amp;#x3C;layout}}{{$body}}
+Hello {{name}}!
+&amp;#x3C;br&gt;
+&amp;#x3C;br&gt;
+You are visitor number {{visits}}.
+{{/body}}
+{{/layout}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It uses a trivial &quot;layout&quot; template (&lt;code&gt;layout.mustache&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;html&gt;
+  &amp;#x3C;head&gt;&amp;#x3C;/head&gt;
+  &amp;#x3C;body&gt;{{$body}}{{/body}}
+  &amp;#x3C;/body&gt;
+&amp;#x3C;/html&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(The layout is not strictly necessary but it is a good way to show how to compose templates).&lt;/p&gt;
+&lt;p&gt;The JStachio APT processor will generate a Java class for each template it finds with a &lt;code&gt;@JStache&lt;/code&gt; annotation which is used to identify the template file in the source code. In this case we have:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@JStache(path = &quot;index&quot;)
+public class DemoModel {
+	public String name;
+	public long visits;
+
+	public DemoModel(String name, long visits) {
+		this.name = name;
+		this.visits = visits;
+	}
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - November 8th, 2022</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/08/this-week-in-spring-november-8th-2022" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2022-11-08:4984</id>
-    <updated>2022-11-08T08:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I&amp;rsquo;ve been busy this last week! I&amp;rsquo;ve been visiting with customers and talking to the community here in South East Asia. I was in Malaysia last week, and now I&amp;rsquo;m in Bangkok, Thailand. I&amp;rsquo;m near the end of my time here in SE Asia, which makes me sad. I&amp;rsquo;m dearly going to miss the food and the weather, but time waits for no person, and it&amp;rsquo;s almost time to go home.&lt;/p&gt;
-&lt;p&gt;And with time comes a jam-packed roster of new things we can read and learn from. So, without further ado, let&amp;rsquo;s dive right into it!&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/11/03/a-bootiful-podcast-java-champion-legend-and-prolific-open-source-contributor-andres-almiray"&gt;A Bootiful Podcast: Java Champion, legend, and prolific open source contributor Andres Almiray&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/11/03/cve-report-published-for-spring-tools"&gt;CVE Report Published for Spring Tools&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/718784722/0/baeldung~Can-a-Java-Application-Use-More-Memory-than-the-Heap-Size"&gt;Can a Java Application Use More Memory than the Heap Size?&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/718784720/0/baeldung~JUnit-Testing-Methods-That-Call-Systemexit"&gt;JUnit – Testing Methods That Call System.exit()&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/11/01/spring-authorization-server-0-4-0-rc1-available-now"&gt;Spring Authorization Server 0.4.0-RC1 available now&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/11/01/spring-authorization-server-1-0-0-rc1-available-now"&gt;Spring Authorization Server 1.0.0-RC1 available now&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/11/04/spring-data-2022-0-0-rc2-available"&gt;Spring Data 2022.0.0-RC2 available&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/11/02/spring-modulith-0-1-m2-released"&gt;Spring Modulith 0.1 M2 released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Have you tested your application against the upcoming Spring Boot 3? There&amp;rsquo;s a &lt;em&gt;ton&lt;/em&gt; of amazing new features arriving in this release and you should definitely be kicking the tires now. Remember: Spring Framework 6 is due in about a week&amp;rsquo;s time and Spring Boot 3 is due less than a few weeks after that! And you know where to go: &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Data 2022.0.0-RC2 available</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/04/spring-data-2022-0-0-rc2-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Mark Paluch</name>
-    </author>
-    <id>tag:spring.io,2022-11-04:4983</id>
-    <updated>2022-11-04T14:44:20Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team, I’m pleased to announce the second Spring Data release candidate &lt;code&gt;2022.0.0-RC2&lt;/code&gt;.&lt;br/&gt;This release candidate ships with numerous fixes and a refined observability integration through Micrometer for MongoDB, Redis, and Apache Cassandra modules.&lt;/p&gt;
-&lt;p&gt;For your convenience, Spring Boot &lt;code&gt;3.0.0-RC2&lt;/code&gt; is going to pick up this release in the upcoming days.&lt;/p&gt;
-&lt;p&gt;You can find the &lt;a href="https://github.com/spring-projects/spring-data-commons/wiki/Spring-Data-2022.0-%28Turing%29-Release-Notes-%28Preview%29"&gt;full release notes in the wiki&lt;/a&gt;. We continue looking for feedback to incorporate any last minute changes in our upcoming &lt;code&gt;2022.0.0&lt;/code&gt; GA release later this month.&lt;/p&gt;
-&lt;p&gt;Finally, here are the links to the documentation of each participating module:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Data Commons &lt;code&gt;3.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-commons/3.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/commons/docs/3.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/commons/docs/3.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-commons/releases/tag/3.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data JPA &lt;code&gt;3.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-jpa/3.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jpa/docs/3.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jpa/docs/3.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-jpa/releases/tag/3.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data KeyValue &lt;code&gt;3.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-keyvalue/3.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/keyvalue/docs/3.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/keyvalue/docs/3.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-keyvalue/releases/tag/3.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data Neo4j &lt;code&gt;7.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-neo4j/7.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/neo4j/docs/7.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/neo4j/docs/7.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-neo4j/releases/tag/7.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data for Apache Cassandra &lt;code&gt;4.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-cassandra/4.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/cassandra/docs/4.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/cassandra/docs/4.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-cassandra/releases/tag/4.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data MongoDB &lt;code&gt;4.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-mongodb/4.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/mongodb/docs/4.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/mongodb/docs/4.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-mongodb/releases/tag/4.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data LDAP &lt;code&gt;3.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-ldap/3.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/ldap/docs/3.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/ldap/docs/3.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-ldap/releases/tag/3.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data REST &lt;code&gt;4.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-rest-webmvc/4.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/rest/docs/4.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/rest/docs/4.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-rest/releases/tag/4.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data Redis &lt;code&gt;3.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-redis/3.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/redis/docs/3.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/redis/docs/3.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-redis/releases/tag/3.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data Elasticsearch &lt;code&gt;5.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-elasticsearch/5.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/elasticsearch/docs/5.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/elasticsearch/docs/5.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-elasticsearch/releases/tag/5.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data Couchbase &lt;code&gt;5.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-couchbase/5.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/couchbase/docs/5.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/couchbase/docs/5.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-couchbase/releases/tag/5.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Data Relational &lt;code&gt;3.0 RC2&lt;/code&gt; - &lt;a href="https://repo.spring.io/libs-milestone/org/springframework/data/spring-data-relational/3.0.0-RC2"&gt;Artifacts&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jdbc/docs/3.0.0-RC2/api/"&gt;Javadoc&lt;/a&gt; - &lt;a href="https://docs.spring.io/spring-data/jdbc/docs/3.0.0-RC2/reference/html/"&gt;Documentation&lt;/a&gt; - &lt;a href="https://github.com/spring-projects/spring-data-relational/releases/tag/3.0.0-RC2"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>CVE Report Published for Spring Tools</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/03/cve-report-published-for-spring-tools" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Alex Boyko</name>
-    </author>
-    <id>tag:spring.io,2022-11-03:4982</id>
-    <updated>2022-11-04T01:00:00Z</updated>
-    <content type="html">&lt;p&gt;We have released STS &lt;strong&gt;4.16.1&lt;/strong&gt; for Eclipse and Spring VSCode extensions &lt;strong&gt;1.40.0&lt;/strong&gt; to address the following CVE report:&lt;br/&gt; - &lt;a href="https://tanzu.vmware.com/security/cve-2022-31691"&gt;CVE-2022-31691: Remote Code Execution via YAML editors in STS4 extensions for Eclipse and VSCode&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Please review the information in the CVE report and upgrade immediately.&lt;/p&gt;
-&lt;p&gt;Eclipse: STS upgrade to 4.16.1&lt;br/&gt;VSCode: Spring Boot Tools upgrade to 1.40.0&lt;br/&gt;VSCode: Concourse CI Pipeline Editor upgrade to 1.40.0&lt;br/&gt;VSCode: Bosh Editor upgrade to 1.40.0&lt;br/&gt;VSCode: Cloudfoundry Manifest YML Support upgrade to 1.40.0&lt;/p&gt;
-&lt;p&gt;See &lt;a href="https://spring.io/tools"&gt;Spring Tools&lt;/a&gt; page to find the latest releases&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Framework 6.0.0-RC3 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/03/spring-framework-6-0-0-rc3-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Sébastien Deleuze</name>
-    </author>
-    <id>tag:spring.io,2022-11-03:4981</id>
-    <updated>2022-11-03T07:00:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;6.0.0-RC3&lt;/code&gt; is available now.&lt;/p&gt;
-&lt;p&gt;Spring Framework &lt;code&gt;6.0.0-RC3&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v6.0.0-RC3"&gt;22 fixes and improvements&lt;/a&gt;. This is the last release candidate expected before the general availability of Spring Framework &lt;code&gt;6.0.0&lt;/code&gt; currently planned mid-November.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/6.0.0-RC3/reference/html/"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>A Bootiful Podcast: Java Champion, legend, and prolific open source contributor Andres Almiray</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/03/a-bootiful-podcast-java-champion-legend-and-prolific-open-source-contributor-andres-almiray" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2022-11-02:4979</id>
-    <updated>2022-11-03T07:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! In this installment, &lt;a href="https://twitter.com/starbuxman"&gt;Josh Long (@starbuxman)&lt;/a&gt; talks to Java Champion, legend, and prolific opensource contributor &lt;a href="https://twitter.com/aalmiray"&gt;Andres Almiray (@aalmiray) &lt;/a&gt;&lt;/p&gt;
-&lt;iframe title="Java Champion, legend, and prolific open source contributor Andres Almiray " allowtransparency="true" height="150" width="100%" style="border: none; min-width: min(100%, 430px);" scrolling="no" data-name="pb-iframe-player" src="https://www.podbean.com/player-v2/?i=sjkns-13031f2-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7"&gt;&lt;/iframe&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Modulith 0.1 M2 released</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/02/spring-modulith-0-1-m2-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Oliver Drotbohm</name>
-    </author>
-    <id>tag:spring.io,2022-11-02:4980</id>
-    <updated>2022-11-02T20:43:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;I am pleased to announce the availability of the second milestone of Spring Modulith 0.1. The release contains a few minor bug fixes and a couple of community contributions to the reference documentation. Find a complete overview about the changes included in the release &lt;a href="https://github.com/spring-projects-experimental/spring-modulith/releases/tag/0.1.0-M2"&gt;here&lt;/a&gt;. For a general introduction into the project, please consult the &lt;a href="https://spring.io/blog/2022/10/21/introducing-spring-modulith"&gt;announcing blog post&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The current plan is to ship an 0.1 RC1 after Spring Boot&amp;#8217;s second RC, followed by a GA version on the heels of Boot&amp;#8217;s GA.&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Authorization Server 1.0.0-RC1 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/01/spring-authorization-server-1-0-0-rc1-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Joe Grandja</name>
-    </author>
-    <id>tag:spring.io,2022-11-01:4977</id>
-    <updated>2022-11-01T15:00:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the team and everyone who has contributed, it is my pleasure to announce the general availability of Spring Authorization Server 1.0.0-RC1.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can download it from &lt;a href="https://repo.spring.io/milestone"&gt;repo.spring.io&lt;/a&gt; milestone repository by using the module coordinates:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;implementation 'org.springframework.security:spring-security-oauth2-authorization-server:1.0.0-RC1'&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See the &lt;a href="https://github.com/spring-projects/spring-authorization-server/releases/tag/1.0.0-RC1"&gt;release notes&lt;/a&gt; for complete details.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To get started using Spring Authorization Server, see the &lt;a href="https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html"&gt;Getting Started&lt;/a&gt; chapter of the reference documentation and the &lt;a href="https://github.com/spring-projects/spring-authorization-server/tree/main/samples"&gt;samples&lt;/a&gt; to become familiar with setup and configuration.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We would love to gather your feedback as we strive to improve and build upon this release.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-authorization-server"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-authorization-server/issues"&gt;GitHub Issues&lt;/a&gt; | &lt;a href="https://app.zenhub.com/workspaces/authorization-server-5e8f3182b5e8f5841bfc4902/board?repos=248032165"&gt;ZenHub Board&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Authorization Server 0.4.0-RC1 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/11/01/spring-authorization-server-0-4-0-rc1-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Joe Grandja</name>
-    </author>
-    <id>tag:spring.io,2022-11-01:4976</id>
-    <updated>2022-11-01T15:00:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the team and everyone who has contributed, it is my pleasure to announce the general availability of Spring Authorization Server 0.4.0-RC1.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can download it from &lt;a href="https://repo.spring.io/milestone"&gt;repo.spring.io&lt;/a&gt; milestone repository by using the module coordinates:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;implementation 'org.springframework.security:spring-security-oauth2-authorization-server:0.4.0-RC1'&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See the &lt;a href="https://github.com/spring-projects/spring-authorization-server/releases/tag/0.4.0-RC1"&gt;release notes&lt;/a&gt; for complete details.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To get started using Spring Authorization Server, see the &lt;a href="https://docs.spring.io/spring-authorization-server/docs/current/reference/html/getting-started.html"&gt;Getting Started&lt;/a&gt; chapter of the reference documentation and the &lt;a href="https://github.com/spring-projects/spring-authorization-server/tree/0.4.x/samples"&gt;samples&lt;/a&gt; to become familiar with setup and configuration.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We would love to gather your feedback as we strive to improve and build upon this release.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-authorization-server"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-authorization-server/issues"&gt;GitHub Issues&lt;/a&gt; | &lt;a href="https://app.zenhub.com/workspaces/authorization-server-5e8f3182b5e8f5841bfc4902/board?repos=248032165"&gt;ZenHub Board&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - November 1st, 2022</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/10/31/this-week-in-spring-november-1st-2022" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2022-10-31:4975</id>
-    <updated>2022-11-01T01:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! How&amp;rsquo;re you doin&amp;rsquo;? I hope you&amp;rsquo;re doing well and had a great Halloween if you celebrate. I&amp;rsquo;m doing great. I&amp;rsquo;m in sunny Kuala Lumpur, Malaysia, eating delicious food and hanging out with amazing people. Tomorrow, I&amp;rsquo;m off to Penang, Malaysia, for a little tourism before I get back to a more code-driven kinda fun: I&amp;rsquo;ll be &lt;a href="https://kubernetes-native-java-josh-long-developerkaki.peatix.com/"&gt;doing a developer event looking at the latest-and-greatest from Spring Boot 3&lt;/a&gt; here in &lt;strong&gt;Kuala Lumpur&lt;/strong&gt; on the 11th of November - ten short days from now! - so please join me!&lt;/p&gt;
-&lt;p&gt;Also, I just joined &lt;em&gt;Mastodon&lt;/em&gt; - a decentralized and open-source Twitter; I&amp;rsquo;m not leaving Twitter, of course, but I would love to make new friends and grow the community there: &lt;a href="https://mastodon.online/@starbuxman"&gt;@starbuxman@mastodon.online&lt;/a&gt;! &lt;/p&gt;
-&lt;p&gt;Anyway, my friends, housekeeping aside, we&amp;rsquo;ve got a &lt;em&gt;ton&lt;/em&gt; of amazing things to talk about today so let&amp;rsquo;s dive right into it!&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qkgdjIsNYA0"&gt;Automated Code Migrations With Spring Boot Migrator | Fabian Krueger (EN)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/10/27/bootiful-podcast-spring-mad-scientist-andy-clement-on-springone-2022-aot-azure-spring-apps-and-more"&gt;Bootiful Podcast: Spring Mad Scientist Andy Clement on SpringOne 2022, AOT, Azure Spring Apps, and more&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/717387970/0/baeldung~How-to-Access-the-First-Element-of-a-Flux"&gt;How to Access the First Element of a Flux&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/alina_yurenko/status/1587102593851052032?s=61&amp;t=ahaeq7OhMUteRPzmYqDtKA"&gt;I wondered out loud if anybody heard elevaor music when they were waiting for their GraalVM compiles to finish. Then this happened. LOL&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/717425390/0/baeldung~Limiting-the-Requests-per-Second-With-WebClient"&gt;Limiting the Requests per Second With WebClient&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/717449636/0/baeldung~Log-Properties-in-a-Spring-Boot-Application"&gt;Log Properties in a Spring Boot Application&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Interested in how GraalVm will fit into the OpenJDK model? &lt;a href="https://openjdk.org/projects/leyden/notes/02-shift-and-constrain"&gt;Selectively Shifting and Constraining Computation&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://qiita.com/suke_masa/items/8c879c9b20a07d7489a8"&gt;Spring Boot + MyBatis ??? TypeHandler ??? - Qiita&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/10/25/spring-integration-6-0-0-rc1-available"&gt;Spring Integration 6.0.0-RC1 Available&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://qiita.com/kazuki43zoo/items/489cdd01de28dd647681"&gt;Spring Integration ? TCP ??????????????????????? - Qiita&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=iJ2muJniikY"&gt;Spring Security, demystified by Daniel Garnier Moiroux&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2022/10/26/spring-tools-4-16-1-released"&gt;Spring Tools 4.16.1 released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check out my Devoxx UK talk, also voted one of the top videos at Devoxx UK: &lt;a href="https://www.youtube.com/watch?v=2Wnp6FdrTbI"&gt;Spring.next by Josh Long&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/717085636/0/baeldung~TLS-Setup-in-MySQL-and-Spring-Boot-Application"&gt;TLS Setup in MySQL and Spring Boot Application&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 5.7.5 and 5.6.9 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/10/31/spring-security-5-7-5-and-5-6-9-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Steve Riesenberg</name>
-    </author>
-    <id>tag:spring.io,2022-10-31:4974</id>
-    <updated>2022-10-31T17:04:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Security 5.7.5 and 5.6.9 are available now. In both cases the releases are composed of bug fixes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To learn more, please visit the &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.7.5"&gt;5.7.5&lt;/a&gt; and
- &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.6.9"&gt;5.6.9&lt;/a&gt; release summaries.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-security/reference/"&gt;Reference&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>CVE-2022-31690: Privilege Escalation in spring-security-oauth2-client</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/10/31/cve-2022-31690-privilege-escalation-in-spring-security-oauth2-client" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Steve Riesenberg</name>
-    </author>
-    <id>tag:spring.io,2022-10-28:4973</id>
-    <updated>2022-10-31T16:41:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Security &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.6.9"&gt;5.6.9&lt;/a&gt; and &lt;a href="https://github.com/spring-projects/spring-security/releases/tag/5.7.5"&gt;5.7.5&lt;/a&gt; released on &lt;a href="https://spring.io/blog/2022/10/31/spring-security-5-7-5-and-5-6-9-available-now"&gt;October 31st, 2022&lt;/a&gt; included a fix for &lt;a href="https://tanzu.vmware.com/security/cve-2022-31690"&gt;CVE-2022-31690&lt;/a&gt; affecting the mapping of authorized scopes in spring-security-oauth2-client. Users are encouraged to update as soon as possible.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="impact"&gt;&lt;a class="anchor" href="#impact"&gt;&lt;/a&gt;Impact&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Users who have applied the mitigation should take note of the following impact:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;No authorized scopes are mapped to the principal (current user) when the Authorization Server (AS) responds to the OAuth2 Access Token Response with an empty or missing &lt;code&gt;scope&lt;/code&gt; parameter.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If you are affected by this vulnerability, users will not be granted any authorities beginning with &lt;code&gt;SCOPE_&lt;/code&gt; when the AS does not return scopes. Only the special authority &lt;code&gt;ROLE_USER&lt;/code&gt; is given to the principal.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock note"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;div class="title"&gt;Note&lt;/div&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-Beginning with 6.0, the special authority is changed to &lt;code&gt;OAUTH2_USER&lt;/code&gt; (or &lt;code&gt;OIDC_USER&lt;/code&gt;). See &lt;a href="https://docs.spring.io/spring-security/reference/6.0/servlet/oauth2/login/advanced.html#oauth2login-advanced-map-authorities-grantedauthoritiesmapper"&gt;Using a GrantedAuthoritiesMapper&lt;/a&gt; in the 6.0 reference documentation for more information.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If additional authorities are required for your application, you should register a &lt;code&gt;GrantedAuthoritiesMapper&lt;/code&gt; &lt;code&gt;@Bean&lt;/code&gt; to provide the needed authorities, as in the following example:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code data-lang="java"&gt;@Configuration
-@EnableWebSecurity
-public class OAuth2LoginSecurityConfig {
-
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeHttpRequests((authorize) -&amp;gt; authorize
-				.mvcMatchers(HttpMethod.GET, "/messages").hasAuthority("SCOPE_read")
-				// ...
-				.anyRequest().authenticated()
-			)
-			.oauth2Login(Customizer.withDefaults());
-		return http.build();
-	}
-
-	@Bean
-	public GrantedAuthoritiesMapper userAuthoritiesMapper() {
-		return (authorities) -&amp;gt; {
-			if (!authorities.isEmpty() &amp;amp;&amp;amp; authorities.stream()
-					.map(GrantedAuthority::getAuthority)
-					.anyMatch(authority -&amp;gt; authority.startsWith("SCOPE_"))) {
-				// AS returned scopes that are mapped to SCOPE_ by Spring Security
-				return authorities;
-			}
-
-			// AS returned no scopes, either because none were granted or because requested == granted
-			// See https://www.rfc-editor.org/rfc/rfc6749#section-5.1 and your AS documentation
-			// You can access the ID Token or UserInfo attributes to map authorities based on the user:
-
-			Set&amp;lt;GrantedAuthority&amp;gt; grantedAuthorities = new HashSet&amp;lt;&amp;gt;();
-			authorities.forEach(authority -&amp;gt; {
-				if (OidcUserAuthority.class.isInstance(authority)) {
-					OidcUserAuthority oidcUserAuthority = (OidcUserAuthority) authority;
-					OidcIdToken idToken = oidcUserAuthority.getIdToken();
-					// ...
-				} else if (OAuth2UserAuthority.class.isInstance(authority)) {
-					OAuth2UserAuthority oauth2UserAuthority = (OAuth2UserAuthority) authority;
-					Map&amp;lt;String, Object&amp;gt; userAttributes = oauth2UserAuthority.getAttributes();
-					// ...
-				}
-			});
-
-			return grantedAuthorities;
-
-			// Alternatively, provide a fallback set of authorities that make sense for your application
-			// return AuthorityUtils.createAuthorityList("ROLE_USER", "SCOPE_read");
-		};
-	}
-
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock warning"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;div class="title"&gt;Warning&lt;/div&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-It is &lt;strong&gt;not recommended&lt;/strong&gt; to simply map authorities from the &lt;code&gt;ClientRegistration&lt;/code&gt;.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>CVE-2022-31692: Authorization rules can be bypassed via forward or include in Spring Security</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/10/31/cve-2022-31692-authorization-rules-can-be-bypassed-via-forward-or-include-in-spring-security" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Marcus Hert Da Coregio</name>
-    </author>
-    <id>tag:spring.io,2022-10-27:4971</id>
-    <updated>2022-10-31T16:41:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Security 5.6.9 and 5.7.5 released on October 31st, 2022 included a fix for &lt;a href="https://tanzu.vmware.com/security/cve-2022-31692"&gt;CVE-2022-31692&lt;/a&gt; affecting the &lt;code&gt;AuthorizationFilter&lt;/code&gt;. Users are encouraged to update as soon as possible.&lt;/p&gt;
-&lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud 2022.0.0-RC1 Is Available</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/10/31/spring-cloud-2022-0-0-rc1-is-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Spencer Gibb</name>
-    </author>
-    <id>tag:spring.io,2022-10-28:4972</id>
-    <updated>2022-10-31T16:22:48Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the community, I am pleased to announce that the Release Candidate 1 (RC1) of the &lt;a href="https://cloud.spring.io"&gt;Spring Cloud 2022.0&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href="https://repo.spring.io/milestone/"&gt;Spring Milestone&lt;/a&gt; repository. You can check out the 2022.0 &lt;a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2022.0-Release-Notes"&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#notable-changes-in-the-2022-0-0-release-train" class="anchor" name="notable-changes-in-the-2022-0-0-release-train"&gt;&lt;/a&gt;Notable Changes in the 2022.0.0 Release Train&lt;/h2&gt;
-&lt;p&gt;See all issues closed &lt;a href="https://github.com/orgs/spring-cloud/projects/86/"&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;&lt;a href="#spring-cloud-function" class="anchor" name="spring-cloud-function"&gt;&lt;/a&gt;Spring Cloud Function&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Updates for Observability and Native Hints&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-openfeign" class="anchor" name="spring-cloud-openfeign"&gt;&lt;/a&gt;Spring Cloud OpenFeign&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added support for target URL refreshing (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues/710"&gt;#710&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added support for LoadBalancer X-Forwarded Headers (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/748"&gt;#748&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Set Jackson Autoconfiguration to be enabled by default (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/476"&gt;#476&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Removed deprecations and adjusted to the API changes in Feign (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/768"&gt;#768&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-commons" class="anchor" name="spring-cloud-commons"&gt;&lt;/a&gt;Spring Cloud Commons&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Support added for property-based configuration for weighted load-balancing (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/pull/1163"&gt;#1163&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-netflix" class="anchor" name="spring-cloud-netflix"&gt;&lt;/a&gt;Spring Cloud Netflix&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Migrated Apache HttpClient to Apache HC5 HttpClient (&lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/pull/4126"&gt;#4126&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-stream" class="anchor" name="spring-cloud-stream"&gt;&lt;/a&gt;Spring Cloud Stream&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Updates for Observability&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-gateway" class="anchor" name="spring-cloud-gateway"&gt;&lt;/a&gt;Spring Cloud Gateway&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added option to &lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/pull/2750"&gt;configure CORS per route&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Added support for &lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/pull/2755"&gt;URI variables for Circuit Breaker filter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Added support for &lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/pull/2759"&gt;a local response cache filter&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-config" class="anchor" name="spring-cloud-config"&gt;&lt;/a&gt;Spring Cloud Config&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added support for &lt;a href="https://docs.spring.io/spring-cloud-config/docs/4.0.0-RC1/reference/html/#_aot_and_native_image_support_2"&gt;Spring Native support for Config Client&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The following modules were updated as part of 2022.0.0-RC1:&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Module &lt;/th&gt;
-      &lt;th&gt;Version &lt;/th&gt;
-      &lt;th&gt;Issues&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Bus &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Contract &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Function &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Vault &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Circuitbreaker &lt;/td&gt;
-      &lt;td&gt;3.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Openfeign &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/milestone/56?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Zookeeper &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Commons &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/milestone/106?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Kubernetes &lt;/td&gt;
-      &lt;td&gt;3.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/milestone/51?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Task &lt;/td&gt;
-      &lt;td&gt;3.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-task/milestone/66?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Netflix &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/milestone/115?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Stream &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Consul &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Starter Build &lt;/td&gt;
-      &lt;td&gt;2022.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Gateway &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/milestone/71?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Config &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-config/milestone/108?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Build &lt;/td&gt;
-      &lt;td&gt;4.0.0-RC1 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;As always, we welcome feedback on &lt;a href="https://github.com/spring-cloud/"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;Gitter&lt;/a&gt;, on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href="https://twitter.com/SpringCloud"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint xml"&gt;&amp;lt;repositories&amp;gt;&#xD;
-    &amp;lt;repository&amp;gt;&#xD;
-        &amp;lt;id&amp;gt;spring-milestones&amp;lt;/id&amp;gt;&#xD;
-        &amp;lt;name&amp;gt;Spring Milestones&amp;lt;/name&amp;gt;&#xD;
-        &amp;lt;url&amp;gt;https://repo.spring.io/milestone&amp;lt;/url&amp;gt;&#xD;
-        &amp;lt;snapshots&amp;gt;&#xD;
-            &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;&#xD;
-        &amp;lt;/snapshots&amp;gt;&#xD;
-    &amp;lt;/repository&amp;gt;&#xD;
-&amp;lt;/repositories&amp;gt;&#xD;
-&amp;lt;dependencyManagement&amp;gt;&#xD;
-    &amp;lt;dependencies&amp;gt;&#xD;
-        &amp;lt;dependency&amp;gt;&#xD;
-            &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-            &amp;lt;artifactId&amp;gt;spring-cloud-dependencies&amp;lt;/artifactId&amp;gt;&#xD;
-            &amp;lt;version&amp;gt;2022.0.0-RC1&amp;lt;/version&amp;gt;&#xD;
-            &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;&#xD;
-            &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;&#xD;
-        &amp;lt;/dependency&amp;gt;&#xD;
-    &amp;lt;/dependencies&amp;gt;&#xD;
-&amp;lt;/dependencyManagement&amp;gt;&#xD;
-&amp;lt;dependencies&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-config&amp;lt;/artifactId&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-    ...&#xD;
-&amp;lt;/dependencies&amp;gt;
+&lt;p&gt;The &lt;code&gt;path&lt;/code&gt; attribute of the &lt;code&gt;@JStache&lt;/code&gt; annotation is the name of the template file without the extension (see below for how that gets stitched together). You could also use a Java record for the model which is neat, but since the other template engines don&apos;t support it we&apos;ll leave it out and make the samples more comparable.&lt;/p&gt;
+&lt;h3 id=&quot;build-configuration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#build-configuration&quot; aria-label=&quot;build configuration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Build Configuration&lt;/h3&gt;
+&lt;p&gt;To compile this to a Java class, you need to add some configuration to the compiler plugin in &lt;code&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;plugin&gt;
+	&amp;#x3C;artifactId&gt;maven-compiler-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;configuration&gt;
+		&amp;#x3C;annotationProcessorPaths&gt;
+			&amp;#x3C;annotationProcessorPath&gt;
+				&amp;#x3C;groupId&gt;io.jstach&amp;#x3C;/groupId&gt;
+				&amp;#x3C;artifactId&gt;jstachio-apt&amp;#x3C;/artifactId&gt;
+				&amp;#x3C;version&gt;${jstachio.version}&amp;#x3C;/version&gt;
+			&amp;#x3C;/annotationProcessorPath&gt;
+		&amp;#x3C;/annotationProcessorPaths&gt;
+	&amp;#x3C;/configuration&gt;
+&amp;#x3C;/plugin&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or with Gradle:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint groovy"&gt;plugins {&#xD;
-  id &amp;#39;org.springframework.boot&amp;#39; version &amp;#39;3.0.0-RC1&amp;#39;&#xD;
-  id &amp;#39;io.spring.dependency-management&amp;#39; version &amp;#39;1.1.0&amp;#39;&#xD;
-  id &amp;#39;java&amp;#39;&#xD;
-}&#xD;
-&#xD;
-group = &amp;#39;com.example&amp;#39;&#xD;
-version = &amp;#39;0.0.1-SNAPSHOT&amp;#39;&#xD;
-sourceCompatibility = &amp;#39;17&amp;#39;&#xD;
-&#xD;
-repositories {&#xD;
-  mavenCentral()&#xD;
-  maven { url &amp;#39;https://repo.spring.io/milestone&amp;#39; }&#xD;
-}&#xD;
-&#xD;
-ext {&#xD;
-  set(&amp;#39;springCloudVersion&amp;#39;, &amp;quot;2022.0.0-RC1&amp;quot;)&#xD;
-}&#xD;
-&#xD;
-dependencies {&#xD;
-  implementation &amp;#39;org.springframework.cloud:spring-cloud-starter-config&amp;#39;&#xD;
-  implementation &amp;#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&amp;#39;&#xD;
+&lt;p&gt;JStachio comes with some Spring Boot integration, so you only need to add it to the classpath:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;dependency&gt;
+	&amp;#x3C;groupId&gt;io.jstach&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;jstachio-spring-boot-starter-webmvc&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;${jstachio.version}&amp;#x3C;/version&gt;
+&amp;#x3C;/dependency&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;controller&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#controller&quot; aria-label=&quot;controller permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Controller&lt;/h3&gt;
+&lt;p&gt;You can use the template in a controller, for example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@GetMapping(&quot;/&quot;)
+public View view() {
+	visitsRepository.add();
+	return JStachioModelView.of(new DemoModel(&quot;World&quot;, visitsRepository.get()));
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-</feed>
+&lt;p&gt;This controller returns a &lt;code&gt;View&lt;/code&gt; constructed from a &lt;code&gt;DemoModel&lt;/code&gt;. It could also just return the &lt;code&gt;DemoModel&lt;/code&gt; directly and Spring Boot will wrap it in a &lt;code&gt;JStachioModelView&lt;/code&gt; automatically.&lt;/p&gt;
+&lt;h3 id=&quot;jstachio-configuration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#jstachio-configuration&quot; aria-label=&quot;jstachio configuration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;JStachio Configuration&lt;/h3&gt;
+&lt;p&gt;There is also global configuration in the &lt;code&gt;DemoApplication&lt;/code&gt; class:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@JStachePath(prefix = &quot;templates/&quot;, suffix = &quot;.mustache&quot;)
+@SpringBootApplication
+public class DemoApplication {
+	...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and a &lt;code&gt;package-info.java&lt;/code&gt; file that points back to it (you need one of these per Java package that contains &lt;code&gt;@JStache&lt;/code&gt; models):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@JStacheConfig(using = DemoApplication.class)
+package demo;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;running-the-sample&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#running-the-sample&quot; aria-label=&quot;running the sample permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Running the Sample&lt;/h3&gt;
+&lt;p&gt;Run the application with &lt;code&gt;./mvnw spring-boot:run&lt;/code&gt; (or in the IDE from the &lt;code&gt;main&lt;/code&gt; method) and you should see the home page at &lt;code&gt;http://localhost:8080/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The generated sources after compilation are in &lt;code&gt;target/generated-sources/annotations&lt;/code&gt; and you can see the generated Java class for the &lt;code&gt;DemoModel&lt;/code&gt; there:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ tree target/generated-sources/annotations/
+target/generated-sources/annotations/
+??? demo
+    ??? DemoModelRenderer.java
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The sample also includes a &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/3.2.3/maven-plugin/reference/htmlsingle/#run.test-run-goal&quot;&gt;test main&lt;/a&gt; so you can run from the command line with &lt;code&gt;./mvnw spring-boot:test-run&lt;/code&gt; or via the test main in the IDE, and the application will restart when you make changes in the IDE. One of the disadvantages of the build-time compilation is that you have to force a recompile to see changes in the templates. The IDE won&apos;t do that automatically, so you might have to use another tool to trigger a recompile. I have had some success with using this to force the model class to recompile when the template changes:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ while inotifywait src/main/resources/templates -e close_write; do \
+  sleep 1; \
+  find src/main/java -name \*Model.java -exec touch {} \;; \
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;inotifywait&lt;/code&gt; command is a tool that waits for a file to be closed after a write. It is easy to install and use on any Linux distribution or on a Mac.&lt;/p&gt;
+&lt;h3 id=&quot;native-image&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#native-image&quot; aria-label=&quot;native image permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Native Image&lt;/h3&gt;
+&lt;p&gt;A native image can be generated with no additional configuration using &lt;code&gt;./mvnw -P native spring-boot:build-image&lt;/code&gt; (or using the &lt;code&gt;native-image&lt;/code&gt; plugin directly). The image starts up in less than 0.1s:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker run -p 8080:8080 demo:0.0.1-SNAPSHOT
+
+  .   ____          _            __ _ _
+ /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  &apos;  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2024-03-22T12:23:45.403Z  INFO 1 --- [           main] demo.DemoApplication                     : Starting AOT-processed DemoApplication using Java 17.0.10 with PID 1 (/workspace/demo.DemoApplication started by cnb in /workspace)
+2024-03-22T12:23:45.403Z  INFO 1 --- [           main] demo.DemoApplication                     : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-03-22T12:23:45.418Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-03-22T12:23:45.419Z  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-22T12:23:45.419Z  INFO 1 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-22T12:23:45.429Z  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-22T12:23:45.429Z  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 26 ms
+2024-03-22T12:23:45.462Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path &apos;&apos;
+2024-03-22T12:23:45.462Z  INFO 1 --- [           main] demo.DemoApplication                     : Started DemoApplication in 0.069 seconds (process running for 0.073)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;rocker&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#rocker&quot; aria-label=&quot;rocker permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Rocker&lt;/h2&gt;
+&lt;p&gt;Rocker can be used in a similar way to JStachio. The templates are written in a custom language that is like HTML with additional Java features (a bit like JSP). The home page looks like this (&lt;code&gt;demo.rocker.html&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;@import demo.DemoModel
+
+@args(DemoModel model)
+
+@templates.layout.template(&quot;Demo&quot;) -&gt; {
+	&amp;#x3C;h1&gt;Demo&amp;#x3C;/h1&gt;
+	&amp;#x3C;p&gt;Hello @model.name!&amp;#x3C;/p&gt;
+	&amp;#x3C;br&gt;
+	&amp;#x3C;br&gt;
+	&amp;#x3C;p&gt;You are visitor number @model.visits.&amp;#x3C;/p&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It imports the &lt;code&gt;DemoModel&lt;/code&gt; object - the implementation is identical to the JStachio sample. The template also refers directly to its layout (calling a static method on &lt;code&gt;templates.layout&lt;/code&gt;). The layout is a separate template file (&lt;code&gt;layout.rocker.html&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;@args (String title, RockerBody content)
+
+&amp;#x3C;html&gt;
+    &amp;#x3C;head&gt;
+        &amp;#x3C;title&gt;@title&amp;#x3C;/title&gt;
+    &amp;#x3C;/head&gt;
+    &amp;#x3C;body&gt;
+    @content
+    &amp;#x3C;/body&gt;
+&amp;#x3C;/html&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;build-configuration-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#build-configuration-1&quot; aria-label=&quot;build configuration 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Build Configuration&lt;/h3&gt;
+&lt;p&gt;Rocker needs an APT processor and some manual addition of the generated sources to the build input. It can all be configured in the &lt;code&gt;pom.xml&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;plugin&gt;
+	&amp;#x3C;groupId&gt;com.fizzed&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;rocker-maven-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;1.2.1&amp;#x3C;/version&gt;
+	&amp;#x3C;executions&gt;
+		&amp;#x3C;execution&gt;
+			&amp;#x3C;?m2e execute onConfiguration,onIncremental?&gt;
+			&amp;#x3C;id&gt;generate-rocker-templates&amp;#x3C;/id&gt;
+			&amp;#x3C;phase&gt;generate-sources&amp;#x3C;/phase&gt;
+			&amp;#x3C;goals&gt;
+				&amp;#x3C;goal&gt;generate&amp;#x3C;/goal&gt;
+			&amp;#x3C;/goals&gt;
+			&amp;#x3C;configuration&gt;
+				&amp;#x3C;javaVersion&gt;${java.version}&amp;#x3C;/javaVersion&gt;
+				&amp;#x3C;templateDirectory&gt;src/main/resources&amp;#x3C;/templateDirectory&gt;
+				&amp;#x3C;outputDirectory&gt;target/generated-sources/rocker&amp;#x3C;/outputDirectory&gt;
+				&amp;#x3C;discardLogicWhitespace&gt;true&amp;#x3C;/discardLogicWhitespace&gt;
+				&amp;#x3C;targetCharset&gt;UTF-8&amp;#x3C;/targetCharset&gt;
+				&amp;#x3C;postProcessing&gt;
+					&amp;#x3C;param&gt;com.fizzed.rocker.processor.LoggingProcessor&amp;#x3C;/param&gt;
+					&amp;#x3C;param&gt;com.fizzed.rocker.processor.WhitespaceRemovalProcessor&amp;#x3C;/param&gt;
+				&amp;#x3C;/postProcessing&gt;
+			&amp;#x3C;/configuration&gt;
+		&amp;#x3C;/execution&gt;
+	&amp;#x3C;/executions&gt;
+&amp;#x3C;/plugin&gt;
+&amp;#x3C;plugin&gt;
+	&amp;#x3C;groupId&gt;org.codehaus.mojo&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;build-helper-maven-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;executions&gt;
+		&amp;#x3C;execution&gt;
+			&amp;#x3C;phase&gt;generate-sources&amp;#x3C;/phase&gt;
+			&amp;#x3C;goals&gt;
+				&amp;#x3C;goal&gt;add-source&amp;#x3C;/goal&gt;
+			&amp;#x3C;/goals&gt;
+			&amp;#x3C;configuration&gt;
+				&amp;#x3C;sources&gt;
+					&amp;#x3C;source&gt;${project.build.directory}/generated-sources/rocker&amp;#x3C;/source&gt;
+				&amp;#x3C;/sources&gt;
+			&amp;#x3C;/configuration&gt;
+		&amp;#x3C;/execution&gt;
+	&amp;#x3C;/executions&gt;
+&amp;#x3C;/plugin&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;controller-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#controller-1&quot; aria-label=&quot;controller 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Controller&lt;/h3&gt;
+&lt;p&gt;The controller implementation is very conventional - it constructs a model and returns the name of the &quot;demo&quot; view:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@GetMapping(&quot;/&quot;)
+public String view(Model model) {
+	visitsRepository.add();
+	model.addAttribute(&quot;arguments&quot;, Map.of(&quot;model&quot;, new DemoModel(&quot;mystérieux visiteur&quot;, visitsRepository.get())));
+	return &quot;demo&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are using a naming convention for &quot;arguments&quot; as a special model attribute. This is a detail of the &lt;code&gt;View&lt;/code&gt; implementation that we will see later.&lt;/p&gt;
+&lt;h3 id=&quot;rocker-configuration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#rocker-configuration&quot; aria-label=&quot;rocker configuration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Rocker Configuration&lt;/h3&gt;
+&lt;p&gt;Rocker doesn&apos;t come with its own Spring Boot integration but it&apos;s not hard to implement, and you only have to do it once. The sample contains a &lt;code&gt;View&lt;/code&gt; implementation, plus a &lt;code&gt;ViewResolver&lt;/code&gt; and some configuration in &lt;code&gt;RockerAutoConfiguration&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Configuration
+public class RockerAutoConfiguration {
+	@Bean
+	public ViewResolver rockerViewResolver() {
+		return new RockerViewResolver();
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;RockerViewResolver&lt;/code&gt; is a &lt;code&gt;ViewResolver&lt;/code&gt; that uses the Rocker template engine to render the templates. The &lt;code&gt;View&lt;/code&gt; implementation is a wrapper around the Rocker template class:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class RockerViewResolver implements ViewResolver, Ordered {
+
+	private String prefix = &quot;templates/&quot;;
+	private String suffix = &quot;.rocker.html&quot;;
+
+	@Override
+	@Nullable
+	public View resolveViewName(String viewName, Locale locale) throws Exception {
+		RockerView view = new RockerView(prefix + viewName + suffix);
+		return view;
+	}
+
+	@Override
+	public int getOrder() {
+		return Ordered.LOWEST_PRECEDENCE - 10;
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you look at the implementation of &lt;code&gt;RockerView&lt;/code&gt; you will see that it is a wrapper around the Rocker template class, and that it contains some reflection code to find the template parameter names. This could be a problem for the native image, so it is not ideal, but we will see how to fix it later. Rocker internally also uses reflection to bind the template parameters to the model, so it is not completely reflection free anyway.&lt;/p&gt;
+&lt;h3 id=&quot;running-the-sample-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#running-the-sample-1&quot; aria-label=&quot;running the sample 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Running the Sample&lt;/h3&gt;
+&lt;p&gt;If you run the sample with &lt;code&gt;./mvnw spring-boot:run&lt;/code&gt; you will see the home page at &lt;code&gt;http://localhost:8080/&lt;/code&gt;. The generated source code comes out as one Java class per template in &lt;code&gt;target/generated-sources/rocker/&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ tree target/generated-sources/rocker/
+target/generated-sources/rocker/
+??? templates
+    ??? demo.java
+    ??? layout.java
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;native-image-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#native-image-1&quot; aria-label=&quot;native image 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Native Image&lt;/h3&gt;
+&lt;p&gt;The native image would need some additional configuration to permit the reflection during rendering. We had a few attempts at this and it quickly became apparent that reflection is used all over the internals of Rocker and it would be a lot of effort to get it to work with GraalVM. Maybe worth coming back to one day.&lt;/p&gt;
+&lt;h2 id=&quot;jte&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#jte&quot; aria-label=&quot;jte permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;JTE&lt;/h2&gt;
+&lt;p&gt;(The JTE sample is a direct copy from the project documentation. The other samples in this document only have the structure they do because they mirror this one.)&lt;/p&gt;
+&lt;p&gt;Like Rocker, JTE has a template language similar to HTML with additional Java features. The templates in the project documentation are in a &lt;code&gt;jte&lt;/code&gt; directory alongside &lt;code&gt;java&lt;/code&gt;, so we adopt the same convention. The home page looks like this (&lt;code&gt;demo.jte&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@import demo.DemoModel
+
+@param DemoModel model
+
+Hello ${model.name}!
+&amp;#x3C;br&gt;
+&amp;#x3C;br&gt;
+You are visitor number ${model.visits}.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is no layout template in this sample because JTE doesn&apos;t explicitly support composition of templates. The &lt;code&gt;DemoModel&lt;/code&gt; is similar to the one we used for the other samples.&lt;/p&gt;
+&lt;h3 id=&quot;build-configuration-2&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#build-configuration-2&quot; aria-label=&quot;build configuration 2 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Build Configuration&lt;/h3&gt;
+&lt;p&gt;In the &lt;code&gt;pom.xml&lt;/code&gt; you need to add the JTE compiler plugin:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;plugin&gt;
+	&amp;#x3C;groupId&gt;gg.jte&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;jte-maven-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;${jte.version}&amp;#x3C;/version&gt;
+	&amp;#x3C;configuration&gt;
+		&amp;#x3C;sourceDirectory&gt;${basedir}/src/main/jte&amp;#x3C;/sourceDirectory&gt;
+		&amp;#x3C;contentType&gt;Html&amp;#x3C;/contentType&gt;
+		&amp;#x3C;binaryStaticContent&gt;true&amp;#x3C;/binaryStaticContent&gt;
+	&amp;#x3C;/configuration&gt;
+	&amp;#x3C;executions&gt;
+		&amp;#x3C;execution&gt;
+			&amp;#x3C;?m2e execute onConfiguration,onIncremental?&gt;
+			&amp;#x3C;phase&gt;generate-sources&amp;#x3C;/phase&gt;
+			&amp;#x3C;goals&gt;
+				&amp;#x3C;goal&gt;generate&amp;#x3C;/goal&gt;
+			&amp;#x3C;/goals&gt;
+		&amp;#x3C;/execution&gt;
+	&amp;#x3C;/executions&gt;
+&amp;#x3C;/plugin&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;along with some source and resource copying:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;plugin&gt;
+	&amp;#x3C;groupId&gt;org.codehaus.mojo&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;build-helper-maven-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;executions&gt;
+		&amp;#x3C;execution&gt;
+			&amp;#x3C;phase&gt;generate-sources&amp;#x3C;/phase&gt;
+			&amp;#x3C;goals&gt;
+				&amp;#x3C;goal&gt;add-source&amp;#x3C;/goal&gt;
+			&amp;#x3C;/goals&gt;
+			&amp;#x3C;configuration&gt;
+				&amp;#x3C;sources&gt;
+					&amp;#x3C;source&gt;${project.build.directory}/generated-sources/jte&amp;#x3C;/source&gt;
+				&amp;#x3C;/sources&gt;
+			&amp;#x3C;/configuration&gt;
+		&amp;#x3C;/execution&gt;
+	&amp;#x3C;/executions&gt;
+&amp;#x3C;/plugin&gt;
+
+&amp;#x3C;plugin&gt;
+	&amp;#x3C;artifactId&gt;maven-resources-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;3.0.2&amp;#x3C;/version&gt;
+	&amp;#x3C;executions&gt;
+		&amp;#x3C;execution&gt;
+			&amp;#x3C;id&gt;copy-resources&amp;#x3C;/id&gt;
+			&amp;#x3C;phase&gt;process-classes&amp;#x3C;/phase&gt;
+			&amp;#x3C;goals&gt;
+				&amp;#x3C;goal&gt;copy-resources&amp;#x3C;/goal&gt;
+			&amp;#x3C;/goals&gt;
+			&amp;#x3C;configuration&gt;
+				&amp;#x3C;outputDirectory&gt;${project.build.outputDirectory}&amp;#x3C;/outputDirectory&gt;
+				&amp;#x3C;resources&gt;
+					&amp;#x3C;resource&gt;
+						&amp;#x3C;directory&gt;${basedir}/target/generated-sources/jte&amp;#x3C;/directory&gt;
+						&amp;#x3C;includes&gt;
+							&amp;#x3C;include&gt;**/*.bin&amp;#x3C;/include&gt;
+						&amp;#x3C;/includes&gt;
+						&amp;#x3C;filtering&gt;false&amp;#x3C;/filtering&gt;
+					&amp;#x3C;/resource&gt;
+				&amp;#x3C;/resources&gt;
+			&amp;#x3C;/configuration&gt;
+		&amp;#x3C;/execution&gt;
+	&amp;#x3C;/executions&gt;
+&amp;#x3C;/plugin&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The runtime dependencies are:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;dependency&gt;
+	&amp;#x3C;groupId&gt;gg.jte&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;jte&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;${jte.version}&amp;#x3C;/version&gt;
+&amp;#x3C;/dependency&gt;
+&amp;#x3C;dependency&gt;
+	&amp;#x3C;groupId&gt;gg.jte&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;jte-spring-boot-starter-3&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;${jte.version}&amp;#x3C;/version&gt;
+&amp;#x3C;/dependency&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;controller-2&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#controller-2&quot; aria-label=&quot;controller 2 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Controller&lt;/h3&gt;
+&lt;p&gt;The controller implementation is very conventional - in fact it is identical to the one we used for Rocker.&lt;/p&gt;
+&lt;h3 id=&quot;jte-configuration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#jte-configuration&quot; aria-label=&quot;jte configuration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;JTE Configuration&lt;/h3&gt;
+&lt;p&gt;JTE comes with its own Spring Boot autoconfiguration (we added it in the &lt;code&gt;pom.xml&lt;/code&gt;), so you almost don&apos;t need to do anything else. There is one tiny thing you need to do to make it work with Spring Boot 3.x, which is to add a property to the &lt;code&gt;application.properties&lt;/code&gt; file. For development time, especially if you are using &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using.devtools&quot;&gt;Spring Boot Devtools&lt;/a&gt;, you would want:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gg.jte.developmentMode=true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In production, switch that off with a Spring profile and use &lt;code&gt;gg.jte.usePrecompiledTemplates=true&lt;/code&gt; instead.&lt;/p&gt;
+&lt;h3 id=&quot;running-the-sample-2&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#running-the-sample-2&quot; aria-label=&quot;running the sample 2 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Running the Sample&lt;/h3&gt;
+&lt;p&gt;If you run the sample with &lt;code&gt;./mvnw spring-boot:run&lt;/code&gt; you will see the home page at &lt;code&gt;http://localhost:8080/&lt;/code&gt;. The generated source code comes out as one Java class per template in &lt;code&gt;target/generated-sources/jte/&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ tree target/generated-sources/jte/
+target/generated-sources/jte/
+??? gg
+    ??? jte
+        ??? generated
+            ??? precompiled
+                ??? JtedemoGenerated.bin
+                ??? JtedemoGenerated.java
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;.bin&lt;/code&gt; file is an efficient binary representation of the text template that is used at runtime, so it needs to be added to the classpath.&lt;/p&gt;
+&lt;h3 id=&quot;native-image-2&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#native-image-2&quot; aria-label=&quot;native image 2 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Native Image&lt;/h3&gt;
+&lt;p&gt;A native image can be generated with some additional configuration. We need to make sure the &lt;code&gt;.bin&lt;/code&gt; files are available and also that the generated Java classes can be reflected on:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@SpringBootApplication
+@ImportRuntimeHints(DemoRuntimeHints.class)
+public class DemoApplication {
+	...
+}
+
+class DemoRuntimeHints implements RuntimeHintsRegistrar {
+
+	@Override
+	public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
+		hints.resources().registerPattern(&quot;**/*.bin&quot;);
+		hints.reflection().registerType(JtedemoGenerated.class, MemberCategory.INVOKE_DECLARED_CONSTRUCTORS, MemberCategory.INVOKE_DECLARED_METHODS);
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So JTE is not completely reflection free, but it is possible to configure it quite easily to work with GraalVM native.&lt;/p&gt;
+&lt;h2 id=&quot;mantl&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#mantl&quot; aria-label=&quot;mantl permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ManTL&lt;/h2&gt;
+&lt;p&gt;ManTL (Manifold Template Language) is another template engine with Java-like syntax. The templates are compiled to Java classes at build time like with the other samples. The home page looks like this (&lt;code&gt;Demo.html.mtl&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;#x3C;%@ import demo.DemoModel %&gt;
+
+&amp;#x3C;%@ params(DemoModel model) %&gt;
+
+Hello ${model.name}!
+&amp;#x3C;br&gt;
+&amp;#x3C;br&gt;
+You are visitor number ${model.visits}.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;where &lt;code&gt;DemoModel&lt;/code&gt; is the same as in the other samples.&lt;/p&gt;
+&lt;h3 id=&quot;build-configuration-3&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#build-configuration-3&quot; aria-label=&quot;build configuration 3 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Build Configuration&lt;/h3&gt;
+&lt;p&gt;Manifold is a bit different to the other examples in that it uses a JDK compiler plugin, as opposed to an APT processor. The configuration in &lt;code&gt;pom.xml&lt;/code&gt; is a bit more complex. There is the &lt;code&gt;maven-compiler-plugin&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;plugin&gt;
+	&amp;#x3C;groupId&gt;org.apache.maven.plugins&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;maven-compiler-plugin&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;3.8.0&amp;#x3C;/version&gt;
+	&amp;#x3C;configuration&gt;
+		&amp;#x3C;compilerArgs&gt;
+			&amp;#x3C;arg&gt;-Xplugin:Manifold&amp;#x3C;/arg&gt;
+		&amp;#x3C;/compilerArgs&gt;
+		&amp;#x3C;annotationProcessorPaths&gt;
+			&amp;#x3C;path&gt;
+				&amp;#x3C;groupId&gt;systems.manifold&amp;#x3C;/groupId&gt;
+				&amp;#x3C;artifactId&gt;manifold-templates&amp;#x3C;/artifactId&gt;
+				&amp;#x3C;version&gt;${manifold.version}&amp;#x3C;/version&gt;
+			&amp;#x3C;/path&gt;
+		&amp;#x3C;/annotationProcessorPaths&gt;
+	&amp;#x3C;/configuration&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and the runtime dependency:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;dependency&gt;
+	&amp;#x3C;groupId&gt;systems.manifold&amp;#x3C;/groupId&gt;
+	&amp;#x3C;artifactId&gt;manifold-templates-rt&amp;#x3C;/artifactId&gt;
+	&amp;#x3C;version&gt;${manifold.version}&amp;#x3C;/version&gt;
+&amp;#x3C;/dependency&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;controller-3&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#controller-3&quot; aria-label=&quot;controller 3 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Controller&lt;/h3&gt;
+&lt;p&gt;Our controller in this sample looks more like the JStachio one than the Rocker/JTE one:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@GetMapping(&quot;/&quot;)
+public View view(Model model, HttpServletResponse response) {
+	visitsRepository.add();
+	return new StringView(() -&gt; Demo.render(new DemoModel(&quot;mystérieux visiteur&quot;, visitsRepository.get())));
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;where &lt;code&gt;StringView&lt;/code&gt; is a convenience class that wraps the template and renders it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class StringView implements View {
+
+	private final Supplier&amp;#x3C;String&gt; output;
+
+	public StringView(Supplier&amp;#x3C;String&gt; output) {
+		this.output = output;
+	}
+
+	@Override
+	public void render(Map&amp;#x3C;String, ?&gt; model, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String result = output.get();
+		response.setContentType(MediaType.TEXT_HTML_VALUE);
+		response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+		response.setContentLength(result.getBytes().length);
+
+		response.getOutputStream().write(result.getBytes());
+		response.flushBuffer();
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;running-the-sample-3&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#running-the-sample-3&quot; aria-label=&quot;running the sample 3 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Running the Sample&lt;/h3&gt;
+&lt;p&gt;You can build and run the application on the command line using &lt;code&gt;./mvnw spring-boot:run&lt;/code&gt; and inspect the result on &lt;code&gt;http://localhost:8080&lt;/code&gt;. The generated source code comes out as a class and ancillary stuff per template:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ tree target/classes/templates/
+target/classes/templates/
+??? Demo$LayoutOverride.class
+??? Demo.class
+??? Demo.html.mtl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ManTL only works in IntelliJ after installing a special plugin, and not at all in Eclipse or NetBeans or VSCode. You may be able to run the main method from those IDEs, but the code that refers to templates will have compiler errors because the compiler plugin is missing.&lt;/p&gt;
+&lt;h3 id=&quot;native-image-3&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#native-image-3&quot; aria-label=&quot;native image 3 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Native Image&lt;/h3&gt;
+&lt;p&gt;The compiler plugin is not supported by GraalVM, so you can&apos;t use ManTL with GraalVM native images.&lt;/p&gt;
+&lt;h2 id=&quot;summary&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#summary&quot; aria-label=&quot;summary permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Summary&lt;/h2&gt;
+&lt;p&gt;All the template engines we looked at here are reflection free in the sense that the templates are compiled to Java classes at build time. They are all easy to use and integrate with Spring, and they all have or can be provided with some kind of Spring Boot autoconfiguration. JStachio is the most lightweight and fastest at runtime, and it has the best support for GraalVM native images. Rocker is also very fast at runtime, but it uses reflection internally and it is not easy to get it to work with GraalVM. JTE is a bit more complex to configure, but it is also very fast at runtime and it is easy to get it to work with GraalVM. ManTL is the most complex to configure and it doesn&apos;t work with GraalVM at all. It also only works with IntelliJ as an IDE.&lt;/p&gt;
+&lt;p&gt;If you would like to see more samples then the each of the template engines has its own documentation, so follow the links above. My own work on JStachio has produced a few additional examples, for example the &lt;a href=&quot;https://github.com/spring-petclinic/spring-petclinic-mustache/tree/jstache&quot;&gt;Mustache PetClinic&lt;/a&gt;, and also a &lt;a href=&quot;https://github.com/dsyer/spring-todo-mvc/tree/jstachio&quot;&gt;Todo MVC&lt;/a&gt; implementation, originally by &lt;a href=&quot;https://github.com/odrotbohm&quot;&gt;Ollie Drotbohm&lt;/a&gt; and adapted to various different template engines.&lt;/p&gt;
+&lt;p&gt;Dave Syer&lt;br&gt;
+London 2024&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Modulith 1.2 M3 released]]></title><link>https://spring.io/blog/2024/03/22/spring-modulith-1-2-m3-released</link><guid isPermaLink="true">https://spring.io/blog/2024/03/22/spring-modulith-1-2-m3-released</guid><dc:creator><![CDATA[Oliver Drotbohm]]></dc:creator><pubDate>Fri, 22 Mar 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I am happy to announce the availability of Spring Modulith 1.2 M3. It contains a couple of dependency upgrades, bug fixes but the following new features primarily:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-modulith/reference/1.2/fundamentals.html#modules.advanced.open&quot;&gt;Support for open application modules&lt;/a&gt; – Application modules can now be declared as open, which gives other modules full access to the open module&apos;s internals. Primarily intended for scenarios in which Spring Modulith is introduced in existing, sub-optimally structured projects.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-modulith/reference/1.2/fundamentals.html#modules.named-interfaces&quot;&gt;Support for package info types&lt;/a&gt; – Kotlin does not directly support annotating packages as it doesn&apos;t know an equivalent of &lt;code&gt;package-info.java&lt;/code&gt;. Package-level configuration annotations such as &lt;code&gt;@ApplicationModule&lt;/code&gt; or &lt;code&gt;@NamedInterface&lt;/code&gt; can now be used on types annotated with &lt;code&gt;@PackageInfo&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@ApplicationModuleListener&lt;/code&gt; now exposes &lt;code&gt;@EventListener&lt;/code&gt;&apos;s &lt;code&gt;condition&lt;/code&gt; attribute.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more details check out the full &lt;a href=&quot;https://github.com/spring-projects/spring-modulith/releases/tag/1.2.0-M3&quot;&gt;change log&lt;/a&gt; and the &lt;a href=&quot;https://docs.spring.io/spring-modulith/reference/1.2/index.html&quot;&gt;reference documentation&lt;/a&gt;.&lt;/p&gt;</content:encoded></item></channel></rss>

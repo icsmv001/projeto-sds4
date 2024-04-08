@@ -1,0 +1,68 @@
+1690225133340	Copy compilation unit
+1690225353758	Move compilation unit
+1690225392445	Delete element
+1690227437494	Copy compilation unit
+1690230057701	Rename resource 'ArtistDTO'
+1690230859194	Copy compilation unit
+1690231609344	Encapsulate field 'ArtistRepository'
+1690233294566	Encapsulate field 'birthdate'
+1690233302323	Encapsulate field 'country'
+1690233379364	Encapsulate field 'country'
+1690233427553	Delete element
+1690246313043	Copy compilation unit
+1690247186834	Copy compilation unit
+1690247234460	Encapsulate field 'artistRepository2'
+1690247972672	Copy compilation unit
+1690248007590	Encapsulate field 'artistRepository2'
+1690249556930	Encapsulate field 'artistRepository2'
+1690250385748	Encapsulate field 'artistRepository2'
+1690290881441	Copy compilation unit
+1690290928478	Copy compilation unit
+1690290993387	Copy compilation unit
+1690297808202	Copy compilation unit
+1690297848260	Copy compilation unit
+1690297874276	Copy compilation unit
+1690373679367	Copy compilation unit
+1690373821142	Rename type 'GeneresRepository'
+1690374052548	Copy compilation unit
+1690374158296	Copy compilation unit
+1690374575297	Copy compilation unit
+1690385108949	Delete element
+1690385512251	Delete element
+1690386083765	Rename type 'GeneresDTO'
+1690386287750	Copy compilation unit
+1690386420584	Rename type 'GeneresRepository1'
+1690410888855	Delete element
+1690411614632	Rename type 'GenresDTO'
+1690411882006	Rename type 'GenresRepository1'
+1690411897561	Rename type 'GenresController1'
+1690412960222	Delete element
+1690488992419	Rename type 'regenes'
+1690489048026	Delete element
+1690489145134	Rename type 'Regenes'
+1690489867009	Copy compilation unit
+1690494753303	Rename type 'GeneresRepository1'
+1690494907765	Rename type 'Artista'
+1690495008233	Rename type 'ArtistaRepository1'
+1690495118902	Delete element
+1690495555535	Delete element
+1690495671439	Delete element
+1690501652224	Rename type 'ArtistJoinMinProjection'
+1690501821452	Rename type 'ArtistMinProjection'
+1690501867320	Rename compilation unit 'ArtistMinProjectionDTO.java'
+1690501886900	Rename type 'ArtistJoinMinDTO'
+1690504193004	Delete element
+1690504198652	Delete element
+1690504211994	Delete element
+1690504221030	Delete element
+1690504228298	Delete element
+1690504231355	Delete element
+1690504251061	Delete element
+1690504300387	Delete element
+1690504303950	Delete element
+1690504308187	Delete element
+1690505298796	Rename type 'Genre'
+1690507392556	Copy compilation unit
+1690507477312	Copy compilation unit
+1690507592484	Copy compilation unit
+1690507728614	Copy compilation unit
