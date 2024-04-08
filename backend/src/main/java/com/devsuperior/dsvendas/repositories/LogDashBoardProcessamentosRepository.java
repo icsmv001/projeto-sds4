@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dsvendas.dto.LogDashBoardProcessamentosDTO;
 
@@ -21,7 +22,7 @@ public class LogDashBoardProcessamentosRepository {
     public LogDashBoardProcessamentosRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    @Transactional(readOnly = true)
     public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentoss() {
     	 String sql =  " select 'monitoracao v.1' as monitoracao,                            "
     			 +" es.id_estrutura ,                                                        "
@@ -174,13 +175,14 @@ public class LogDashBoardProcessamentosRepository {
     			 +" where 0 = 0                                                              "
     			 +" and ca.data is not null                                                  "      
     			 +" and (lo.totalregistros) <> 0                                             "
-    			 +" order by es.id_estrutura, ca.data desc                                   ";
+    			 +" and ca.DATA > trunc(sysdate -180) "
+    			 +" order by es.id_estrutura, ca.data desc , lo.id_seqlog asc                                  ";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));
     }
     
     
     
-    
+    @Transactional(readOnly = true)
    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosData(Date dataInicio, Date dataFim) {
 	   String sql = "select 'MONITORACAO-DIARIA-PAG*' AS MONITORACAO,                                      "
        		+"       ES.ID_ESTRUTURA,                                                          "
@@ -333,7 +335,7 @@ public class LogDashBoardProcessamentosRepository {
        		+"   AND ES.ID_ESTRUTURA IN (10978, 10827)                                         "
        		+ "  AND CA.DATA IS NOT NULL                                                       "
 				+ "  and  l.DATA >= ? AND l.DATA <= ?                                              "
-       		+" ORDER BY ES.ID_ESTRUTURA, CA.DATA DESC ";
+       		+" ORDER BY ES.ID_ESTRUTURA, CA.DATA DESC , lo.id_seqlog asc";
   
         
         // return jdbcTemplate.query(sql, new Object[]{dataInicio, dataFim}, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));
@@ -348,7 +350,7 @@ public class LogDashBoardProcessamentosRepository {
         return logs;
    }
 
-   
+    @Transactional(readOnly = true)
    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosIdEstrutura(String id_estrutura) {
 	   String sql = "select 'MONITORACAO-DIARIA' AS MONITORACAO,                                      "
        		+"       ES.ID_ESTRUTURA,                                                          "
@@ -501,7 +503,7 @@ public class LogDashBoardProcessamentosRepository {
        		+"   AND ES.ID_ESTRUTURA IN (10978, 10827)                                         "
        		+ "  AND CA.DATA IS NOT NULL                                                       "
 				+ "  and  l.DATA >= ? AND l.DATA <= ?                                              "
-       		+" ORDER BY ES.ID_ESTRUTURA, CA.DATA DESC ";
+       		+" ORDER BY ES.ID_ESTRUTURA, CA.DATA DESC , lo.id_seqlog asc";
        
        // return jdbcTemplate.query(sql, new Object[]{dataInicio, dataFim}, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));
        List<LogDashBoardProcessamentosDTO> logs = jdbcTemplate.query(sql, new Object[]{id_estrutura}, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));

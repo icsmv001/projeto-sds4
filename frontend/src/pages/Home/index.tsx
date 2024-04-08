@@ -21,10 +21,15 @@ const Home = () => {
             fornecidos por um back end construído com Spring Boot.
           </p>
 
-          <div className="row"></div>
+          <div className="col"></div>
           <Link className="btn btn-primary btn-lg" to="/dashboard">
             Acessar o Dashboard
           </Link>
+          <div className="relative">
+            <Link className="btn btn-primary btn-lg" to="/pagina09">
+              Acessar Rel. ProcsPag
+            </Link>
+          </div>
 
           {/* <Link className="btn btn-primary btn-lg " to="/pagina07">
             Listagem de Filmes.
@@ -34,6 +39,11 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/cadvendedor">
           Cadastro - Vendedor
         </Link>
+        <div className="relative">
+          <Link className="btn btn-primary btn-lg" to="/pagina10">
+            Acessar Rel. ProcsPag10
+          </Link>
+        </div>
 
         {/* <Link className="btn btn-primary btn-lg" to="/pagina05">
           exemplo List Box
@@ -43,6 +53,11 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/cadvendas">
           Cadastro de Vendas
         </Link>
+        <div className="relative">
+          <Link className="btn btn-primary btn-lg" to="/pagina11">
+            Acessar Rel. ProcsPag11
+          </Link>
+        </div>
 
         {/* <Link className="btn btn-primary btn-lg" to="/cadvendas2">
           Exemplo Labels e List
@@ -81,6 +96,8 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/pagina08">
           Acessar Rel. Processo
         </Link>
+
+        <hr />
       </div>
 
       <Footer />

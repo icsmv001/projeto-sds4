@@ -55,3 +55,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.relative {
+  position: relative;
+  left: 240px;
+  bottom: 47px;
+}

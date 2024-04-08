@@ -29,13 +29,13 @@ export type LogProcesso = {
 };
 
 export type LogProcessoPage = {
-  content: LogProcesso[];
+  content?: LogProcesso[];
   last: boolean;
   totalPages: number;
   totalElements: number;
-  size: number;
+  size?: number;
   number: number;
   first: boolean;
-  numberOfElements: number;
-  empty: boolean;
+  numberOfElements?: number;
+  empty?: boolean;
 };

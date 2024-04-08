@@ -1,52 +1,50 @@
 import axios from "axios";
+import Pagination3 from "components/Pagination3";
 import React, { useEffect, useState } from "react";
-// import { Sale } from "types/sale";
-//import { formatLocalDate } from "utils/format";
+import { LogProcessoPage } from "types/LogProcesso";
+import { formatLocalDate } from "utils/format";
 import { BASE_URL } from "utils/requests";
-//import { LogProcesso } from "types/LogProcesso";
-const ListarProcessos = () => {
-  // const [Processoss, setProcessoss] = useState({});
 
-  // type RetornoDados = {
-  //   Processoss: number[];
-  //   Vendedores: string[];
-  // };
+const DataTableProcessos11 = () => {
+  const [activePage, setActivePage] = useState(0);
 
-  // let retornoDados: RetornoDados = { Processoss: [], Vendedores: [] };
+  const [page, setpage] = useState<LogProcessoPage>({
+    first: true,
+    last: true,
+    number: 0,
+    totalElements: 0,
+    totalPages: 0,
+  });
 
   // chamada da api
-  // useEffect(() => {
-  //   axios.get(`${BASE_URL}/sales/Processoss`)
-  //     .then((response) => {
-  //     setProcessoss(response.data);
-
-  //     const data = response.data as Sale[];
-  //     const myProcessoss = data.map((x) => x.amount);
-  //     const myVendedor = data.map((x) => x.seller.name);
-
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //     const retornoDados = { Processoss: myProcessoss, Vendedores: myVendedor };
-  //     console.log(retornoDados);
-
-  //     // console.log("retorno - teste " + response.data);
-  //   });
-  // }, [Processoss]);
-
-  const [LogProcesso, setProcessos] = useState([]);
-
   useEffect(() => {
-    axios.get(`${BASE_URL}/LogDashBoardProcessamentos2`).then((response) => {
-      setProcessos(response.data);
-      console.log("retorno - teste " + response.data);
-    });
-  }, [LogProcesso]);
+    //axios.get("http://localhost:8080/sales?page=0&size=10&sort=date,desc")
+    // comentarios,
+    // no front end, o total de itens por pagina esta na linha abaixo, size=5, total de itens por pagina.
+    // no backend, o total de itens por pagina default esta com size=10, ou seja se nao for informado
+    //             no front end o numero de itens por pagina desejado, assume o valor default 10.
+    axios
+      .get(
+        `${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=5&sort=date,desc`
+      )
+      .then((response) => {
+        setpage(response.data);
+      });
+  }, [activePage]);
+
+  // funcao que recebe os argumentos de paginacao
+  const changePage = (index: number) => {
+    setActivePage(index);
+  };
 
   return (
     <>
+      <Pagination3 page={page} onPageChange={changePage} />
       <div className="table-responsive">
         <table className="table table-striped table-sm">
           <thead>
             <tr>
+              <th style={{ width: "35%" }}>indece </th>
               <th style={{ width: "35%" }}>monitoracao </th>
               <th style={{ width: "35%" }}>id_estrutura </th>
               <th style={{ width: "35%" }}>sigla </th>
@@ -77,8 +75,9 @@ const ListarProcessos = () => {
             </tr>
           </thead>
           <tbody>
-            {LogProcesso.map((item: any, indece: number) => (
+            {page.content?.map((item: any, indece: number) => (
               <tr key={item.indece}>
+                <td style={{ width: "35%" }}>{item.indece}</td>
                 <td style={{ width: "35%" }}>{item.monitoracao}</td>
                 <td style={{ width: "35%" }}>{item.id_ESTRUTURA}</td>
                 <td style={{ width: "35%" }}>{item.sigla}</td>
@@ -115,4 +114,4 @@ const ListarProcessos = () => {
   );
 };
 
-export default ListarProcessos;
+export default DataTableProcessos11;

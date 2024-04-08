@@ -11,6 +11,10 @@ import Pagina05 from "pages/pagina05";
 import Pagina06 from "pages/pagina06";
 import Pagina07 from "pages/pagina07";
 import Pagina08 from "pages/pagina08";
+import Pagina09 from "pages/pagina09";
+import Pagina10 from "pages/pagina10";
+import Pagina11 from "pages/pagina11";
+
 import Cadvendas2 from "pages/Cadvendas2";
 import FormCard from "pages/FormCard";
 
@@ -69,6 +73,18 @@ const Routes = () => {
 
         <Route path="/pagina08">
           <Pagina08 />
+        </Route>
+
+        <Route path="/pagina09">
+          <Pagina09 />
+        </Route>
+
+        <Route path="/pagina10">
+          <Pagina10 />
+        </Route>
+
+        <Route path="/pagina11">
+          <Pagina11 />
         </Route>
       </Switch>
     </BrowserRouter>

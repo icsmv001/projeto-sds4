@@ -1,13 +1,15 @@
 package com.devsuperior.dsvendas.repositories;
 
-import java.awt.print.Pageable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dsvendas.dto.LogDashBoardProcessamentosDTO;
 @Repository
@@ -19,8 +21,10 @@ public class LogDashBoardProcessamentosPageRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Page<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosPage(org.springframework.data.domain.Pageable pageable) {
-    	    String sql = "select 'MONITORACAO-DIARIA' AS MONITORACAO,                                      "
+    
+    @Transactional(readOnly = true)
+    public Page<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosPage(Pageable pageable) {
+    	    String sql = "select 'monitoracao v.2' as monitoracao,                         "
         		+"       ES.ID_ESTRUTURA,                                                          "
         		+"       ES.SIGLA,                                                                 "
         		+"       case                                                                      "
@@ -170,8 +174,21 @@ public class LogDashBoardProcessamentosPageRepository {
         		+" WHERE 0 = 0    "
         		+"   AND ES.ID_ESTRUTURA IN (10978, 10827)                                         "
         		+ "  AND CA.DATA IS NOT NULL                                                        "
-        		+" ORDER BY ES.ID_ESTRUTURA, CA.DATA DESC ";
+        		+" ORDER BY ES.ID_ESTRUTURA, CA.DATA DESC , lo.id_seqlog asc";
+    	   
         
-        return new PageImpl<>(jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class)), pageable, 10);
+    	    // Executa a consulta com paginação
+            List<LogDashBoardProcessamentosDTO> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));
+
+            // Calcula o índice inicial e final da página
+            int start = (int) pageable.getOffset();
+            int end = Math.min((start + pageable.getPageSize()), resultList.size());
+
+            // Cria uma sublista dos resultados correspondentes à página atual
+            List<LogDashBoardProcessamentosDTO> pageList = resultList.subList(start, end);
+
+            // Retorna uma instância de Page contendo os resultados da página atual
+            return new PageImpl<>(pageList, pageable, resultList.size());
+     
     }
 }

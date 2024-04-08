@@ -30,3 +30,4 @@ public class LogDashBoardProcessamentosPageController {
         return LogDashBoardProcessamentosPageRepository.buscarLogDashBoardProcessamentosPage(pageable);
     }
 }
+
