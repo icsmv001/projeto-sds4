@@ -67,11 +67,21 @@ const Home = () => {
         <Link className="btn btn-primary btn-lg" to="/listVendedor">
           Acessar Rl Vendedor
         </Link>
+        <div className="relative">
+          <Link className="btn btn-primary btn-lg" to="/pagina12">
+            Acessar Rel. ProcsPag12
+          </Link>
+        </div>
         <hr />
 
         <Link className="btn btn-primary btn-lg" to="/listVendas">
           Acessar Rel. Vendas1
         </Link>
+        <div className="relative">
+          <Link className="btn btn-primary btn-lg" to="/pagina13">
+            Acessar Rel. ProcsPag13
+          </Link>
+        </div>
         <hr />
 
         <Link className="btn btn-primary btn-lg" to="/pagina06">

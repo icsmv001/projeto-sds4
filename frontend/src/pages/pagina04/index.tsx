@@ -5,7 +5,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import React, { useEffect, useState } from "react";
 import { SellerPage } from "types/seller";
 import { BASE_URL } from "utils/requests";
-import BannerSucess from "components/BannerSucess/BannerSucess";
+//import BannerSucess from "components/BannerSucess/BannerSucess";
 import Swal from "sweetalert2";
 
 function AlertaSucess() {

@@ -14,7 +14,8 @@ import Pagina08 from "pages/pagina08";
 import Pagina09 from "pages/pagina09";
 import Pagina10 from "pages/pagina10";
 import Pagina11 from "pages/pagina11";
-
+import Pagina12 from "pages/pagina12";
+import Pagina13 from "pages/pagina13";
 import Cadvendas2 from "pages/Cadvendas2";
 import FormCard from "pages/FormCard";
 
@@ -85,6 +86,12 @@ const Routes = () => {
 
         <Route path="/pagina11">
           <Pagina11 />
+        </Route>
+        <Route path="/pagina12">
+          <Pagina12 />
+        </Route>
+        <Route path="/pagina13">
+          <Pagina13 />
         </Route>
       </Switch>
     </BrowserRouter>

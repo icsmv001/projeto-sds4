@@ -6,7 +6,7 @@ export type LogProcesso = {
   data_calendario: string;
   hora: string;
   id_seqlog: string;
-  status_log: string;
+  status_LOG: string;
   totalregistros: string;
   regcorretos: string;
   regincorretos: string;
@@ -17,7 +17,7 @@ export type LogProcesso = {
   regenvinclusao: string;
   regenvalteracao: string;
   regenvcancelamento: string;
-  nm_estrutura: string;
+  nm_ESTRUTURA: string;
   id_cliente: number;
   nm_cliente: string;
   id_contrato: number;
