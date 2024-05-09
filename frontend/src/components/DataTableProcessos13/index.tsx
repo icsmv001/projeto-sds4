@@ -22,7 +22,12 @@ const DataTableProcessos13 = () => {
         `${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=500&sort=date,desc`
       )
       .then((response) => {
-        setPage(response.data);
+        // Processar os dados de status_LOG para garantir que cada entrada tenha um valor
+        const processedData = response.data.content.map((item: any) => ({
+          ...item,
+          status_LOG: item.status_LOG || "N/A",
+        }));
+        setPage({ ...response.data, content: processedData });
       })
       .catch((error) => {
         console.error("Erro ao obter os dados:", error);
@@ -54,28 +59,36 @@ const DataTableProcessos13 = () => {
     : [];
 
   // Extrair os status_lo únicos
-  const uniqueStatusLOG = page.content
-    ? Array.from(new Set(page.content.map((item: any) => item.status_LOG)))
+  //const uniqueStatusLOG = page.content
+  //? Array.from(new Set(page.content.map((item: any) => item.status_LOG)))
+  //: [];
+
+  const statusLogs = page.content
+    ? page.content.map((item: any) => item.status_LOG || "N/A")
     : [];
 
+  //console.log("1-Valores de uniqueStatusLOG:", uniqueStatusLOG); // Adicione esta linha para verificar os valores de uniqueStatusLOG
+
   // Função para obter o valor para uma data e ID específicos
-  const getDataForDateAndId = (date: string, id: number): number => {
+  const getDataForDateAndId = (date: string, id: number): string => {
     const item = page.content?.find(
       (entry: any) =>
         entry.data_CALENDARIO === date && entry.id_ESTRUTURA === id
     );
-    return item ? Number(item.totalregistros) : 0;
+    return item ? item.totalregistros : "0";
   };
 
   // Renderizar uma linha para cada ID
   const renderRows = () => {
+    //   console.log("Valores de uniqueStatusLOG:", uniqueStatusLOG); // Adicione esta linha para verificar os valores de uniqueStatusLOG
+
     return uniqueIds.map((id, idIndex) => {
       return (
         <tr key={idIndex}>
           <td style={{ width: "35%" }}>{id}</td>
           <td>{uniqueSiglas[idIndex]}</td>
           <td>{uniqueEstruturas[idIndex]}</td>
-          <td>{uniqueStatusLOG[idIndex]}</td>
+          <td>{statusLogs[idIndex] || "N/A"}</td>
 
           {uniqueDates.map((date, dateIndex) => (
             <td key={dateIndex}>{getDataForDateAndId(date, id)}</td>
@@ -107,7 +120,7 @@ const DataTableProcessos13 = () => {
               <th>id_estrutura</th>
               <th>sigla</th>
               <th>nm_estrutura</th>
-              <th>status_log</th>
+              <th>status_hoje</th>
               {/* Renderizar as datas */}
               {uniqueDates.map((date, index) => (
                 <th key={index}>{date}</th>
