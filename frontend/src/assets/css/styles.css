@@ -43,7 +43,7 @@ body {
   border: 0;
   border-radius: 0;
   height: 34px;
-  -webkit-appearance: none;
+  --webkit-appearance: none;
 }
 
 .footer2 {
@@ -114,14 +114,14 @@ option[value=""][disabled] {
 
 textarea {
   max-width: 240px;
-  min-width: 100px;
+  min-width: 500px;
   max-height: 35px;
   min-height: 100px;
 }
-
 .table {
   border-collapse: collapse;
   font-family: Arial, sans-serif; /* Define a fonte para a tabela */
+  table-layout: auto; /* Adiciona esta linha para permitir o ajuste automático das colunas */
 }
 
 .table th,
@@ -129,12 +129,27 @@ textarea {
   border: 1px solid #dddddd; /* Adiciona uma moldura às células */
   padding: 8px; /* Adiciona um espaçamento interno */
   text-align: left; /* Alinha o texto à esquerda */
-  text-transform: uppercase; /* Converte o texto para minúsculas */
+  text-transform: uppercase; /* Converte o texto para maiúsculas */
   font-size: 10px; /* Define o tamanho da fonte */
+  white-space: nowrap; /* Garante que o texto não quebre */
+  overflow: hidden; /* Esconde o texto que ultrapassa o tamanho da célula */
+  text-overflow: ellipsis; /* Adiciona reticências ao texto que ultrapassa o tamanho da célula */
 }
 
 /* Adicione estilos apenas para o cabeçalho */
 .table thead {
   background-color: blue; /* Define a cor de fundo do cabeçalho */
   color: white; /* Define a cor do texto do cabeçalho */
+}
+
+.text-blue {
+  color: blue;
+}
+
+.text-red {
+  color: #ff6666; /* Tom leve de vermelho */
+}
+.bg-red {
+  background-color: #ff6666; /* Cor de fundo vermelha */
+  color: white; /* Cor do texto branco para contrastar */
 }

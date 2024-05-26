@@ -30,9 +30,9 @@ public class LogDashBoardProcessamentosPageRepository {
     			 +"                    ES.SIGLA,                                                                                 "
     			 +"                    upper(ES.DESCRICAO) NM_ESTRUTURA,                                                         "      
     			 +"    to_char(case                                                                                              "   
-    			 +"        when trim(LO.totalregistros) is null  and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA-1) = TRUNC(SYSDATE)   "                       
+    			 +"        when trim(LO.totalregistros) is null  and TRIM(LO.DATA) IS NULL AND TRIM(LO.DATA) = TRIM(CA.DATA-0)    "                       
                  +"         THEN  ('PENDENTE')                                                                                 "
-                 +"          when trim(LO.totalregistros) is NOT null  and TRIM(LO.DATA) IS NOT NULL AND TRIM(CA.DATA-1) = TRUNC(SYSDATE)  "                       
+                 +"          when trim(LO.totalregistros) is NOT null  and TRIM(LO.DATA) IS NOT NULL AND TRIM(LO.DATA) = TRIM(CA.DATA-0) "                       
                  +"             THEN  ('PPROCESSADO')                                                                             "
                  +"      end ) STATUS_LOG ,                                                                                      "
     			 +"                    CA.DATA as DATA_CALENDARIO,                                                               "
@@ -82,7 +82,7 @@ public class LogDashBoardProcessamentosPageRepository {
                  +"                    AND CT.TITULO NOT LIKE '%CANC%'                                                           "
                  +"                    AND CT.TITULO NOT LIKE '%CACE%'                                                           "
     			 +"                    AND CA.DATA IS NOT NULL                                                                   "
-    			 +"                    AND ca.data between SYSDATE - 9 and SYSDATE +1                                            "
+    			 +"                    AND ca.data between SYSDATE - 9 and SYSDATE +0                                            "
     			 +")                                                                                                             "
     			 +"                                                                                                              "
     			 +" SELECT                                                                                                       "
@@ -99,10 +99,11 @@ public class LogDashBoardProcessamentosPageRepository {
     			 +"   ,M.RN                                                                                                      "
     			 +" FROM MONITORACAO M                                                                                           "
     			 +"    WHERE RN=1                                                                                                "
-    			 +"    AND M.DATA_CALENDARIO between SYSDATE - 9 and SYSDATE +1                                                  "
-    			 +" ORDER BY   M.ID_ESTRUTURA, M.TOTALREGISTROS , M.DATA_CALENDARIO DESC                                                        ";
+    			 +"    AND M.DATA_CALENDARIO between SYSDATE - 9 and SYSDATE +0                                                  "
+    			 +" ORDER BY   M.ID_ESTRUTURA, M.DATA_CALENDARIO desc, M.TOTALREGISTROS                                          ";
     			                                                                                                                 
         
+    	 
     	 
     	    // Executa a consulta com paginação
             List<LogDashBoardProcessamentosDTO> resultList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));

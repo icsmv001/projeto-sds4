@@ -40,27 +40,38 @@ const DataTableProcessos13 = () => {
     setActivePage(index);
   };
 
-  const uniqueIds = Array.from(
-    new Set(page.content?.map((item: any) => item.id_ESTRUTURA) ?? [])
-  );
+  // Extrair as IDs únicas
+  const uniqueIds = page.content
+    ? Array.from(new Set(page.content.map((item: any) => item.id_ESTRUTURA)))
+    : [];
 
-  const uniqueDates = Array.from(
-    new Set(page.content?.map((item: any) => item.data_CALENDARIO) ?? [])
-  );
+  // Extrair as datas únicas
+  const uniqueDates = page.content
+    ? Array.from(new Set(page.content.map((item: any) => item.data_CALENDARIO)))
+    : [];
 
-  const uniqueSiglas = Array.from(
-    new Set(page.content?.map((item: any) => item.sigla) ?? [])
-  );
+  // Extrair as siglas únicas
+  const uniqueSiglas = page.content
+    ? Array.from(new Set(page.content.map((item: any) => item.sigla)))
+    : [];
 
-  const uniqueEstruturas = Array.from(
-    new Set(page.content?.map((item: any) => item.nm_ESTRUTURA) ?? [])
-  );
+  // Extrair os nomes de estrutura únicos
+  const uniqueEstruturas = page.content
+    ? Array.from(new Set(page.content.map((item: any) => item.nm_ESTRUTURA)))
+    : [];
 
-  const statusLogs = uniqueIds.map((id) => {
-    const item = page.content?.find((entry: any) => entry.id_ESTRUTURA === id);
-    return item ? item.status_LOG : "N/A";
-  });
+  // Extrair os status_lo únicos
+  //const uniqueStatusLOG = page.content
+  //? Array.from(new Set(page.content.map((item: any) => item.status_LOG)))
+  //: [];
 
+  const statusLogs = page.content
+    ? page.content.map((item: any) => item.status_LOG || "N/A")
+    : [];
+
+  // console.log("1-Valores de uniqueStatusLOG:", uniqueIds, statusLogs); // Adicione esta linha para verificar os valores de uniqueStatusLOG
+
+  // Função para obter o valor para uma data e ID específicos
   const getDataForDateAndId = (date: string, id: number): string => {
     const item = page.content?.find(
       (entry: any) =>
@@ -69,32 +80,34 @@ const DataTableProcessos13 = () => {
     return item ? item.totalregistros : "0";
   };
 
+  // Renderizar uma linha para cada ID
   const renderRows = () => {
-    return uniqueIds.map((id, idIndex) => (
-      <tr key={idIndex}>
-        <td>{id}</td>
-        <td>{uniqueSiglas[idIndex]}</td>
-        <td>{uniqueEstruturas[idIndex]}</td>
-        <td>
-          <span className={getStatusColor(statusLogs[idIndex])}>
-            {statusLogs[idIndex]}
-          </span>
-        </td>
-        {uniqueDates.map((date, dateIndex) => (
-          <td key={dateIndex}>{getDataForDateAndId(date, id)}</td>
-        ))}
-      </tr>
-    ));
+    //   console.log("Valores de uniqueStatusLOG:", uniqueStatusLOG); // Adicione esta linha para verificar os valores de uniqueStatusLOG
+
+    return uniqueIds.map((id, idIndex) => {
+      return (
+        <tr key={idIndex}>
+          <td style={{ width: "35%" }}>{id}</td>
+          <td>{uniqueSiglas[idIndex]}</td>
+          <td>{uniqueEstruturas[idIndex]}</td>
+          <td>{statusLogs[idIndex] || "N/A"}</td>
+
+          {uniqueDates.map((date, dateIndex) => (
+            <td key={dateIndex}>{getDataForDateAndId(date, id)}</td>
+          ))}
+        </tr>
+      );
+    });
   };
 
-  const getStatusColor = (status: string) => {
-    return status === "PROCESSADO" ? "text-blue" : "text-red";
+  // Calcular a quantidade de linhas necessárias para exibir todos os dados
+  const rowsNeeded = Math.ceil(uniqueIds.length / 15);
+  const rowsToRender = rowsNeeded * 10;
 
-    //return status === "PENDENTE" ? "text-red" : "text-blue";
-  };
-
-  //console.log("getStatusColor :", getStatusColor);
-  //console.log("statusLogs :", statusLogs);
+  // Adicionar linhas extras, se necessário
+  while (uniqueIds.length < rowsToRender) {
+    uniqueIds.push("");
+  }
 
   return (
     <>
@@ -102,7 +115,7 @@ const DataTableProcessos13 = () => {
       <div className="table-responsive" style={{ overflowX: "auto" }}>
         <table
           className="table table-striped table-sm"
-          style={{ tableLayout: "auto" }}
+          style={{ minWidth: "800px", overflowY: "auto" }}
         >
           <thead>
             <tr>
@@ -110,6 +123,7 @@ const DataTableProcessos13 = () => {
               <th>sigla</th>
               <th>nm_estrutura</th>
               <th>status_hoje</th>
+              {/* Renderizar as datas */}
               {uniqueDates.map((date, index) => (
                 <th key={index}>{date}</th>
               ))}

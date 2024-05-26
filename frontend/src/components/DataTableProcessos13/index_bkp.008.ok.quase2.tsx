@@ -4,9 +4,6 @@ import React, { useEffect, useState } from "react";
 import { LogProcessoPage } from "types/LogProcesso";
 import { BASE_URL } from "utils/requests";
 
-// teste de mesa1--> http://localhost:8080/LogDashBoardProcessamentosPage?page=0&size=500&sort=data, desc
-// teste de mesa2-->  ${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=500&sort=date,desc
-
 const DataTableProcessos13 = () => {
   const [activePage, setActivePage] = useState(0);
   const [page, setPage] = useState<LogProcessoPage>({
@@ -72,29 +69,65 @@ const DataTableProcessos13 = () => {
   const renderRows = () => {
     return uniqueIds.map((id, idIndex) => (
       <tr key={idIndex}>
-        <td>{id}</td>
-        <td>{uniqueSiglas[idIndex]}</td>
-        <td>{uniqueEstruturas[idIndex]}</td>
-        <td>
-          <span className={getStatusColor(statusLogs[idIndex])}>
-            {statusLogs[idIndex]}
-          </span>
+        <td
+          style={{
+            minWidth: "50px",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {id}
+        </td>
+        <td
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {uniqueSiglas[idIndex]}
+        </td>
+        <td
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {uniqueEstruturas[idIndex]}
+        </td>
+        <td
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {statusLogs[idIndex]}
         </td>
         {uniqueDates.map((date, dateIndex) => (
-          <td key={dateIndex}>{getDataForDateAndId(date, id)}</td>
+          <td
+            key={dateIndex}
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {getDataForDateAndId(date, id)}
+          </td>
         ))}
       </tr>
     ));
   };
 
-  const getStatusColor = (status: string) => {
-    return status === "PROCESSADO" ? "text-blue" : "text-red";
+  const rowsNeeded = Math.ceil(uniqueIds.length / 15);
+  const rowsToRender = rowsNeeded * 10;
 
-    //return status === "PENDENTE" ? "text-red" : "text-blue";
-  };
-
-  //console.log("getStatusColor :", getStatusColor);
-  //console.log("statusLogs :", statusLogs);
+  while (uniqueIds.length < rowsToRender) {
+    uniqueIds.push("");
+  }
 
   return (
     <>
@@ -106,7 +139,7 @@ const DataTableProcessos13 = () => {
         >
           <thead>
             <tr>
-              <th>id_estrutura</th>
+              <th style={{ minWidth: "50px" }}>id_estrutura</th>
               <th>sigla</th>
               <th>nm_estrutura</th>
               <th>status_hoje</th>
