@@ -1,11 +1,9 @@
 import axios from "axios";
 import Pagination3 from "components/Pagination3";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { LogProcessoPage } from "types/LogProcesso";
 import { BASE_URL } from "utils/requests";
-
-// teste de mesa1--> http://localhost:8080/LogDashBoardProcessamentosPage?page=0&size=500&sort=data, desc
-// teste de mesa2-->  ${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=500&sort=date,desc
+import { useHistory } from "react-router-dom";
 
 const DataTableProcessos13 = () => {
   const [activePage, setActivePage] = useState(0);
@@ -17,19 +15,32 @@ const DataTableProcessos13 = () => {
     totalPages: 0,
     content: [],
   });
+  const [allDates, setAllDates] = useState<string[]>([]);
+  const [selectedRow, setSelectedRow] = useState<number | null>(null); // Estado para a linha selecionada
+  const history = useHistory(); // Hook para navegação
 
   useEffect(() => {
     axios
       .get(
-        `${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=500&sort=date,desc`
+        `${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=300&sort=date,desc`
       )
       .then((response) => {
-        // Processar os dados de status_LOG para garantir que cada entrada tenha um valor
         const processedData = response.data.content.map((item: any) => ({
           ...item,
           status_LOG: item.status_LOG || "N/A",
         }));
         setPage({ ...response.data, content: processedData });
+
+        const newDates = processedData.map((item: any) => item.data_CALENDARIO);
+        setAllDates((prevDates) => {
+          const combinedDates = Array.from(
+            new Set([...prevDates, ...newDates])
+          );
+          combinedDates.sort(
+            (a, b) => new Date(b).getTime() - new Date(a).getTime()
+          );
+          return combinedDates;
+        });
       })
       .catch((error) => {
         console.error("Erro ao obter os dados:", error);
@@ -40,21 +51,27 @@ const DataTableProcessos13 = () => {
     setActivePage(index);
   };
 
-  const uniqueIds = Array.from(
-    new Set(page.content?.map((item: any) => item.id_ESTRUTURA) ?? [])
+  const uniqueIds = useMemo(
+    () =>
+      Array.from(
+        new Set(page.content?.map((item: any) => item.id_ESTRUTURA) ?? [])
+      ),
+    [page.content]
   );
 
-  const uniqueDates = Array.from(
-    new Set(page.content?.map((item: any) => item.data_CALENDARIO) ?? [])
-  );
+  const uniqueDates = useMemo(() => {
+    return allDates;
+  }, [allDates]);
 
-  const uniqueSiglas = Array.from(
-    new Set(page.content?.map((item: any) => item.sigla) ?? [])
-  );
+  const uniqueSiglas = uniqueIds.map((id) => {
+    const item = page.content?.find((entry: any) => entry.id_ESTRUTURA === id);
+    return item ? item.sigla : "N/A";
+  });
 
-  const uniqueEstruturas = Array.from(
-    new Set(page.content?.map((item: any) => item.nm_ESTRUTURA) ?? [])
-  );
+  const uniqueEstruturas = uniqueIds.map((id) => {
+    const item = page.content?.find((entry: any) => entry.id_ESTRUTURA === id);
+    return item ? item.nm_ESTRUTURA : "N/A";
+  });
 
   const statusLogs = uniqueIds.map((id) => {
     const item = page.content?.find((entry: any) => entry.id_ESTRUTURA === id);
@@ -66,12 +83,30 @@ const DataTableProcessos13 = () => {
       (entry: any) =>
         entry.data_CALENDARIO === date && entry.id_ESTRUTURA === id
     );
-    return item ? item.totalregistros : "0";
+    return item ? item.totalregistros : "SMVTO";
+  };
+
+  const handleRowClick = (id_ESTRUTURA: number) => {
+    // Alterna a seleção da linha: se já está selecionada, desmarca; senão, marca
+    setSelectedRow((prevSelectedRow) =>
+      prevSelectedRow === id_ESTRUTURA ? null : id_ESTRUTURA
+    );
+  };
+
+  const handleDoubleClick = (id_ESTRUTURA: number, data: string) => {
+    history.push(`/pagina12?id=${id_ESTRUTURA}&data=${data}`);
   };
 
   const renderRows = () => {
     return uniqueIds.map((id, idIndex) => (
-      <tr key={idIndex}>
+      <tr
+        key={idIndex}
+        onClick={() => handleRowClick(id)} // Clique simples para selecionar ou desmarcar
+        style={{
+          backgroundColor: selectedRow === id ? "#e0f7fa" : "white", // Muda a cor da linha selecionada
+          cursor: "pointer", // Muda o cursor para uma mãozinha
+        }}
+      >
         <td>{id}</td>
         <td>{uniqueSiglas[idIndex]}</td>
         <td>{uniqueEstruturas[idIndex]}</td>
@@ -81,7 +116,12 @@ const DataTableProcessos13 = () => {
           </span>
         </td>
         {uniqueDates.map((date, dateIndex) => (
-          <td key={dateIndex}>{getDataForDateAndId(date, id)}</td>
+          <td
+            key={dateIndex}
+            onDoubleClick={() => handleDoubleClick(id, date)} // Double click na data
+          >
+            {getDataForDateAndId(date, id)}
+          </td>
         ))}
       </tr>
     ));
@@ -89,12 +129,7 @@ const DataTableProcessos13 = () => {
 
   const getStatusColor = (status: string) => {
     return status === "PROCESSADO" ? "text-blue" : "text-red";
-
-    //return status === "PENDENTE" ? "text-red" : "text-blue";
   };
-
-  //console.log("getStatusColor :", getStatusColor);
-  //console.log("statusLogs :", statusLogs);
 
   return (
     <>

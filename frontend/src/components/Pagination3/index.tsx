@@ -22,7 +22,9 @@ const Pagination3 = ({ page, onPageChange }: Props) => {
             </button>
           </li>
           <li className="page-item disabled">
-            <span className="page-link">{page.number + 1}</span>
+            <span className="page-link">
+              {page.number + 1} de {page.totalPages}
+            </span>
           </li>
           <li className={`page-item ${page.last ? `disabled` : ``}`}>
             <button

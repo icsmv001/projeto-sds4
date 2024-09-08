@@ -69,7 +69,7 @@ const Home = () => {
         </Link>
         <div className="relative">
           <Link className="btn btn-primary btn-lg" to="/pagina12">
-            Acessar Rel. ProcsPag12
+            Acessar  Movto Idtrutura
           </Link>
         </div>
         <hr />
@@ -79,14 +79,20 @@ const Home = () => {
         </Link>
         <div className="relative">
           <Link className="btn btn-primary btn-lg" to="/pagina13">
-            Acessar Rel. ProcsPag13
+            Acessar Movto de 7 dias
           </Link>
         </div>
         <hr />
+        
 
         <Link className="btn btn-primary btn-lg" to="/pagina06">
           Acessar Rel. Vendas2
         </Link>
+        <div className="relative">
+          <Link className="btn btn-primary btn-lg" to="/cadestruturas">
+            Cadastro de Estruturas.
+          </Link>
+        </div>
 
         <hr />
         {/* 

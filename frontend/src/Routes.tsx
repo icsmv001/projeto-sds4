@@ -16,10 +16,11 @@ import Pagina10 from "pages/pagina10";
 import Pagina11 from "pages/pagina11";
 import Pagina12 from "pages/pagina12";
 import Pagina13 from "pages/pagina13";
+import Pagina14 from "pages/pagina14";
 import Cadvendas2 from "pages/Cadvendas2";
 import FormCard from "pages/FormCard";
 
-// import Form from "pages/FormCard";
+//import Form from "pages/FormCard";
 //import Listing from "pages/Listing";
 
 // import CadVendedor from "components/CadVendedor";
@@ -92,6 +93,9 @@ const Routes = () => {
         </Route>
         <Route path="/pagina13">
           <Pagina13 />
+        </Route>
+        <Route path="/cadestruturas">
+          <Pagina14 />
         </Route>
       </Switch>
     </BrowserRouter>

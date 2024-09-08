@@ -11,7 +11,7 @@ const Pagina13 = () => {
         <h2 className="text-primary py-3">
           Rel. Logs Processamentos - Estruturas - ICSMV001 - v.01-13
         </h2>
-        <h6>Com Paginação </h6>
+        <h6>Monitory - Semanal </h6>
         <DataTableProcessos13 />
       </div>
       <Footer />

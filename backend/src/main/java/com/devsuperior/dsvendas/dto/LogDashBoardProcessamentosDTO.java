@@ -10,7 +10,7 @@ public class LogDashBoardProcessamentosDTO   {
 	  private  Integer INDECE;
 	  private  Integer ID_SEQLOG; 
 	  private  String  MONITORACAO;
-	  private  String ID_ESTRUTURA; 
+	  private  String  ID_ESTRUTURA; 
 	  private  String  SIGLA;                
 	  private  String  TIPO_CARGA;           
 	  @JsonFormat(pattern = "dd/MM/yyyy") // Especifica o formato da data

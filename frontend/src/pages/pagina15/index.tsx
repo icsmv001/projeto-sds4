@@ -19,7 +19,7 @@ function AlertaSucess() {
   });
 }
 
-const Pagina04 = () => {
+const Pagina15 = () => {
   const [activePage] = useState(0);
 
   const [page, setpage] = useState<SellerPage>({
@@ -47,7 +47,9 @@ const Pagina04 = () => {
   const [deals, setDeals] = useState([] as any);
   const [amount, setAmount] = useState([] as any);
   const [data, setData] = useState([] as any);
+  //=======================================================
 
+  //====================
   function handleCreate(e: { preventDefault: () => void }) {
     e.preventDefault();
     // atualizacao 10/03/2022
@@ -135,7 +137,7 @@ const Pagina04 = () => {
 
       <div className="container formVendas">
         <div className="jumbotron">
-          <h1 className="display-4">Cadastro de Vendas 4.0</h1>
+          <h1 className="display-4">Cadastro de Estruturas 1.0</h1>
           <p className="container">
             <div className="row">
               {/* inicio tratamento listar nome vendedores */}
@@ -236,4 +238,4 @@ const Pagina04 = () => {
   );
 };
 
-export default Pagina04;
+export default Pagina15;

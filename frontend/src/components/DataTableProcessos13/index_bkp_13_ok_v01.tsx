@@ -3,7 +3,7 @@ import Pagination3 from "components/Pagination3";
 import React, { useEffect, useState, useMemo } from "react";
 import { LogProcessoPage } from "types/LogProcesso";
 import { BASE_URL } from "utils/requests";
-const DataTableProcessos12 = () => {
+const DataTableProcessos13 = () => {
   const [activePage, setActivePage] = useState(0);
   const [page, setPage] = useState<LogProcessoPage>({
     first: true,
@@ -17,22 +17,9 @@ const DataTableProcessos12 = () => {
 
   useEffect(() => {
     axios
-      // .get(
-      //    `${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=300&sort=date,desc`
-      //  )
       .get(
-        `${BASE_URL}/LogDashBoardProcessamentosPage/buscarDetalhamentoPorParametros`,
-        {
-          params: {
-            page: activePage,
-            size: 300,
-            data: "01/06/2024",
-            id_estrutura: 3221,
-            sort: "date,desc",
-          },
-        }
+        `${BASE_URL}/LogDashBoardProcessamentosPage?page=${activePage}&size=300&sort=date,desc`
       )
-
       .then((response) => {
         const processedData = response.data.content.map((item: any) => ({
           ...item,
@@ -130,7 +117,7 @@ const DataTableProcessos12 = () => {
           <thead>
             <tr>
               <th>id_estrutura</th>
-              <th>siglax</th>
+              <th>sigla</th>
               <th>nm_estrutura</th>
               <th>status_hoje</th>
               {uniqueDates.map((date, index) => (
@@ -145,4 +132,4 @@ const DataTableProcessos12 = () => {
   );
 };
 
-export default DataTableProcessos12;
+export default DataTableProcessos13;

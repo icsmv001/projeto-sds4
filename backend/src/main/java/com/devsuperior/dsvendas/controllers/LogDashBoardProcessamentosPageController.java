@@ -1,5 +1,7 @@
 package com.devsuperior.dsvendas.controllers;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,12 +24,29 @@ public class LogDashBoardProcessamentosPageController {
         this.LogDashBoardProcessamentosPageRepository = LogDashBoardProcessamentosPageRepository;
     }
 
-        
+    // Endpoint atual de listagem   
     @GetMapping
     public Page<LogDashBoardProcessamentosDTO> listarLogDashBoardProcessamentos(@RequestParam(name = "page", defaultValue = "0") int page,
                                          @RequestParam(name = "size", defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         return LogDashBoardProcessamentosPageRepository.buscarLogDashBoardProcessamentosPage(pageable);
     }
+    
+    
+ // Novo endpoint para detalhamento com parâmetros de data e id_estrutura
+    @GetMapping("/buscarDetalhamentoPorParametros")
+    public Page<LogDashBoardProcessamentosDTO> buscarDetalhamentoPorParametros(
+        @RequestParam(name = "data") String data,
+        @RequestParam(name = "id_estrutura") Long idEstrutura,
+        @RequestParam(name = "page", defaultValue = "0") int page,
+        @RequestParam(name = "size", defaultValue = "10") int size) {
+        
+        Pageable pageable = PageRequest.of(page, size);
+        return LogDashBoardProcessamentosPageRepository.buscarDetalhamentoPorParametros(pageable,  idEstrutura,data);
+    }
 }
+
+    
+    
+
 

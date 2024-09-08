@@ -1,4 +1,6 @@
 export type LogProcesso = {
+  [x: string]: any;
+  id_CLIENTE: string;
   monitoracao: string;
   id_estrutura: string;
   sigla: string;
