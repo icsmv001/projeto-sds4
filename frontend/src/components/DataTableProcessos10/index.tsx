@@ -2,7 +2,7 @@ import axios from "axios";
 import Pagination3 from "components/Pagination3";
 import React, { useEffect, useState } from "react";
 import { LogProcessoPage } from "types/LogProcesso";
-import { formatLocalDate } from "utils/format";
+//import { formatLocalDate } from "utils/format";
 import { BASE_URL } from "utils/requests";
 
 const DataTableProcessos10 = () => {

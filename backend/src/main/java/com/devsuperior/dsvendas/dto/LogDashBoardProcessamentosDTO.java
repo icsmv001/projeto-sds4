@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LogDashBoardProcessamentosDTO   {
 	 
-	  private  Integer INDECE;
 	  private  Integer ID_SEQLOG; 
 	  private  String  MONITORACAO;
 	  private  String  ID_ESTRUTURA; 
@@ -35,7 +34,10 @@ public class LogDashBoardProcessamentosDTO   {
 	  private  String  SEGMENTO;         
 	  private  String  LOCAL_ARQUIVO; 
 	  private  String  ANO_MES;
-	
+	  private  Integer  TRATADO_SN;
+	  
+	  
+		 
 		  
  
 	  /**
@@ -94,27 +96,7 @@ public class LogDashBoardProcessamentosDTO   {
 		ID_ESTRUTURA = iD_ESTRUTURA;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	public String getTIPO_CARGA() {
 		return TIPO_CARGA;
 	}
@@ -200,7 +182,13 @@ public class LogDashBoardProcessamentosDTO   {
 		PERCENTUAL_VENCIDOS = pERCENTUAL_VENCIDOS;
 	}
 	
-	
+	public Integer getTRATADO_SN() {
+		return TRATADO_SN;
+	}
+	public void setTRATADO_SN(Integer tRATADO_SN) {
+		TRATADO_SN = tRATADO_SN;
+	}
+
 
 @JsonCreator
 public LogDashBoardProcessamentosDTO( 
@@ -231,8 +219,9 @@ public LogDashBoardProcessamentosDTO(
 		 @JsonProperty ("SEGMENTO            ")   String   SEGMENTO            ,
 		 @JsonProperty ("LOCAL_ARQUIVO       ")   String   LOCAL_ARQUIVO       ,
 		 @JsonProperty ("ANO_MES             ")   String   ANO_MES             ,
-		 @JsonProperty ("INDECE              ")   Integer  INDECE 			) {
-	        
+		 @JsonProperty ("TRATADO_SN          ")   Integer   TRATADO_SN 	       ,	   
+		 @JsonProperty ("INDECE              ")   Integer  INDECE 			   ) {
+			        
 	this.MONITORACAO          = MONITORACAO         ;
 	this.ID_ESTRUTURA         = ID_ESTRUTURA        ;
 	this.SIGLA                = SIGLA               ;
@@ -259,7 +248,8 @@ public LogDashBoardProcessamentosDTO(
 	this.SEGMENTO             = SEGMENTO            ;
 	this.LOCAL_ARQUIVO        = LOCAL_ARQUIVO       ;
 	this.ANO_MES              = ANO_MES             ;
-	this.INDECE               = INDECE              ;
+	this.TRATADO_SN           = TRATADO_SN          ;
+	
 	    }
 
 
@@ -340,6 +330,9 @@ public String getANO_MES() {
 public void setANO_MES(String aNO_MES) {
 	ANO_MES = aNO_MES;
 }
+
+
+
 
 
 

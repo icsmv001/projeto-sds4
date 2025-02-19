@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import { LogProcesso } from "types/LogProcesso";
+import { SaleSum } from "types/sale";
 import { BASE_URL } from "utils/requests";
-import { round } from "utils/format";
 
 // tipo que tera os tipos de dados do grafico
 type ChartData = {
@@ -17,21 +16,24 @@ const DonutChart = () => {
     series: [],
   });
 
+  // instanciar um dado basico para o typo ChartData
+  //let chartData: ChartData = { labels: [], series: [] };
+
   useEffect(() => {
+    // axios.get("http://localhost:8080/sales/amount-by-seller")
     axios
-      .get(`${BASE_URL}/LogDashBoardProcessamentos2/SUM7DIAS`)
+      .get(`${BASE_URL}/sales/amount-by-seller`)
+
       .then((response) => {
-        const data = response.data as LogProcesso[];
-        const myLabels = data.map((x) => x.nm_ESTRUTURA);
-        const mySeries = data.map((x) => Number(x.regincorretos));
+        //axios.get("${}http://localhost:8080/sales/amount-by-seller").then((response) => {
+        const data = response.data as SaleSum[];
+        const myLabels = data.map((x) => x.sellerName);
+        const mySeries = data.map((x) => x.sum);
 
         setChartData({ labels: myLabels, series: mySeries });
 
-        console.log(mySeries);
-      })
-
-      .catch((error) => {
-        console.error("Erro ao obter os dados:", error);
+        //console.log(response.data);
+        console.log(setChartData);
       });
   }, []);
 

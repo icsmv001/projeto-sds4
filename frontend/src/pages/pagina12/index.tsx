@@ -30,6 +30,10 @@ const Pagina12 = () => {
     history.push("/pagina13"); // Redireciona para a página 13
   };
 
+  const handleClick2 = () => {
+    history.push("/dashboard"); // Redireciona para a página de dashboard - de barras.
+  };
+
   return (
     <>
       <NavBar1 />
@@ -46,6 +50,16 @@ const Pagina12 = () => {
           }}
         >
           Retorna ao Semanal
+        </h6>
+        <h6
+          onClick={handleClick2}
+          style={{
+            cursor: "pointer",
+            color: "blue",
+            textDecoration: "underline",
+          }}
+        >
+          Retorna ao Dashboard
         </h6>
 
         {/* Passando os parâmetros para o DataTableProcessos12b */}

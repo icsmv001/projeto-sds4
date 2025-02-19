@@ -27,6 +27,7 @@ export type LogProcesso = {
   segmento: string;
   local_arquivo: string;
   ano_mes: string;
+  tratado_sn: string;
   indece: number;
 };
 

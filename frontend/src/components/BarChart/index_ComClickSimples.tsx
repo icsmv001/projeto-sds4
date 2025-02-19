@@ -6,10 +6,9 @@ import { LogProcesso } from "types/LogProcesso";
 import { round } from "utils/format";
 import { BASE_URL } from "utils/requests";
 
-// versao com double click, navegando por parametros para nova pagina de detalhes da estrutura selecionada.
-// release 20240917 - ok
-// release 20240917 - ok
+//versao com click simples navega para pagina semanal da estrutura desejada.
 
+// Adiciona uma exportação vazia para garantir que o arquivo seja tratado como um módulo
 export {};
 
 type SeriesData = {
@@ -106,33 +105,15 @@ const BarChart = () => {
       });
   }, []);
 
-  let clickTimeout: NodeJS.Timeout | null = null;
-  const CLICK_DELAY = 300; // Delay para distinguir entre clique simples e duplo clique
-
   const handleDataPointClick = (event: any, chartContext: any, config: any) => {
     const { seriesIndex, dataPointIndex } = config;
+
+    // Obtemos o id_ESTRUTURA da série de dados clicada
     const id_ESTRUTURA = dataWithIds[dataPointIndex]?.id_ESTRUTURA;
     const label = chartData.labels.categories[dataPointIndex];
 
     if (id_ESTRUTURA !== undefined) {
-      // Navegação por duplo clique
       history.push(`/pagina12?id=${id_ESTRUTURA}&data=${label}`);
-    }
-  };
-
-  const handleDataPointEvent = (event: any, chartContext: any, config: any) => {
-    const { seriesIndex, dataPointIndex } = config;
-
-    if (clickTimeout) {
-      clearTimeout(clickTimeout);
-      clickTimeout = null;
-      // Detecta duplo clique
-      handleDataPointClick(event, chartContext, config);
-    } else {
-      // Define o timeout para o clique simples
-      clickTimeout = setTimeout(() => {
-        // Aqui você pode tratar o clique simples se necessário
-      }, CLICK_DELAY);
     }
   };
 
@@ -140,7 +121,7 @@ const BarChart = () => {
     chart: {
       stacked: true,
       events: {
-        dataPointSelection: handleDataPointEvent, // Usando o evento para distinguir cliques
+        dataPointSelection: handleDataPointClick,
       },
     },
     plotOptions: {
@@ -149,7 +130,7 @@ const BarChart = () => {
         barHeight: "80%",
       },
     },
-    colors: ["#1616e0", "#da2424", "#9c989c"],
+    colors: ["#1616e0", "#da2424", "#9c989c"], // Definido como array fixo de cores
     dataLabels: {
       enabled: true,
       style: {

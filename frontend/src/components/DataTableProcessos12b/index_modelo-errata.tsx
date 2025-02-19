@@ -41,7 +41,7 @@ const DataTableProcessos12b: React.FC<DataTableProcessos12bProps> = ({
   };
 
   const handleRowClick = (index: number) => {
-    setSelectedRow(index); // Define a linha clicada como selecionada
+    setSelectedRow(index);
   };
 
   const handleDoubleClick = (index: number, tratado_sn: number) => {
@@ -60,13 +60,8 @@ const DataTableProcessos12b: React.FC<DataTableProcessos12bProps> = ({
         .get(
           `${BASE_URL}/LogDashBoardProcessamentosPage/buscarDetalhamentoPorParametros?page=${activePage}&size=300&id_estrutura=${id_estrutura}&data=${data}`
         )
-        .then((response) => {
-          console.log("Full response:", response.data);
-          setPage(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
+        .then((response) => setPage(response.data))
+        .catch((error) => console.error("Error fetching data:", error));
     }
   }, [activePage, id_estrutura, data]);
 
@@ -75,7 +70,7 @@ const DataTableProcessos12b: React.FC<DataTableProcessos12bProps> = ({
   };
 
   const firstRow = page.content?.[0] || null;
-  const remainingRows = page.content?.slice(1) || [];
+  const remainingRows = page.content?.slice(1) || []; // excluindo o primeiro
 
   return (
     <>
@@ -112,20 +107,7 @@ const DataTableProcessos12b: React.FC<DataTableProcessos12bProps> = ({
           <table className="table table-striped table-sm">
             <thead>
               <tr>
-                <th>indece</th>
                 <th>id_estrutura</th>
-                <th>sigla</th>
-                <th>tipo_carga</th>
-                <th>data_calendario</th>
-                <th>hora</th>
-                <th>status_log</th>
-                <th>totalregistros</th>
-                <th>corretos</th>
-                <th>incorretos</th>
-                <th>vencidos</th>
-                <th>%_correto</th>
-                <th>%_incorreto</th>
-                <th>percentual_vencidos</th>
                 <th>tratado_SN</th>
               </tr>
             </thead>
@@ -133,46 +115,36 @@ const DataTableProcessos12b: React.FC<DataTableProcessos12bProps> = ({
               {remainingRows.map((item: any, index: number) => (
                 <tr
                   key={index}
-                  onClick={() => handleRowClick(index)} // Evento de clique na linha
+                  onClick={() => handleRowClick(index)}
                   style={{
                     backgroundColor:
-                      selectedRow === index ? "#e0f7fa" : "white", // Alterando a cor da linha selecionada
-                    cursor: "pointer", // Estilo de cursor
+                      selectedRow === index ? "#ADD8E6" : "white",
+                    cursor: "pointer",
                   }}
                 >
-                  <td>{item.indece}</td>
                   <td>{item.id_ESTRUTURA}</td>
-                  <td>{item.sigla}</td>
-                  <td>{item.tipo_CARGA}</td>
-                  <td>{item.data_CALENDARIO}</td>
-                  <td>{item.hora}</td>
-                  <td>{item.status_LOG}</td>
-                  <td>{item.totalregistros}</td>
-                  <td>{item.regcorretos}</td>
-                  <td>{item.regincorretos}</td>
-                  <td>{item.regenvvencido}</td>
-                  <td>{item.percentual_CORRETO}</td>
-                  <td>{item.percentual_INCORRETO}</td>
-                  <td>{item.percentual_VENCIDOS}</td>
-                  <td
-                    onDoubleClick={() =>
-                      handleDoubleClick(index, item.tratado_SN)
-                    }
-                    style={{ cursor: "pointer" }}
-                  >
-                    {editRow === index ? (
-                      <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onBlur={() => handleSave(item.id_ESTRUTURA)}
-                      />
-                    ) : (
-                      getTratadoLabel(item.tratado_SN)
-                    )}
-                  </td>
+                  <Tooltip content={getTratadoLabel(item.tratado_SN)}>
+                    <td
+                      onDoubleClick={() =>
+                        handleDoubleClick(index, item.tratado_SN)
+                      }
+                      style={{ cursor: "pointer" }}
+                    >
+                      {editRow === index ? (
+                        <input
+                          type="text"
+                          value={inputValue}
+                          onChange={(e) => setInputValue(e.target.value)}
+                          onBlur={() => handleSave(item.id_ESTRUTURA)}
+                        />
+                      ) : (
+                        getTratadoLabel(item.tratado_SN)
+                      )}
+                    </td>
+                  </Tooltip>
                 </tr>
               ))}
+              )
             </tbody>
           </table>
         )}

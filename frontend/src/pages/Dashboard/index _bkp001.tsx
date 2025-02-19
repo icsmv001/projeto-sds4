@@ -1,7 +1,7 @@
 import React from "react";
 import BarChart from "components/BarChart";
 import DataTable from "components/DataTable";
-//import DonutChart from "components/DonutChart";
+import DonutChart from "components/DonutChart";
 import Footer from "components/Footer";
 import NavBar1 from "components/Navbar1";
 
@@ -20,11 +20,10 @@ const Dashboard = () => {
             <BarChart />
           </div>
 
-          {/* <div className="col-sm-6">
+          <div className="col-sm-6">
             <h5 className="text-center text-secundary">Total Recusas</h5>
             <DonutChart />
           </div>
-         */}
         </div>
 
         <div className="py-3">

@@ -166,11 +166,7 @@ public class LogDashBoardProcessamentosPageRepository {
             dataParaConsulta = dataLimite; // Define uma data padrão para casos inválidos
         }
 
-        
-        
-        
-        
-        
+                
         // 	--  CONSULTA-DEMAIS_MOVIMENTO_DIARIAS_CARGAS_TOTAL_V002.sql                                                                       "
     	 String sql = " SELECT                                                                                                                        "
         		+ "     DISTINCT                                                                                                                  "
@@ -275,11 +271,12 @@ public class LogDashBoardProcessamentosPageRepository {
         		+ "          'SEI LA'                                                                                                             "
         		+ "     END) SEGMENTO,                                                                                                            "
         		+ "     es.LOCAL_ARQUIVO,                                                                                                         "
-        		+ "     TO_CHAR(CA.DATA,'YYYY/MM') AS ANO_MES                                                                                     "
+        		+ "     TO_CHAR(CA.DATA,'YYYY/MM') AS ANO_MES ,                                                                                   "
+                + "     LO.TRATADO_SN"
         		+ " FROM PROCESSAMENTO.CALENDARIO_PRODUCAO CA                                                                                     "
         		+ "     FULL OUTER JOIN sgr.estrutura ES ON                                                                                       "
         		+ "         (ES.ID_ESTRUTURA IS NOT NULL AND ES.DESCRICAO NOT LIKE '%CANCEL%'                                                     "
-        		+ "          AND ES.DESCRICAO NOT LIKE '%MIGOU_API%')                                                                             "
+        		+ "          AND ES.DESCRICAO NOT LIKE '%MIGROU_API%')                                                                             "
         		+ "     LEFT JOIN sgr.logentrada LO ON                                                                                            "
         		+ "         (CA.DATA = LO.DATA AND LO.arquivoorigem LIKE '%' || ES.SIGLA || '%')                                                  "
         		+ "     LEFT JOIN sgr.contrato CT ON                                                                                              "
@@ -300,6 +297,6 @@ public class LogDashBoardProcessamentosPageRepository {
         return new PageImpl<>(resultList, pageable, resultList.size());
     }
    
-    
+        
     
 }

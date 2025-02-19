@@ -22,6 +22,183 @@ public class LogDashBoardProcessamentosRepository {
     public LogDashBoardProcessamentosRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    
+    //recupera consulta SUMARIZA TOTAL POR movimentacao e estrutura geral dos ultimos 7 dias.
+    @Transactional(readOnly = true)
+    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosSemPageSUM7DIAS() {
+    	 String sql = " WITH MONITORACAO_SUM_D7 AS (                               "                                                                                       
+    			 +" select distinct ES.ID_ESTRUTURA,ES.SIGLA,upper(ES.DESCRICAO) NM_ESTRUTURA,                                                          "
+    			 +"     to_char(case                                                                                                                        "
+    			 +"                when trim(LO.totalregistros) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) < TRUNC(SYSDATE)  THEN ('SEM MVTO')     "
+    			 +"                when trim(LO.totalregistros) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) >= TRUNC(SYSDATE) THEN ('PENDENTE')     "
+    			 +"             else 'PROCESSADO'                                                                                                           "
+    			 +"            end) STATUS_LOG,                                                                                                             "
+    			 +"    CA.DATA as DATA_CALENDARIO,                                                                                                          "
+    			 +"    CASE                                                                                                                                 "
+    			 +"       WHEN TRIM(LO.HORA) IS NULL THEN ('00:00:00 ') ELSE TO_CHAR(LO.HORA, 'HH24:MI:SS') END HORA,                                       "
+    			 +"    to_char(case                                                                                                                         "
+    			 +"               when trim(LO.totalregistros) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) <= TRUNC(SYSDATE)THEN ('0')              "
+    			 +"               when trim(LO.totalregistros) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) > TRUNC(SYSDATE) THEN ('0')              "
+    			 +"            else trim(LO.totalregistros)                                                                                                 "
+    			 +"           end) totalregistros,                                                                                                          "
+    			 +"    to_char(case                                                                                                                         "
+    			 +"               when trim(LO.Regcorretos) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) <= TRUNC(SYSDATE) THEN ('0')                "
+    			 +"               when trim(LO.Regcorretos) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) > TRUNC(SYSDATE) THEN ('0')                 "
+    			 +"            else trim(LO.Regcorretos)                                                                                                    "
+    			 +"            end) Regcorretos,                                                                                                            "
+    			 +"    to_char(case                                                                                                                         "
+    			 +"               when trim(LO.REGINCORRETOS) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) <= TRUNC(SYSDATE) THEN ('0')              "
+    			 +"               when trim(LO.REGINCORRETOS) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) > TRUNC(SYSDATE) THEN ('0')               "
+    			 +"            else trim(LO.REGINCORRETOS)                                                                                                  "
+    			 +"            end) REGINCORRETOS,                                                                                                          "
+    			 +"    to_char(case                                                                                                                         "
+    			 +"               when trim(LO.REGENVVENCIDO) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) <= TRUNC(SYSDATE) THEN ('0')              "
+    			 +"               when trim(LO.REGENVVENCIDO) is null and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) > TRUNC(SYSDATE) THEN ('0')               "
+    			 +"            else trim(LO.REGENVVENCIDO)                                                                                                  "
+    			 +"            end) REGENVVENCIDO,                                                                                                          "
+    			 +"    ROW_NUMBER() OVER(PARTITION BY ES.ID_ESTRUTURA, CA.DATA ORDER BY LO.ID_SEQLOG DESC) AS RN                                            "
+    			 +"    from PROCESSAMENTO.CALENDARIO_PRODUCAO CA                                                                                            "
+    			 +"    full outer join sgr.estrutura ES                                                                                                     "
+    			 +"    ON (ES.ID_ESTRUTURA IS NOT NULL AND ES.ID_ESTRUTURA IS NOT NULL AND                                                                  "
+    			 +"    ES.DESCRICAO NOT LIKE '%CANCEL%' AND                                                                                                 "
+    			 +"    ES.DESCRICAO NOT LIKE '%CANCEL%' AND                                                                                                 "
+    			 +"    ES.DESCRICAO NOT LIKE '%MIGOU_API%')                                                                                                 "
+    			 +"    left join sgr.logentrada LO ON (CA.DATA = LO.DATA AND (LO.arquivoorigem like '%' || ES.SIGLA || '%'))                                "
+    			 +"    left join sgr.contrato   CT ON (ES.id_clientecorporativo = ct.id_clientecorporativo and ES.id_contrato = ct.id_contrato              "
+    			 +"                                    and ct.titulo not like '%CANCEL%' and ct.titulo not like '%MIGROU_API%')                             "
+    			 +" WHERE 0 = 0                                                                                                                             "
+    			 +"    and es.id_estrutura in (SELECT e.ID_ESTRUTURA from sgr.estrutura E full outer join sgr.logentrada l                                  "
+    			 +"    on (l.arquivoorigem like '%' || e.sigla || '%')                                                                                      "
+    			 +"                               left join sgr.contrato ct on (e.id_clientecorporativo = ct.id_clientecorporativo                          "
+    			 +"                              and e.id_contrato = ct.id_contrato)                                                                        "
+    			 +"                             AND ct.titulo not like '%CANCEL%'                                                                           "
+    			 +"                             where e.id_estrutura is not null                                                                            "
+    			 +"                             and e.DESCRICAO not like '%CANCEL%'                                                                         "
+    			 +"                             and ct.titulo not like '%CANCEL%'                                                                           "
+    			 +"    AND l.DATA between sysdate - 90 and sysdate                                                                                          "
+    			 +"    GROUP BY E.ID_ESTRUTURA)                                                                                                             "
+    			 +"    AND ES.DESCRICAO NOT LIKE '%DESATIVA%'                                                                                               "
+    			 +"    AND CT.TITULO NOT LIKE '%CANC%'                                                                                                      "
+    			 +"    AND CT.TITULO NOT LIKE '%CACE%'                                                                                                      "
+    			 +"    AND CT.TITULO NOT LIKE '%MIGROU_API%'                                                                                                "
+    			 +"    AND CA.DATA IS NOT NULL                                                                                                              "
+    			 +"    AND ca.data between SYSDATE - 7 and SYSDATE + 0)                                                                                     "
+    			 +"                                                                                                                                         "
+    			 +"    SELECT M.ID_ESTRUTURA,                                                                                                               "
+    			 +"    M.SIGLA,                                                                                                                             "
+    			 +"    trim(M.NM_ESTRUTURA) NM_ESTRUTURA,                                                                                                                      "
+    			 +"    SUM(TO_NUMBER(M.TOTALREGISTROS)) TOTALREGISTROS,                                                                                     "
+    			 +"    SUM(TO_NUMBER(M.REGCORRETOS)) REGCORRETOS,                                                                                           "
+    			 +"    SUM(TO_NUMBER(M.REGINCORRETOS)) REGINCORRETOS,                                                                                       "
+    			 +"    SUM(TO_NUMBER(M.REGENVVENCIDO)) REGENVVENCIDO                                                                                        "
+    			 +"    FROM MONITORACAO_SUM_D7 M                                                                                                            "
+    			 +"    WHERE 0 = 0                                                                                                                          "
+    			 +"    AND M.DATA_CALENDARIO between SYSDATE - 7 and SYSDATE + 0                                                                            "
+    			 +"    GROUP BY M.NM_ESTRUTURA, M.ID_ESTRUTURA, M.SIGLA                                                                                     "
+    			 +"    order by m.id_estrutura                                                                                                              "
+;
+				                                                                                                                 
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));
+    }
+
+
+    
+    
+    //recupera consulta de movimentacao por estrutura geral dos ultimos 7 dias.
+    @Transactional(readOnly = true)
+    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosSemPage() {
+    	 String sql = " WITH MONITORACAO_D1 AS (                                                                                         "
+    			 +"                    select  distinct                                                                           " 
+    			 +"                    ES.ID_ESTRUTURA,                                                                          "
+    			 +"                    ES.SIGLA,                                                                                 "
+    			 +"                    upper(ES.DESCRICAO) NM_ESTRUTURA,                                                         "      
+                 +" to_char(case                                                                                                 "
+                 +"  	                     when trim(LO.totalregistros) is null  and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) < TRUNC(SYSDATE) "                          
+                 +"  	                        THEN  ('SEM MVTO')                                                                            "
+                 +"	                     when trim(LO.totalregistros) is null  and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) >= TRUNC(SYSDATE)   "                      
+    	         +"                                     THEN  ('PENDENTE')                "
+    	         +"                   else 'PROCESSADO'                                    "                          
+    	         +"              end ) STATUS_LOG , "
+    	         +"                    CA.DATA as DATA_CALENDARIO,                                                               "
+    			 +"                    CASE                                                                                      "                                                                     
+    			 +"                    WHEN TRIM(LO.HORA) IS NULL THEN ('00:00:00 ')                                             "                                                         
+    			 +"                    ELSE TO_CHAR(LO.HORA, 'HH24:MI:SS')                                                       "                            
+    			 +"                    END HORA,                                                                                 "
+    			 +" to_char(case                                                                                                 "
+                 +"    when trim(LO.totalregistros) is null  and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) <= TRUNC(SYSDATE)  "                        
+                 +"       THEN  ('SMVTO')   "
+                 +"    when trim(LO.totalregistros) is null  and TRIM(LO.DATA) IS NULL AND TRIM(CA.DATA) > TRUNC(SYSDATE)     "                    
+                 +"                    THEN  ('PNDNT')  "              
+                 +"    else trim(LO.totalregistros)   "                                                           
+                 +" end ) totalregistros "
+    			 +"                 ,ROW_NUMBER() OVER (PARTITION BY ES.ID_ESTRUTURA, CA.DATA ORDER BY LO.ID_SEQLOG DESC) AS RN  "                                                                     
+    			 +"                 from PROCESSAMENTO.CALENDARIO_PRODUCAO CA                                                    "
+    			 +"                    full outer join sgr.estrutura ES  ON ( ES.ID_ESTRUTURA IS NOT NULL                        "
+    			 +"                                                          AND ES.ID_ESTRUTURA IS NOT NULL                     "
+    			 +"                                      AND ES.DESCRICAO NOT LIKE '%CANCEL%'                                    "
+    			 +"                                      AND ES.DESCRICAO NOT LIKE '%CANCEL%'                                    "
+    			 +"                                      AND ES.DESCRICAO NOT LIKE '%MIGOU_API%'                                    "
+    			 +"                                     )                                                                        "
+    			 +"                    left join sgr.logentrada      LO  ON (CA.DATA = LO.DATA                                   "
+    			 +"                                                           AND (LO.arquivoorigem like '%' || ES.SIGLA || '%') "
+    			 +"                                       )                                                                      "
+    			 +"                     left join sgr.contrato       CT  ON (ES.id_clientecorporativo = ct.id_clientecorporativo "
+    			 +"                                                         and ES.id_contrato = ct.id_contrato                  "
+    			 +"                                       and ct.titulo not like '%CANCEL%'                                      "
+    			 +"                                       and ct.titulo not like '%MIGROU_API%'                                      "
+    			 +"                                     )                                                                        "
+    			 +"                 WHERE 0 = 0                                                                                  "
+    			 +"    			    and es.id_estrutura in (  SELECT  e.ID_ESTRUTURA                                             "
+                 +"                                              from sgr.estrutura E                                            "
+                 +"                                           full outer join sgr.logentrada l                                   "
+                 +"                                              on (l.arquivoorigem like '%' || e.sigla || '%')                 "
+                 +"                                           left join sgr.contrato ct                                          "
+                 +"                                              on (e.id_clientecorporativo = ct.id_clientecorporativo          "
+                 +"                                                  and e.id_contrato = ct.id_contrato)                         "
+                 +"                                             AND ct.titulo not like '%CANCEL%'                                "
+                 +"                                           where e.id_estrutura is not null                                   "
+                 +"                                              and e.DESCRICAO not like '%CANCEL%'                             "
+                 +"                                              and  ct.titulo not like '%CANCEL%'                              "
+                 +"                                              AND l.DATA   between sysdate -90 and sysdate                    "
+                 +"                                            GROUP BY E.ID_ESTRUTURA )                                         "
+    			 +"                    AND ES.DESCRICAO NOT LIKE '%DESATIVA%'                                                    "
+                 +"                    AND CT.TITULO NOT LIKE '%CANC%'                                                           "
+                 +"                    AND CT.TITULO NOT LIKE '%CACE%'                                                           "
+                 +"                    AND CT.TITULO NOT LIKE '%MIGROU_API%'                                                           "
+     		     +"                    AND CA.DATA IS NOT NULL                                                                   "
+    			 +"                    AND ca.data between SYSDATE - 7 and SYSDATE +0                                            "
+    			 +")                                                                                                             "
+    			 +"                                                                                                              "
+    			 +" SELECT                                                                                                       "
+    			 +"    M.ID_ESTRUTURA "
+    			 +"   ,M.SIGLA                                                                                                 "
+    			 +"   ,M.NM_ESTRUTURA	                                                                                         "
+    			 +"   ,M.STATUS_LOG" 
+    			 +"   ,M.DATA_CALENDARIO	                                                                                     "
+    			 +"   ,M.HORA	                                                                                                 "
+    			 +"   ,M.TOTALREGISTROS                                                                                          "
+    			 +"   ,M.RN                                                                                                      "
+    			 +" FROM MONITORACAO_D1 M                                                                                           "
+    			 +"    WHERE RN=1                                                                                                "
+    			 +"    AND M.DATA_CALENDARIO between SYSDATE - 7 and SYSDATE +0                                                  "
+    			 +" ORDER BY   M.NM_ESTRUTURA, M.ID_ESTRUTURA, M.DATA_CALENDARIO desc, M.TOTALREGISTROS                                          ";
+    			                                                                                                                 
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(LogDashBoardProcessamentosDTO.class));
+    }
+
+    	 
+    	 
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Transactional(readOnly = true)
     public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentoss() {
     	 String sql =  " select 'monitoracao v.1' as monitoracao,                            "

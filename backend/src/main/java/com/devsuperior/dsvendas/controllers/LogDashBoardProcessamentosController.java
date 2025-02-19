@@ -29,6 +29,20 @@ public class LogDashBoardProcessamentosController {
         return LogDashBoardProcessamentosRepository.buscarLogDashBoardProcessamentoss();
     }
     
+   
+    @GetMapping(value = "/7DIAS")
+    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosSemPage() {
+        return LogDashBoardProcessamentosRepository.buscarLogDashBoardProcessamentosSemPage();
+    }
+   
+    
+    @GetMapping(value = "/SUM7DIAS")
+    public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosSemPageSUM7DIAS() {
+        return LogDashBoardProcessamentosRepository.buscarLogDashBoardProcessamentosSemPageSUM7DIAS();
+    }
+    
+    
+    
     
     @GetMapping(value = "/PERIODO2")
     public List<LogDashBoardProcessamentosDTO> buscarLogDashBoardProcessamentosPorData(
