@@ -9,6 +9,7 @@ import { BASE_URL } from "utils/requests";
 // versao com double click, navegando por parametros para nova pagina de detalhes da estrutura selecionada.
 // release 20240917 - ok
 // release 20240917 - ok
+// release 20260303 - ok, ajustes de versao e bibliotecas 
 
 export {};
 

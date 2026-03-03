@@ -28,10 +28,10 @@ function MovieCard({ movie }: Props) {
         <h4>{movie.title}</h4>
         <MovieScore count={movie.count} score={movie.score} />
 
-        <Link to={`/FormCard/${movie.id}`}>
+        console.log("MovieCard - teste valor do id do filme: " + movie.id);
+       <Link to={`/FormCard/${movie.id}`}>
           <div className="btn btn-primary dsmovie-btn">Avaliar</div>
-          {console.log("MovieCard - teste valor do id do filme: " + movie.id)}
-        </Link>
+       </Link>
       </div>
     </div>
   );

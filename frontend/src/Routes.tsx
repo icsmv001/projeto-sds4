@@ -1,6 +1,10 @@
 // versao 2022/06/26 - funcionando
-// PROJETO DEVSUPERIOR - DSVENDAS E DSFILMES VERSAO FINAL ACESSO PRD EM CLOUD BB E FRONT ENDE.OK
-// versao 20220626- funcionando, falta ajustar formulario de score de pontos de filmes -v001
+// PROJETO DEVSUPERIOR - DSVENDAS E DSFILMES
+// Ajustado para React Router v5.3.0 - compatível com Node 22
+
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import Dashboard from "pages/Dashboard";
 import Home from "pages/Home";
 import Pagina01 from "pages/pagina01";
@@ -20,83 +24,28 @@ import Pagina14 from "pages/pagina14";
 import Cadvendas2 from "pages/Cadvendas2";
 import FormCard from "pages/FormCard";
 
-//import Form from "pages/FormCard";
-//import Listing from "pages/Listing";
-
-// import CadVendedor from "components/CadVendedor";
-// import Cadvendas from "pages/Cadvendas";
-
-//import React, { Route, Switch } from "react-router";
-//import { BrowserRouter } from "react-router-dom";
-import { Component } from "react";
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/listVendedor">
-          <Pagina01 />
-        </Route>
-        <Route path="/listVendas">
-          <Pagina02 />
-        </Route>
-        <Route path="/cadvendedor">
-          <Pagina03 />
-        </Route>
-        <Route path="/cadvendas">
-          <Pagina04 />
-        </Route>
-        <Route path="/cadvendas2">
-          <Cadvendas2 />
-        </Route>
-
-        <Route path="/pagina05">
-          <Pagina05 />
-        </Route>
-
-        <Route path="/pagina06">
-          <Pagina06 />
-        </Route>
-
-        <Route path="/pagina07">
-          <Pagina07 />
-        </Route>
-        <Route path="/FormCard/:idParam" component={Component}>
-          <FormCard />
-        </Route>
-
-        <Route path="/pagina08">
-          <Pagina08 />
-        </Route>
-
-        <Route path="/pagina09">
-          <Pagina09 />
-        </Route>
-
-        <Route path="/pagina10">
-          <Pagina10 />
-        </Route>
-
-        <Route path="/pagina11">
-          <Pagina11 />
-        </Route>
-        <Route path="/pagina12">
-          <Pagina12 />
-        </Route>
-        <Route path="/pagina13">
-          <Pagina13 />
-        </Route>
-        <Route path="/cadestruturas">
-          <Pagina14 />
-        </Route>
+        <Route path="/" exact component={Home} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/listVendedor" component={Pagina01} />
+        <Route path="/listVendas" component={Pagina02} />
+        <Route path="/cadvendedor" component={Pagina03} />
+        <Route path="/cadvendas" component={Pagina04} />
+        <Route path="/cadvendas2" component={Cadvendas2} />
+        <Route path="/pagina05" component={Pagina05} />
+        <Route path="/pagina06" component={Pagina06} />
+        <Route path="/pagina07" component={Pagina07} />
+        <Route path="/FormCard/:idParam" component={FormCard} />
+        <Route path="/pagina08" component={Pagina08} />
+        <Route path="/pagina09" component={Pagina09} />
+        <Route path="/pagina10" component={Pagina10} />
+        <Route path="/pagina11" component={Pagina11} />
+        <Route path="/pagina12" component={Pagina12} />
+        <Route path="/pagina13" component={Pagina13} />
+        <Route path="/cadestruturas" component={Pagina14} />
       </Switch>
     </BrowserRouter>
   );

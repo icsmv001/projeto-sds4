@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 
 //##@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+//release 20260303 - migrando de maquina, baixa via github e ajuste de bibliotecas
 
 
 
