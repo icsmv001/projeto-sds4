@@ -21,41 +21,93 @@ public class ClienteContratoSegmentoRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Transactional(readOnly = true)
-    public List<ClienteContratoSegmentoDTO> buscarClienteContratoSegmentoNome(String clientes) {
-        String sql = "SELECT " +
-                     "    CL.ID_CLIENTECORPORATIVO, " +
-                     "    TRANSLATE(PS.NOMEPESQUISA, 'àâêôîûãõáéíóúçüÀÂÊÔÛÎÃÕÁÉÍÓÚÇÜº', 'aaeoiuaoaeioucuAAEOUIAOAEIOUCU') as CLIENTES, " +
-                     "    CT.ID_CONTRATO, " +
-                     "    TRANSLATE(CT.TITULO, 'àâêôîûãõáéíóúçüÀÂÊÔÛÎÃÕÁÉÍÓÚÇÜº', 'aaeoiuaoaeioucuAAEOUIAOAEIOUCU') as TITULO, " +
-                     "    (CASE SE.id_tipocarteira " +
-                     "        WHEN 1 THEN 'VEICULO' " +
-                     "        WHEN 2 THEN 'RESIDENCIA' " +
-                     "        WHEN 3 THEN 'PESSOA' " +
-                     "        WHEN 4 THEN 'FUNERAL' " +
-                     "        ELSE 'SEM_SEGMENTO' " +
-                     "     END) as SEGMENTO " +
-                     " FROM SGR.clientecorporativo CL " +
-                     "    LEFT JOIN SGR.PESSOA PS ON (CL.ID_PESSOA = PS.ID) " +
-                     "    LEFT JOIN SGR.CONTRATO CT ON (CL.ID_CLIENTECORPORATIVO = CT.ID_CLIENTECORPORATIVO) " +
-                     "    LEFT JOIN PLANO PL ON (CT.ID_CONTRATO = PL.ID_CONTRATO) " +
-                     "    LEFT JOIN sgr.infcarteiraplano SE ON (PL.ID_PLANO = SE.ID_PLANO) " +
-                     " WHERE " +
-                     "    UPPER(PS.NOMEPESQUISA) LIKE UPPER('%' || ? || '%') " +
-                     "    AND UPPER(CT.TITULO) NOT LIKE UPPER('%CANCEL%') " +
-                     " GROUP BY " +
-                     "    CL.ID_CLIENTECORPORATIVO, PS.NOMEPESQUISA, CT.ID_CONTRATO, CT.TITULO, SE.id_tipocarteira " +
-                     " ORDER BY " +
-                     "    PS.NOMEPESQUISA, CT.ID_CONTRATO, SE.id_tipocarteira DESC";
+    // SQL COM ALIAS (RECOMENDADO)
+    private static final String SQL_BASE =
+            "SELECT " +
+            "    CL.ID_CLIENTECORPORATIVO AS idClientecorporativo, " +
+            "    TRANSLATE(PS.NOMEPESQUISA, " +
+            "        'àâêôîûãõáéíóúçüÀÂÊÔÛÎÃÕÁÉÍÓÚÇÜº', " +
+            "        'aaeoiuaoaeioucuAAEOUIAOAEIOUCU') AS nmClientes, " +
+            "    CT.ID_CONTRATO AS idContrato, " +
+            "    TRANSLATE(CT.TITULO, " +
+            "        'àâêôîûãõáéíóúçüÀÂÊÔÛÎÃÕÁÉÍÓÚÇÜº', " +
+            "        'aaeoiuaoaeioucuAAEOUIAOAEIOUCU') AS titulo, " +
+            "    NULL AS segmento " + // mantendo compatibilidade com DTO
+            " FROM SGR.clientecorporativo CL " +
+            " LEFT JOIN SGR.PESSOA PS ON (CL.ID_PESSOA = PS.ID) " +
+            " LEFT JOIN SGR.CONTRATO CT ON (CL.ID_CLIENTECORPORATIVO = CT.ID_CLIENTECORPORATIVO) " +
+            " LEFT JOIN PLANO PL ON (CT.ID_CONTRATO = PL.ID_CONTRATO) " +
+            " WHERE 1=1 " +
+            " AND UPPER(CT.TITULO) NOT LIKE UPPER('%CANC%') ";
 
-        List<ClienteContratoSegmentoDTO> listaCliente = jdbcTemplate.query(sql, new Object[]{clientes}, new BeanPropertyRowMapper<>(ClienteContratoSegmentoDTO.class));
-        
-        if (listaCliente.isEmpty()) {
+    private List<ClienteContratoSegmentoDTO> buscarGenerico(String filtroSQL, Object valorFiltro) {
+
+        String sql = SQL_BASE +
+                filtroSQL +
+                " GROUP BY CL.ID_CLIENTECORPORATIVO, PS.NOMEPESQUISA, CT.ID_CONTRATO, CT.TITULO " +
+                " ORDER BY PS.NOMEPESQUISA, CT.ID_CONTRATO DESC";
+
+        List<ClienteContratoSegmentoDTO> lista = jdbcTemplate.query(
+                sql,
+                new Object[]{valorFiltro},
+                new BeanPropertyRowMapper<>(ClienteContratoSegmentoDTO.class)
+        );
+
+        //  CORREÇÃO AQUI
+        if (lista.isEmpty()) {
             ClienteContratoSegmentoDTO semMovimento = new ClienteContratoSegmentoDTO();
-            semMovimento.setCLIENTES("Sem movimento");
+            semMovimento.setNmClientes("Sem movimento");
             return Collections.singletonList(semMovimento);
         }
 
-        return listaCliente;
+        return lista;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ClienteContratoSegmentoDTO> buscarPorNome(String nome) {
+        return buscarGenerico(
+                " AND UPPER(PS.NOMEPESQUISA) LIKE UPPER(? || '%') ",
+                nome
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public List<ClienteContratoSegmentoDTO> buscarPorNomeContrato(String nomeContrato) {
+        return buscarGenerico(
+                " AND UPPER(CT.TITULO) LIKE UPPER(? || '%') ",
+                nomeContrato
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public List<ClienteContratoSegmentoDTO> buscarPorIdCliente(Long idCliente) {
+        return buscarGenerico(
+                " AND CL.ID_CLIENTECORPORATIVO = ? ",
+                idCliente
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public List<ClienteContratoSegmentoDTO> buscarPorIdContrato(Long idContrato) {
+        return buscarGenerico(
+                " AND CT.ID_CONTRATO = ? ",
+                idContrato
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public List<ClienteContratoSegmentoDTO> buscarPorSegmento(Integer tipoCarteira) {
+        return buscarGenerico(
+                " AND SE.ID_TIPOCARTEIRA = ? ",
+                tipoCarteira
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public List<ClienteContratoSegmentoDTO> buscarPorEstrutura(String estrutura) {
+        return buscarGenerico(
+                " AND UPPER(CT.ESTRUTURA) LIKE UPPER(? || '%') ",
+                estrutura
+        );
     }
 }

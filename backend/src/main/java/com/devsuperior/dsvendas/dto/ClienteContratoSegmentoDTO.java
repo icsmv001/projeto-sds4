@@ -2,70 +2,73 @@ package com.devsuperior.dsvendas.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({
+    "id_clientecorporativo",
+    "nm_clientes",
+    "id_contrato",
+    "titulo",
+    "segmento"
+})
 public class ClienteContratoSegmentoDTO {
 
-    private Integer ID_CLIENTECORPORATIVO;
-    private String CLIENTES;
-    private Integer ID_CONTRATO;
-    private String TITULO;
-    private String SEGMENTO;
+    @JsonProperty("id_clientecorporativo")
+    private Integer idClientecorporativo;
 
-    public Integer getID_CLIENTECORPORATIVO() {
-        return ID_CLIENTECORPORATIVO;
+    @JsonProperty("nm_clientes")
+    private String nmClientes;
+
+    @JsonProperty("id_contrato")
+    private Integer idContrato;
+
+    @JsonProperty("titulo")
+    private String titulo;
+
+    @JsonProperty("segmento")
+    private String segmento;
+
+    // getters e setters (PADRÃO JAVA)
+    public Integer getIdClientecorporativo() {
+        return idClientecorporativo;
     }
 
-    public void setID_CLIENTECORPORATIVO(Integer iD_CLIENTECORPORATIVO) {
-        ID_CLIENTECORPORATIVO = iD_CLIENTECORPORATIVO;
+    public void setIdClientecorporativo(Integer idClientecorporativo) {
+        this.idClientecorporativo = idClientecorporativo;
     }
 
-    public String getCLIENTES() {
-        return CLIENTES;
+    public String getNmClientes() {
+        return nmClientes;
     }
 
-    public void setCLIENTES(String cLIENTES) {
-        CLIENTES = cLIENTES;
+    public void setNmClientes(String nmClientes) {
+        this.nmClientes = nmClientes;
     }
 
-    public Integer getID_CONTRATO() {
-        return ID_CONTRATO;
+    public Integer getIdContrato() {
+        return idContrato;
     }
 
-    public void setID_CONTRATO(Integer iD_CONTRATO) {
-        ID_CONTRATO = iD_CONTRATO;
+    public void setIdContrato(Integer idContrato) {
+        this.idContrato = idContrato;
     }
 
-    public String getTITULO() {
-        return TITULO;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTITULO(String tITULO) {
-        TITULO = tITULO;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getSEGMENTO() {
-        return SEGMENTO;
+    public String getSegmento() {
+        return segmento;
     }
 
-    public void setSEGMENTO(String sEGMENTO) {
-        SEGMENTO = sEGMENTO;
-    }
-
-    @JsonCreator
-    public ClienteContratoSegmentoDTO(
-            @JsonProperty("ID_CLIENTECORPORATIVO") Integer ID_CLIENTECORPORATIVO,
-            @JsonProperty("CLIENTES") String CLIENTES,
-            @JsonProperty("ID_CONTRATO") Integer ID_CONTRATO,
-            @JsonProperty("TITULO") String TITULO,
-            @JsonProperty("SEGMENTO") String SEGMENTO) {
-        this.ID_CLIENTECORPORATIVO = ID_CLIENTECORPORATIVO;
-        this.CLIENTES = CLIENTES;
-        this.ID_CONTRATO = ID_CONTRATO;
-        this.TITULO = TITULO;
-        this.SEGMENTO = SEGMENTO;
+    public void setSegmento(String segmento) {
+        this.segmento = segmento;
     }
 
     public ClienteContratoSegmentoDTO() {
-        // Construtor padrão necessário para serialização/desserialização
     }
 }
